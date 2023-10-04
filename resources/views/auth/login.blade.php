@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center mt-5 ">
         <div class="col-lg-4 col-md-6 col-9">
             <div class="card">
                 <div class="card-header">
@@ -42,7 +42,7 @@
                         </div>
                     </form>
                     <div class="mb-3">
-                        <a href="#">
+                        <a href="/register">
                             <div class="d-grid">
                                 <button class="btn btn-warning">register</button>
                             </div>

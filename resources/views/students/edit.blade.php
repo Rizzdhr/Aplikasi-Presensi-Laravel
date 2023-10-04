@@ -22,7 +22,7 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">NISN</label>
-                                <input type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{ old('nisn', $student->nis) }}" placeholder="Masukkan Judul Post">
+                                <input type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{ old('nisn', $student->nisn) }}" >
 
                                 <!-- error message untuk nis -->
                                 @error('nisn')
@@ -34,7 +34,7 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">Nama</label>
-                                <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama', $student->nama) }}" placeholder="Masukkan Judul Post">
+                                <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama', $student->nama) }}" >
                                 <!-- error message untuk nama -->
                                 @error('nama')
                                     <div class="alert alert-danger mt-2">
@@ -45,7 +45,7 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">No. HP</label>
-                                <input type="text" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp', $student->no_hp) }}" placeholder="Masukkan Judul Post">
+                                <input type="text" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp', $student->no_hp) }}" >
                                 <!-- error message untuk no_hp -->
                                 @error('no_hp')
                                     <div class="alert alert-danger mt-2">
@@ -56,7 +56,7 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">Email</label>
-                                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $student->email) }}" placeholder="Masukkan Judul Post">
+                                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $student->email) }}" >
                                 <!-- error message untuk email -->
                                 @error('email')
                                     <div class="alert alert-danger mt-2">
@@ -67,7 +67,7 @@
 
                             <div class="form-group">
                                 <label for="">Jenis Kelamin</label>
-                                <select type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ old('jenis_kelamin', $student->jenis_kelamin) }}" placeholder="Masukkan Judul Post">
+                                <select type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ old('jenis_kelamin', $student->jenis_kelamin) }}" >
                                     <option value="">-</option>
                                     <<option value="Laki-laki" {{ old('jenis_kelamin', $student->jenis_kelamin) === 'Laki-laki' ? 'selected' : '' }}>Laki-Laki</option>
                                     <option value="Perempuan" {{ old('jenis_kelamin', $student->jenis_kelamin) === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>

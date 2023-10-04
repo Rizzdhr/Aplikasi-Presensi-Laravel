@@ -20,7 +20,7 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
 
         $user->save();
-        return back()->with('succes', 'Register berhasil');
+        return back()->with('success', 'Register berhasil');
     }
 
     public function login() {
@@ -36,10 +36,10 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect('/')->with('succes', 'Login Berhasil');
+            return redirect('/students')->with('success', 'Login Berhasil');
         }
 
-        return back()->with('error', 'email atau password salah');
+        return back()->with('error', 'Email atau Password salah');
     }
 
     public function logout(Request $request)
