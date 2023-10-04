@@ -22,10 +22,10 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">NISN</label>
-                                <input type="text" class="form-control @error('nis') is-invalid @enderror" name="nisn" value="{{ old('nisn', $student->nis) }}" placeholder="Masukkan Judul Post">
+                                <input type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{ old('nisn', $student->nis) }}" placeholder="Masukkan Judul Post">
 
                                 <!-- error message untuk nis -->
-                                @error('nis')
+                                @error('nisn')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>

@@ -22,8 +22,8 @@
                                 <label class="font-weight-bold">NISN</label>
                                 <input type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{ old('nisn') }}" placeholder="Masukkan NISN">
 
-                                <!-- error message untuk nis -->
-                                @error('nis')
+                                <!-- error message untuk nisn -->
+                                @error('nisn')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>

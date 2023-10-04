@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// data siswa
 Route::resource('/students', StudentController::class);
+
+// auth
+Route::get('/register', [AuthController::class,'register']);
+Route::post('register', [AuthController::class,'registerpost'])->name('registerpost');
+
+Route::get('/login', [AuthController::class,'login']);
+Route::post('login', [AuthController::class,'loginpost'])->name('loginpost');
+
+Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 
 

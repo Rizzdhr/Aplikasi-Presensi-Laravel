@@ -59,12 +59,12 @@ class StudentController extends Controller
 
        //create student
        Student::create([
-           'nisn'     => $request->nis,
-           'nama'   => $request->nama,
-           'no_hp'   => $request->no_hp,
-           'email'   => $request->email,
-           'jenis_kelamin'   => $request->jenis_kelamin
-       ]);
+            'nisn'  => $request->nisn,
+            'nama'   => $request->nama,
+            'no_hp'   => $request->no_hp,
+            'email'   => $request->email,
+            'jenis_kelamin'   => $request->jenis_kelamin
+        ]);
 
        //redirect to index
        return redirect()->route('students.index')->with(['success' => 'Data Berhasil Disimpan!']);
