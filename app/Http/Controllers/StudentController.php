@@ -49,7 +49,7 @@ class StudentController extends Controller
    {
        //validate form
        $this->validate($request, [
-           'nis'     => 'required',
+           'nisn'     => 'required',
            'nama'     => 'required',
            'no_hp'   => 'required',
            'email'  => 'required',
@@ -59,7 +59,7 @@ class StudentController extends Controller
 
        //create student
        Student::create([
-           'nis'     => $request->nis,
+           'nisn'     => $request->nis,
            'nama'   => $request->nama,
            'no_hp'   => $request->no_hp,
            'email'   => $request->email,
@@ -90,7 +90,7 @@ class StudentController extends Controller
 {
     // Validate form data
     $this->validate($request, [
-        'nis' => 'required',
+        'nisn' => 'required',
         'nama' => 'required',
         'no_hp' => 'required',
         'email' => 'required',
@@ -102,7 +102,7 @@ class StudentController extends Controller
 
     // Update student data with the new values
     $student->update([
-        'nis' => $request->nis,
+        'nisn' => $request->nisn,
         'nama' => $request->nama,
         'no_hp' => $request->no_hp,
         'email' => $request->email,

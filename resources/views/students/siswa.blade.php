@@ -15,7 +15,7 @@
                         <table class="table table-bordered">
                             <thead>
                               <tr>
-                                <th scope="col">NIS</th>
+                                <th scope="col">NISN</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">No. HP</th>
                                 <th scope="col">Email</th>
@@ -26,7 +26,7 @@
                             <tbody>
                               @forelse ($students as $student)
                                 <tr>
-                                    <td>{{ $student->nis }}</td>
+                                    <td>{{ $student->nisn }}</td>
                                     <td>{{ $student->nama }}</td>
                                     <td>{{ $student->no_hp}}</td>
                                     <td>{{ $student->email}}</td>

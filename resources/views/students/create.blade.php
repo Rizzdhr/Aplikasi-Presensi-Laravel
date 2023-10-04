@@ -19,8 +19,8 @@
                             @csrf
 
                             <div class="form-group">
-                                <label class="font-weight-bold">NIS</label>
-                                <input type="text" class="form-control @error('nis') is-invalid @enderror" name="nis" value="{{ old('nis') }}" placeholder="Masukkan NIS">
+                                <label class="font-weight-bold">NISN</label>
+                                <input type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{ old('nisn') }}" placeholder="Masukkan NISN">
 
                                 <!-- error message untuk nis -->
                                 @error('nis')

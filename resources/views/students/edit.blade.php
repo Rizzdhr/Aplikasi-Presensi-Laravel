@@ -21,8 +21,8 @@
                             @method('PUT')
 
                             <div class="form-group">
-                                <label class="font-weight-bold">NIS</label>
-                                <input type="text" class="form-control @error('nis') is-invalid @enderror" name="nis" value="{{ old('nis', $student->nis) }}" placeholder="Masukkan Judul Post">
+                                <label class="font-weight-bold">NISN</label>
+                                <input type="text" class="form-control @error('nis') is-invalid @enderror" name="nisn" value="{{ old('nisn', $student->nis) }}" placeholder="Masukkan Judul Post">
 
                                 <!-- error message untuk nis -->
                                 @error('nis')
