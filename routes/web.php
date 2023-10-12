@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\KelasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,9 @@ Route::get('/', function () {
 
 // data siswa
 Route::resource('/students', StudentController::class);
+
+// data kelas
+Route::resource('/kelass', KelasController::class);
 
 // auth
 Route::get('/register', [AuthController::class,'register']);

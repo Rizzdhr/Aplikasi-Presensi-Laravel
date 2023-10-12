@@ -27,9 +27,11 @@ class StudentController extends Controller
 
         $students = Student::orderBy('nama', 'asc')->get();
 
+        // Menghitung nomor urut
+        $counter = 1;
 
         //render view with students
-        return view('students.siswa', compact('students'));
+        return view('students.siswa', compact('students', 'counter'));
     }
 
       /**

@@ -1,14 +1,14 @@
 @extends('layout.main')
-@section('judul', 'Create Data Siswa')
+@section('judul', 'Create Data Kelas')
 
 <body style="background: lightgray">
-@section('container')
+    @section('container')
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <form action="{{ route('students.store') }}" method="POST">
+                        <form action="{{ route('kelass.store') }}" method="POST">
 
                             @csrf
 

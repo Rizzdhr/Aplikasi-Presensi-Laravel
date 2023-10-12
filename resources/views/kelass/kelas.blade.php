@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('judul', 'Data Siswa')
+@section('judul', 'Data Kelas')
 
 
 <html lang="en">
@@ -9,34 +9,29 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <h1 class="fw-bold">Data Siswa</h1>
+                        <h1 class="fw-bold">Data Kelas</h1>
                         <br>
-                        <a href="{{ route('students.create') }}" class="btn btn-md btn-success mb-3">TAMBAH SISWA</a>
+                        <a href="{{ route('kelass.create') }}" class="btn btn-md btn-success mb-3">TAMBAH KELAS</a>
                         <table class="table table-bordered">
                             <thead>
                               <tr>
                                 <th scope="col">No.</th>
-                                <th scope="col">NISN</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">No. HP</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Jenis Kelamin</th>
+                                <th scope="col">Kelas</th>
+                                <th scope="col">Jurusan</th>
                                 <th scope="col">Action</th>
+
                               </tr>
                             </thead>
                             <tbody>
-                              @forelse ($students as $student)
+                              @forelse ($kelass as $kelas)
                                 <tr>
-                                    <td>{{ $counter++ }}</td>
-                                    <td>{{ $student->nisn }}</td>
-                                    <td>{{ $student->nama }}</td>
-                                    <td>{{ $student->no_hp}}</td>
-                                    <td>{{ $student->email}}</td>
-                                    <td>{{ $student->jenis_kelamin}}</td>
+                                    <td>{{ $kelas->id }}</td>
+                                    <td>{{ $kelas->kelas }}</td>
+                                    <td>{{ $kelas->jurusan }}</td>
 
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('students.destroy', $student->id) }}" method="POST">
-                                            <a href="{{ route('students.edit', $student->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('kelass.destroy', $student->id) }}" method="POST">
+                                            <a href="{{ route('kelass.edit', $student->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
@@ -45,7 +40,7 @@
                                 </tr>
                               @empty
                                   <div class="alert alert-danger">
-                                      Data Siswa belum Tersedia.
+                                      Data Kelas belum Tersedia.
                                   </div>
                               @endforelse
                             </tbody>
