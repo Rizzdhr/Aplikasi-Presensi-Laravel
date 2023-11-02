@@ -23,7 +23,7 @@
                     </div>
                 @endif
                 <div class="card-body">
-                    <form action="#" method="POST">
+                    <form action="{{ route('loginpost')}}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Alamat Email</label>
@@ -44,7 +44,7 @@
                     <div class="mb-3">
                         <a href="/register">
                             <div class="d-grid">
-                                <button class="btn btn-warning">register</button>
+                                <button class="btn btn-warning">Register</button>
                             </div>
                         </a>
                     </div>
