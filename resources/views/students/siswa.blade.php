@@ -18,8 +18,6 @@
                                 <th scope="col">No.</th>
                                 <th scope="col">NISN</th>
                                 <th scope="col">Nama</th>
-                                <th scope="col">No. HP</th>
-                                <th scope="col">Email</th>
                                 <th scope="col">Jenis Kelamin</th>
                                 <th scope="col">Action</th>
                               </tr>
@@ -30,8 +28,6 @@
                                     <td>{{ $counter++ }}</td>
                                     <td>{{ $student->nisn }}</td>
                                     <td>{{ $student->nama }}</td>
-                                    <td>{{ $student->no_hp}}</td>
-                                    <td>{{ $student->email}}</td>
                                     <td>{{ $student->jenis_kelamin}}</td>
 
                                     <td class="text-center">

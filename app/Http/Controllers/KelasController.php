@@ -52,6 +52,7 @@ class KelasController extends Controller
        $this->validate($request, [
            'kelas'     => 'required',
            'jurusan'     => 'required',
+           'walas'      => 'required'
        ]);
 
 
@@ -59,6 +60,7 @@ class KelasController extends Controller
        Kelas::create([
             'kelas'  => $request->kelas,
             'jurusan'   => $request->jurusan,
+            'walas'     => $request->walas
         ]);
 
        //redirect to index
@@ -87,6 +89,7 @@ class KelasController extends Controller
     $this->validate($request, [
         'kelas' => 'required',
         'jurusan' => 'required',
+        'walas' => 'required'
     ]);
 
     // Get Kelas by ID
@@ -96,6 +99,7 @@ class KelasController extends Controller
     $Kelas->update([
         'kelas' => $request->kelas,
         'jurusan' => $request->jurusan,
+        'walas' => $request->walas
     ]);
 
     // Redirect to the index with a success message

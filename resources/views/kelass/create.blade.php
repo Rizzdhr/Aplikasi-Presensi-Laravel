@@ -5,67 +5,52 @@
     @section('container')
     <div class="container mt-5 mb-5">
         <div class="row">
-            <div class="col-md-12">
+            <div class="container col-md-5">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
                         <form action="{{ route('kelass.store') }}" method="POST">
 
                             @csrf
 
-                            <div class="form-group">
-                                <label class="font-weight-bold">NISN</label>
-                                <input type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{ old('nisn') }}" placeholder="Masukkan NISN">
-
-                                <!-- error message untuk nisn -->
-                                @error('nisn')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label class="font-weight-bold">Nama</label>
-                                <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" placeholder="Masukkan Nama">
-                                <!-- error message untuk nama -->
-                                @error('nama')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label class="font-weight-bold">No. HP</label>
-                                <input type="text" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" placeholder="Masukkan No. HP">
-                                <!-- error message untuk no_hp -->
-                                @error('no_hp')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label class="font-weight-bold">Email</label>
-                                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Masukkan Email">
-                                <!-- error message untuk email -->
-                                @error('email')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">Jenis Kelamin</label>
-                                <select type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ old('jenis_kelamin') }}" placeholder="Masukkan Jenis Kelamin">
+                            <div class="form-group mb-3">
+                                <label for="">Kelas</label>
+                                <select type="text" class="form-control @error('kelas') is-invalid @enderror" name="kelas" value="{{ old('kelas') }}" placeholder="Masukkan Jenis Kelamin">
                                     <option value="">-</option>
-                                    <option value="Laki-laki">Laki-Laki</option>
-                                    <option value="Perempuan">Perempuan</option>
+                                    <option value="x">X</option>
+                                    <option value="xi">XI</option>
+                                    <option value="xii">XII</option>
                                 </select>
-                                <!-- error message untuk jenis_kelamin -->
-                                @error('jenis_kelamin')
+                                <!-- error message untuk kelas -->
+                                @error('kelas')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="">Jurusan</label>
+                                <select type="text" class="form-control @error('jurusan') is-invalid @enderror" name="jurusan" value="{{ old('jurusan') }}" placeholder="Masukkan Jenis Kelamin">
+                                    <option value="">-</option>
+                                    <option value="RPL">RPL</option>
+                                    <option value="TKJ">TKJ</option>
+                                    <option value="BDP">BDP</option>
+                                    <option value="OTKP">OTKP</option>
+                                    <option value="MM">MM</option>
+                                </select>
+                                <!-- error message untuk jurusan -->
+                                @error('jurusan')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="font-weight-bold">Walas</label>
+                                <input type="text" class="form-control @error('walas') is-invalid @enderror" name="walas" value="{{ old('walas') }}" placeholder="Masukkan Walas">
+                                <!-- error message untuk walas -->
+                                @error('walas')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>

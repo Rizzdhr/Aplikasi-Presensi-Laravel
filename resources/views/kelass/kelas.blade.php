@@ -18,6 +18,7 @@
                                 <th scope="col">No.</th>
                                 <th scope="col">Kelas</th>
                                 <th scope="col">Jurusan</th>
+                                <th scope="col">Walas</th>
                                 <th scope="col">Action</th>
 
                               </tr>
@@ -28,10 +29,10 @@
                                     <td>{{ $kelas->id }}</td>
                                     <td>{{ $kelas->kelas }}</td>
                                     <td>{{ $kelas->jurusan }}</td>
-
+                                    <td>{{ $kelas->walas }}</td>
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('kelass.destroy', $student->id) }}" method="POST">
-                                            <a href="{{ route('kelass.edit', $student->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('kelass.destroy', $kelas->id) }}" method="POST">
+                                            <a href="{{ route('kelass.edit', $kelas->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
@@ -45,7 +46,7 @@
                               @endforelse
                             </tbody>
                           </table>
-                          {{-- {{ $students->links() }} --}}
+                          {{-- {{ $kelass->links() }} --}}
                     </div>
                 </div>
             </div>

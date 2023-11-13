@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
-            $table->string('kelas');
-            $table->string('jurusan');
+            $table->enum('kelas', ['X', 'XI', 'XII']);
+            $table->enum('jurusan', ['RPL', 'TKJ', 'BDP', 'OTKP', 'MM']);
+            $table->string('walas');
             $table->timestamps();
         });
     }

@@ -56,8 +56,6 @@ class StudentController extends Controller
        $this->validate($request, [
            'nisn'     => 'required',
            'nama'     => 'required',
-           'no_hp'   => 'required',
-           'email'  => 'required',
            'jenis_kelamin'  => 'required'
        ]);
 
@@ -66,8 +64,6 @@ class StudentController extends Controller
        Student::create([
             'nisn'  => $request->nisn,
             'nama'   => $request->nama,
-            'no_hp'   => $request->no_hp,
-            'email'   => $request->email,
             'jenis_kelamin'   => $request->jenis_kelamin
         ]);
 
@@ -97,8 +93,6 @@ class StudentController extends Controller
     $this->validate($request, [
         'nisn' => 'required',
         'nama' => 'required',
-        'no_hp' => 'required',
-        'email' => 'required',
         'jenis_kelamin' => 'required'
     ]);
 
@@ -109,8 +103,6 @@ class StudentController extends Controller
     $student->update([
         'nisn' => $request->nisn,
         'nama' => $request->nama,
-        'no_hp' => $request->no_hp,
-        'email' => $request->email,
         'jenis_kelamin' => $request->jenis_kelamin,
     ]);
 

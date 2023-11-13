@@ -11,7 +11,8 @@ class Kelas extends Model
 
     protected $fillable = [
         'kelas',
-        'jurusan'
+        'jurusan',
+        'walas'
 
     ];
 }
