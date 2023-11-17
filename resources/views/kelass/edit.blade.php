@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <form action="{{ route('students.update', $student->id) }}" method="POST">
+                        <form action="{{ route('kelass.update', $kelas->id) }}" method="POST">
                             @csrf
                             @method('PUT')
 

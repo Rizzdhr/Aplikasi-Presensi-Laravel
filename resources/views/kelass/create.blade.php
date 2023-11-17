@@ -13,13 +13,9 @@
                             @csrf
 
                             <div class="form-group mb-3">
-                                <label for="">Kelas</label>
-                                <select type="text" class="form-control @error('kelas') is-invalid @enderror" name="kelas" value="{{ old('kelas') }}" placeholder="Masukkan Jenis Kelamin">
-                                    <option value="">-</option>
-                                    <option value="x">X</option>
-                                    <option value="xi">XI</option>
-                                    <option value="xii">XII</option>
-                                </select>
+                                <label class="font-weight-bold">Kelas</label>
+                                <input type="text" class="form-control @error('kelas') is-invalid @enderror" name="kelas" value="{{ old('kelas') }}" placeholder="Masukkan Kelas">
+
                                 <!-- error message untuk kelas -->
                                 @error('kelas')
                                     <div class="alert alert-danger mt-2">
