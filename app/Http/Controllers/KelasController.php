@@ -25,9 +25,13 @@ class KelasController extends Controller
         //get kelass
         $kelass = Kelas::latest()->paginate(10);
 
+        $kelass = Kelas::orderBy('kelas', 'asc')->get();
+
+        // Menghitung nomor urut
+        $counter = 1;
 
         //render view with kelass
-        return view('kelass.kelas', compact('kelass'));
+        return view('kelass.kelas', compact('kelass', 'counter'));
     }
 
       /**

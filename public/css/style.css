@@ -2,4 +2,14 @@
     background-color: blue;
 }
 
+img {
+    width: 100px; /* Sesuaikan dengan lebar yang diinginkan */
+    height: auto; /* Menjaga aspek rasio gambar */
+    display: block; /* Membuat gambar menjadi blok untuk dapat diatur margin */
+    margin: auto; /* Memberikan margin di atas dan bawah, serta mengatur tengah */
+}
+
+
+
+
 
