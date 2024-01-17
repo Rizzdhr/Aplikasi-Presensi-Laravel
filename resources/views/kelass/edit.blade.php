@@ -38,6 +38,7 @@
                         <form action="{{ route('kelass.update', $Kelas->id) }}" method="POST">
                             @csrf
 
+                            @method('PUT')
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Kelas</label>

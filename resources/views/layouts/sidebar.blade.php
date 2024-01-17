@@ -2,10 +2,10 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Absensi</span>
-    </a>
+        <a href="index3.html" class="brand-link">
+          <img src="{{ asset('image/logo_cn-removebg-preview.png')}}" alt="logo_rpl" class="brand-image img-circle elevation-3" style="">
+          <span class="brand-text font-weight-light">SMK CITRA NEGARA</span>
+        </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -22,7 +22,7 @@
       </div>
 
       <!-- SidebarSearch Form -->
-      <div class="form-inline">
+      {{-- <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
@@ -31,7 +31,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </div> --}}
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -47,45 +47,41 @@
               </p>
             </a>
           </li>
-
-          <li class="nav-item has-treeview @if(Route::is('kelass.*')) menu-open @endif">
+          <br>
+          {{-- <li class="nav-item has-treeview @if(Route::is('kelass.*')) menu-open @endif">
             <a href="" class="nav-link @if(Route::is('kelass.*')) active @endif">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-school"></i>
               <p>
                 Kelas
                 <i class="fas fa-angle-left right"></i>
                 {{-- <span class="right badge badge-danger">New</span> --}}
-              </p>
-            </a>
+              {{-- </p>
+            </a> --}}
 
-            <ul class="nav nav-treeview">
+
             <li class="nav-item">
                 <a href="{{ route('kelass.index')}}" class="nav-link @if(Route::is('kelass.index')) active @endif" href="{{ route('kelass.index')}}">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-school nav-icon"></i>
                     <p>Data Kelas</p>
                 </a>
-                </li>
-            <li class="nav-item">
+            </li>
+            <br>
+            {{-- <li class="nav-item">
                 <a href="{{ route('kelass.create')}} " class="nav-link @if(Route::is('kelass.create')) active @endif" href="{{ route('kelass.create')}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Kelas</p>
+                </a> --}}
+            {{-- </li> --}}
+
+            <li class="nav-item">
+                <a href="{{ route('students.index')}}" class="nav-link @if(Route::is('students.index')) active @endif" href="{{ route('students.index')}}">
+                    <i class="fas fa-users nav-icon"></i>
+                    <p>Data Siswa</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/project-edit.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Project Edit</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/project-detail.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Project Detail</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
+            </li>
+            <br>
+
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -678,7 +674,7 @@
               <p>Informational</p>
             </a>
           </li>
-        </ul>
+        </ul> --}}
         <form action="{{ route('logout') }}" method="GET">
             @csrf
             <button type="submit" class="btn btn-danger">Logout</button>

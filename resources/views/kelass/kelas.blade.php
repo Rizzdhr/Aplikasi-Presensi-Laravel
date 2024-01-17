@@ -11,8 +11,10 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>Data Kelas</h1>
+                        <br>
+                        <a href="{{ route('kelass.create')}}" class="btn btn-success">Tambah Data</a>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col text-right">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                             <li class="breadcrumb-item active">Data Kelas</li>
@@ -29,18 +31,18 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Data Kelas</h3>
-
-                    <div class="card-tools">
+                    {{-- <div class="card-tools float-left">
+                        <a href="{{ route('kelass.create')}}" class="btn btn-success">Tambah Data</a>
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
                         </button>
                         <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
                             <i class="fas fa-times"></i>
                         </button>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="card-body p-0">
-                    <table class="table table-striped projects">
+                    <table  id="tabledata" class="table table-striped projects">
                         <thead>
                             <tr>
                                 <th style="width: 1%">
