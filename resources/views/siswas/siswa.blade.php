@@ -12,7 +12,7 @@
                     <div class="col-sm-6">
                         <h1>Data Siswa</h1>
                         <br>
-                        <a href="{{ route('students.create') }}" class="btn btn-success">Tambah Data</a>
+                        <a href="{{ route('siswas.create') }}" class="btn btn-success">Tambah Data</a>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -48,33 +48,41 @@
                                 <th style="width: 1%">
                                     No
                                 </th>
-                                <th style="width: 20%">
+                                <th style="">
                                     NISN
                                 </th>
-                                <th style="width: 30%">
+                                <th style="">
                                     Nama
                                 </th>
-                                <th>
+                                <th style="">
+                                    Kelas
+                                </th>
+                                <th style="">
+                                    Jurusan
+                                </th>
+                                <th style="">
                                     Jenis Kelamin
                                 </th>
-                                <th style="width: 20%">
+                                <th style="">
                                     Action
                                 </th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($students as $student)
+                            @forelse ($siswas as $siswa)
                                 <tr>
                                     <td>{{ $counter++ }}</td>
-                                    <td>{{ $student->nisn }}</td>
-                                    <td>{{ $student->nama }}</td>
-                                    <td>{{ $student->jenis_kelamin }}</td>
+                                    <td>{{ $siswa->nisn }}</td>
+                                    <td>{{ $siswa->nama }}</td>
+                                    <td>{{ $siswa->kelas->kelas }}</td>
+                                    <td>{{ $siswa->jurusan->nama_jurusan }}</td>
+                                    <td>{{ $siswa->jenis_kelamin }}</td>
 
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                            action="{{ route('students.destroy', $student->id) }}" method="POST">
-                                            <a href="{{ route('students.edit', $student->id) }}"
+                                            action="{{ route('siswas.destroy', $siswa->id) }}" method="POST">
+                                            <a href="{{ route('siswas.edit', $siswa->id) }}"
                                                 class="btn btn-info btn-sm"><i class="fas fa-pencil-alt">
                                                 </i>">
                                                 EDIT
@@ -92,14 +100,17 @@
                                     Data Siswa belum Tersedia.
                                 </div> --}}
                             @endforelse
+                        </tbody>
+                </div>
+            </div>
+        </section>
+    </div>
 
-                        @endsection
+@endsection
 
 
 
-
-
-                        {{-- <div class="row">
+{{-- <div class="row">
         <div class="col-md-12">
             <div class="card border-0 shadow-sm rounded">
                 <div class="card-body">
@@ -142,8 +153,8 @@
                             @endforelse
                         </tbody>
                     </table> --}}
-                        {{-- {{ $students->links() }} --}}
-                        {{-- </div>
+{{-- {{ $students->links() }} --}}
+{{-- </div>
             </div>
         </div>
     </div>

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\User;
+use App\Models\Kelas;
 
-//import Model "Student
-use App\Models\Student;
+use App\Models\Jurusan;
+
+use Illuminate\Http\Request;
+
+use App\Models\Siswa;
 
 //return type View
 use Illuminate\View\View;
@@ -13,9 +16,10 @@ use Illuminate\View\View;
 //return type redirectResponse
 use Illuminate\Http\RedirectResponse;
 
-use Illuminate\Http\Request;
 
-class StudentController extends Controller
+
+
+class SiswaController extends Controller
 {
     /**
      * index
@@ -25,16 +29,16 @@ class StudentController extends Controller
     public function index(): View
     {
         // if(auth()->user()->can('view_siswa')){
-        //get students
-        $students = Student::latest()->paginate(10);
+        //get siswas
+        $siswas = Siswa::with('kelas','jurusan')->orderBy('nama', 'asc')->latest();
 
-        $students = Student::orderBy('nama', 'asc')->get();
+        // $siswas = Siswa::orderBy('nama', 'asc')->get();
 
         // Menghitung nomor urut
         $counter = 1;
 
-        //render view with students
-        return view('students.siswa', compact('students', 'counter'));
+        //render view with siswas
+        return view('siswas.siswa', compact('siswas', 'counter'));
         // }
         // return abort(403);
     }
@@ -46,8 +50,11 @@ class StudentController extends Controller
      */
     public function create(): View
     {
-        $students = Student::all();
-        return view('students.create', compact('students'));
+        $siswas = Siswa::all();
+        $kelass = Kelas::all();
+        $jurusans = Jurusan::all();
+
+        return view('siswas.create', compact('siswas', 'kelass', 'jurusans'));
     }
 
     /**
@@ -63,22 +70,23 @@ class StudentController extends Controller
             'nisn'     => 'required',
             'nama'     => 'required',
             'kelas_id'   => 'required',
+            'jurusan_id'   => 'required',
             'jenis_kelamin'  => 'required'
         ]);
 
 
-        //create student
-        Student::create([
+        //create Siswa
+        Siswa::create([
             'nisn'  => $request->nisn,
             'nama'   => $request->nama,
             'kelas_id'  => $request->kelas_id,
+            'jurusan_id'   => $request->jurusan_id,
             'jenis_kelamin'   => $request->jenis_kelamin
         ]);
 
         //redirect to index
-        return redirect()->route('students.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('siswas.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
-
     /**
      * edit
      *
@@ -87,11 +95,11 @@ class StudentController extends Controller
      */
     public function edit(string $id): View
     {
-        //get student by ID
-        $student = Student::findOrFail($id);
+        //get siswa by ID
+        $siswa = Siswa::findOrFail($id);
 
-        //render view with student
-        return view('students.edit', compact('student'));
+        //render view with siswa
+        return view('Siswas.edit', compact('siswa'));
     }
 
     // update
@@ -101,38 +109,41 @@ class StudentController extends Controller
         $this->validate($request, [
             'nisn' => 'required',
             'nama' => 'required',
+            'kelas_id' => 'required',
+            'jurusan_id'   => 'required',
             'jenis_kelamin' => 'required'
         ]);
 
-        // Get student by ID
-        $student = Student::findOrFail($id);
+        // Get siswa by ID
+        $siswa = Siswa::findOrFail($id);
 
-        // Update student data with the new values
-        $student->update([
+        // Update siswa data with the new values
+        $siswa->update([
             'nisn' => $request->nisn,
             'nama' => $request->nama,
+            'kelas_id' => $request->kelas_id,
+            'jurusan_id'   => $request->jurusan_id,
             'jenis_kelamin' => $request->jenis_kelamin,
         ]);
 
         // Redirect to the index with a success message
-        return redirect()->route('students.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('siswas.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
-
     /**
      * destroy
      *
-     * @param  mixed $student
+     * @param  mixed $siswa
      * @return void
      */
     public function destroy($id): RedirectResponse
     {
-        //get student by ID
-        $student = Student::findOrFail($id);
+        //get siswa by ID
+        $siswa = Siswa::findOrFail($id);
 
-        //delete student
-        $student->delete();
+        //delete siswa
+        $siswa->delete();
 
         //redirect to index
-        return redirect()->route('students.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('siswas.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

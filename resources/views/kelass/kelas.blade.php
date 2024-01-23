@@ -12,7 +12,7 @@
                     <div class="col-sm-6">
                         <h1>Data Kelas</h1>
                         <br>
-                        <a href="{{ route('kelass.create')}}" class="btn btn-success">Tambah Data</a>
+                        <a href="{{ route('kelass.create') }}" class="btn btn-success">Tambah Data</a>
                     </div>
                     <div class="col text-right">
                         <ol class="breadcrumb float-sm-right">
@@ -42,22 +42,22 @@
                     </div> --}}
                 </div>
                 <div class="card-body p-0">
-                    <table  id="tabledata" class="table table-striped projects">
+                    <table id="tabledata" class="table table-striped projects">
                         <thead>
                             <tr>
                                 <th style="width: 1%">
-                                    No.
+                                    No
                                 </th>
-                                <th style="width: 20%">
+                                <th style="">
                                     Kelas
                                 </th>
-                                <th style="width: 20%">
+                                {{-- <th style="width: 20%">
                                     Jurusan
-                                </th>
+                                </th> --}}
                                 <th>
                                     Walas
                                 </th>
-                                <th style="width: 20%">
+                                <th style="">
                                     Action
                                 </th>
                             </tr>
@@ -66,11 +66,11 @@
                             @forelse ($kelass as $kelas)
                                 <tr>
                                     <td>{{ $counter++ }}</td>
-                                    <td>{{ $kelas->kelas }}</td>
+                                    <td>{{ $kelas->tingkat_jurusan }}</td>
                                     {{-- <td>
                                         <a href="{{ route('kelass.show', $kelas->id) }}">{{ $kelas->kelas }}</a>
                                     </td> --}}
-                                    <td>{{ $kelas->jurusan }}</td>
+                                    {{-- <td>{{ $kelas->jurusan->nama_jurusan }}</td> --}}
                                     <td>{{ $kelas->walas }}</td>
 
                                     <td class="text-center">
@@ -78,14 +78,14 @@
                                             action="{{ route('kelass.destroy', $kelas->id) }}" method="POST">
 
 
-                                            <a class="btn btn-primary btn-sm" href="#">
+                                            <a class="btn btn-primary btn-sm" href="{{ route('kelass.show', $kelas->id) }}">
                                                 <i class="fas fa-folder">
                                                 </i>
                                                 View
                                             </a>
 
-                                            <a href="{{ route('kelass.edit', $kelas->id) }}"
-                                                class="btn btn-info btn-sm"><i class="fas fa-pencil-alt">
+                                            <a href="{{ route('kelass.edit', $kelas->id) }}" class="btn btn-info btn-sm"><i
+                                                    class="fas fa-pencil-alt">
                                                 </i>
                                                 Edit
                                             </a>
@@ -100,20 +100,25 @@
                                     </td>
                                 </tr>
                             @empty
-                                <div class="alert alert-danger">
+                                {{-- <div class="alert alert-danger">
                                     Data Kelas belum Tersedia.
-                                </div>
+                                </div> --}}
                             @endforelse
                         </tbody>
+                </div>
+            </div>
+        </section>
+    </div>
 
 
-                    @endsection
+@endsection
 
 
 
-                    {{-- <html lang="en"> --}}
 
-                    {{-- <body style="background: lightgray">
+{{-- <html lang="en"> --}}
+
+{{-- <body style="background: lightgray">
     @section('content')
         <div class="row">
             <div class="col-md-12">
@@ -141,7 +146,7 @@
                                         {{-- <td>
                                         <a href="{{ route('kelass.show', $kelas->id) }}">{{ $kelas->kelas }}</a>
                                     </td> --}}
-                    {{-- <td>{{ $kelas->jurusan }}</td>
+{{-- <td>{{ $kelas->jurusan }}</td>
                                         <td>{{ $kelas->walas }}</td>
 
                                         <td class="text-center">
@@ -163,7 +168,7 @@
                             </tbody>
                         </table>
                         {{-- {{ $kelass->links() }} --}}
-                    {{-- </div>
+{{-- </div>
                 </div>
             </div>
         </div>
@@ -186,4 +191,4 @@
     @endsection
 </body> --}}
 
-                    {{-- </html> --}}
+{{-- </html> --}}

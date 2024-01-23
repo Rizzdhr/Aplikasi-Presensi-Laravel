@@ -36,7 +36,7 @@
                                 </button>
                             </div> --}}
                         </div>
-                        <form action="{{ route('students.update', $student->id) }}" method="POST">
+                        <form action="{{ route('siswas.update', $siswa->id) }}" method="POST">
                             @csrf
 
                             @method('PUT')

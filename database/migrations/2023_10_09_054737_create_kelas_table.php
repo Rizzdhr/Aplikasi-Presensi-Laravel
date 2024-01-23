@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
-            $table->string('kelas');
-            $table->enum('jurusan', ['RPL', 'TKJ', 'BDP', 'OTKP', 'MM']);
+            $table->enum('tingkat_kelas' , ['10','11','12']);
+            $table->foreignId('jurusan_id')->constrained('jurusans');
+            $table->char('nomor_kelas');
             $table->string('walas');
             $table->timestamps();
         });

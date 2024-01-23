@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Tambah Data Kelas</h1>
+                        <h1>Edit Data Kelas</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -29,11 +29,11 @@
                         <div class="card-header">
                             <h3 class="card-title">General</h3>
 
-                            <div class="card-tools">
+                            {{-- <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
-                            </div>
+                            </div> --}}
                         </div>
                         <form action="{{ route('kelass.update', $Kelas->id) }}" method="POST">
                             @csrf
@@ -45,25 +45,24 @@
                                 <input type="text"  class="form-control @error('kelas') is-invalid @enderror" name="kelas" value="{{ old('kelas', $Kelas->kelas)}}">
                                 <!-- error message untuk kelas -->
                                 @error('kelas')
-                                    <div class="alert alert-danger mt-2">
+                                    <div class="text-danger">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
 
                             <div class="form-group">
-                                <label >Jurusan</label>
-                                <select class="form-control @error('jurusan') is-invalid @enderror" name="jurusan">
-                                    <option value="RPL" {{ old('jurusan', $Kelas->jurusan) == 'RPL' ? 'selected' : '' }}>RPL</option>
-                                    <option value="TKJ" {{ old('jurusan', $Kelas->jurusan) == 'TKJ' ? 'selected' : '' }}>TKJ</option>
-                                    <option value="BDP" {{ old('jurusan', $Kelas->jurusan) == 'BDP' ? 'selected' : '' }}>BDP</option>
-                                    <option value="OTKP" {{ old('jurusan', $Kelas->jurusan) == 'OTKP' ? 'selected' : '' }}>OTKP</option>
-                                    <option value="MM" {{ old('jurusan', $Kelas->jurusan) == 'MM' ? 'selected' : '' }}>MM</option>
+                                <label>Jurusan</label>
+                                <select class="form-control @error('jurusan_id') is-invalid @enderror" name="jurusan_id">
+                                    @foreach ($jurusans as $jurusan)
+                                        <option value="{{ $jurusan->id }}" {{ old('jurusan_id', $Kelas->jurusan_id) == $jurusan->id ? 'selected' : '' }}>
+                                            {{ $jurusan->nama_jurusan }}
+                                        </option>
+                                    @endforeach
                                 </select>
-
                                 <!-- error message untuk jurusan -->
                                 @error('jurusan')
-                                    <div class="alert alert-danger mt-2">
+                                    <div class="text-danger">
                                         {{ $message }}
                                     </div>
                                 @enderror
@@ -74,7 +73,7 @@
                                 <input type="text" class="form-control @error('walas') is-invalid @enderror" name="walas" value="{{ old('walas', $Kelas->walas) }}">
                                 <!-- error message untuk walas -->
                                 @error('walas')
-                                    <div class="alert alert-danger mt-2">
+                                    <div class="text-danger">
                                         {{ $message }}
                                     </div>
                                 @enderror

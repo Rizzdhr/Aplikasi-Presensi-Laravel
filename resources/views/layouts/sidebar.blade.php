@@ -2,14 +2,15 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link">
-          <img src="{{ asset('image/logo_cn-removebg-preview.png')}}" alt="logo_rpl" class="brand-image img-circle elevation-3" style="">
-          <span class="brand-text font-weight-light">SMK CITRA NEGARA</span>
+        <a href="index3.html" class="brand-link d-flex justify-content-center">
+          <img src="{{ asset('image/logo_cn-removebg-preview.png')}}" alt="logo_rpl" class="brand-image img-circle elevation-3" style="max-height: 100px;">
+          {{-- <span class="brand-text font-weight-light">SMK CITRA NEGARA</span> --}}
         </a>
+        <br><br><br>
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
+      {{-- <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="" class="img-circle elevation-2" alt="">
@@ -19,7 +20,7 @@
             user
         </a>
         </div>
-      </div>
+      </div> --}}
 
       <!-- SidebarSearch Form -->
       {{-- <div class="form-inline">
@@ -39,7 +40,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ route('dashboard')}}" class="nav-link nav-link @if(Route::is('dashboard')) active @endif" href="{{ route('dashboard')}}">
+            <a href="{{ route('dashboard')}}" class="nav-link nav-link @if(Route::is('dashboard')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -48,38 +49,64 @@
             </a>
           </li>
           <br>
-          {{-- <li class="nav-item has-treeview @if(Route::is('kelass.*')) menu-open @endif">
-            <a href="" class="nav-link @if(Route::is('kelass.*')) active @endif">
-              <i class="nav-icon fas fa-school"></i>
-              <p>
-                Kelas
-                <i class="fas fa-angle-left right"></i>
-                {{-- <span class="right badge badge-danger">New</span> --}}
-              {{-- </p>
-            </a> --}}
-
 
             <li class="nav-item">
-                <a href="{{ route('kelass.index')}}" class="nav-link @if(Route::is('kelass.index')) active @endif" href="{{ route('kelass.index')}}">
+                <a href="" class="nav-link">
+                    <i class="fas fa-calendar-check nav-icon"></i>
+                    <p>Absensi</p>
+                </a>
+            </li>
+            <br>
+
+            <li class="nav-item">
+                <a href="{{ route('kelass.index')}}" class="nav-link @if(Route::is('kelass.index')) active @endif" >
                     <i class="fas fa-school nav-icon"></i>
                     <p>Data Kelas</p>
                 </a>
             </li>
             <br>
-            {{-- <li class="nav-item">
-                <a href="{{ route('kelass.create')}} " class="nav-link @if(Route::is('kelass.create')) active @endif" href="{{ route('kelass.create')}}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Tambah Kelas</p>
-                </a> --}}
-            {{-- </li> --}}
 
             <li class="nav-item">
-                <a href="{{ route('students.index')}}" class="nav-link @if(Route::is('students.index')) active @endif" href="{{ route('students.index')}}">
+                <a href="{{ route('siswas.index')}}" class="nav-link @if(Route::is('siswas.index')) active @endif">
                     <i class="fas fa-users nav-icon"></i>
                     <p>Data Siswa</p>
                 </a>
             </li>
             <br>
+
+            <li class="nav-item">
+                <a href="" class="nav-link">
+                    <i class="fas fa-user nav-icon"></i>
+                    <p>Data Guru</p>
+                </a>
+            </li>
+            <br>
+
+            <li class="nav-item">
+                <a href="{{ route('jurusans.index')}}" class="nav-link @if(Route::is('jurusans.index')) active @endif">
+                    <i class="fas fa-graduation-cap nav-icon"></i>
+                    <p>Jurusan</p>
+                </a>
+            </li>
+            <br>
+
+            <li class="nav-item">
+                <a href="{{ route('jurusans.index')}}" class="nav-link @if(Route::is('jurusans.index')) active @endif">
+                    <i class="fas fa-book nav-icon"></i>
+                    <p>Mapel</p>
+                </a>
+            </li>
+            <br>
+
+            <li class="nav-item">
+                <a href="" class="nav-link">
+                    <i class="fas fa-file nav-icon"></i>
+                    <p>Laporan</p>
+                </a>
+            </li>
+            <br>
+
+
 
           {{-- <li class="nav-item">
             <a href="#" class="nav-link">

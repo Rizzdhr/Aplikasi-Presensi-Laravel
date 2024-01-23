@@ -18,8 +18,8 @@ class LoginController extends Controller
             'email'     => 'required',
             'password'  => 'required',
         ],[
-            "email.required"=> 'Email wajib diisi',
-            "password.required"=> 'Password wajib diisi'
+            "email.required"=> 'Email harus diisi',
+            "password.required"=> 'Password harus diisi'
         ]);
 
         $data = [

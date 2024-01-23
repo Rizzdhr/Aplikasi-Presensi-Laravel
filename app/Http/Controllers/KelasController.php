@@ -2,6 +2,16 @@
 
 namespace App\Http\Controllers;
 
+
+// use App\Models\User;
+
+//import Model "Jurusan
+
+use App\Http\Requests\Kelas\KelasPostRequest;
+use App\Models\Jurusan;
+
+use App\Models\Siswa;
+
 //import Model "Kelas
 use App\Models\Kelas;
 
@@ -22,56 +32,73 @@ class KelasController extends Controller
      */
     public function index(): View
     {
+        // if(auth()->user()->can('view_kelas')){
         //get kelass
-        $kelass = Kelas::latest()->paginate(10);
+        $kelass = Kelas::with('jurusan')->orderBy('tingkat_kelas', 'asc')->get();
 
-        $kelass = Kelas::orderBy('kelas', 'asc')->get();
+        // $kelass = Kelas::orderBy('kelas', 'asc')->get();
 
         // Menghitung nomor urut
         $counter = 1;
 
         //render view with kelass
         return view('kelass.kelas', compact('kelass', 'counter'));
+        // }
+        // return abort(403);
     }
 
-      /**
-    * create
-    *
-    * @return View
-    */
-   public function create(): View
-   {
-       return view('kelass.create');
-   }
+    /**
+     * create
+     *
+     * @return View
+     */
+    public function create(): View
+    {
+        $jurusans = Jurusan::all(); // Mendapatkan semua jurusan untuk ditampilkan di form
 
-   /**
-    * store
-    *
-    * @param  mixed $request
-    * @return RedirectResponse
-    */
-   public function store(Request $request): RedirectResponse
-   {
-       //validate form
-       $this->validate($request, [
-           'kelas'     => 'required',
-           'jurusan'     => 'required',
-           'walas'      => 'required'
-       ]);
+        return view('kelass.create', compact('jurusans'));
+    }
 
+    /**
+     * store
+     *
+     * @param  mixed $request
+     * @return RedirectResponse
+     */
+    public function store(KelasPostRequest $request): RedirectResponse
+    {
+        // // Debugging: Cek data dari form
+        // dd($request->all());
 
-       //create Kelas
-       Kelas::create([
-            'kelas'  => $request->kelas,
-            'jurusan'   => $request->jurusan,
+        //create Kelas
+        Kelas::create([
+            'tingkat_kelas'  => $request->tingkat_kelas,
+            'jurusan_id'   => $request->jurusan_id,
+            'nomor_kelas' => $request->nomor_kelas,
             'walas'     => $request->walas
         ]);
 
-       //redirect to index
-       return redirect()->route('kelass.index')->with(['success' => 'Data Berhasil Disimpan!']);
-   }
+        //redirect to index
+        return redirect()->route('kelass.index')->with(['success' => 'Data Berhasil Disimpan!']);
+    }
 
-   /**
+    //show
+    public function show(Kelas $kelas)
+    {
+        // Mendapatkan data siswa untuk kelas tertentu
+        $siswas = Siswa::where('kelas_id', $kelas->id)->get();
+
+        // Mengambil data kelas dengan relasi siswas
+        // $kelasWithSiswas = Kelas::with('siswas')->find($kelas->id);
+
+        // Menghitung nomor urut
+        $counter = 1;
+        return view('kelass.show', compact('kelas','siswas','counter'));
+    }
+
+
+
+    /**
      * edit
      *
      * @param  mixed $id
@@ -82,33 +109,41 @@ class KelasController extends Controller
         //get Kelas by ID
         $Kelas = Kelas::findOrFail($id);
 
+        // Get the list of jurusans
+        $jurusans = Jurusan::all();
+
         //render view with Kelas
-        return view('kelass.edit', compact('Kelas'));
+        return view('kelass.edit', compact('Kelas', 'jurusans'));
     }
 
     // update
     public function update(Request $request, $id): RedirectResponse
-{
-    // Validate form data
-    $this->validate($request, [
-        'kelas' => 'required',
-        'jurusan' => 'required',
-        'walas' => 'required'
-    ]);
+    {
+        //get Kelas by ID
+        $Kelas = Kelas::findOrFail($id);
 
-    // Get Kelas by ID
-    $Kelas = Kelas::findOrFail($id);
+        // Validate form data
+        $this->validate($request, [
+            'tingkat_kelas' => 'required' . $Kelas->id,
+            'jurusan_id' => 'required',
+            'nomor_kelas' => 'required',
+            'walas' => 'required'
+        ]);
 
-    // Update Kelas data with the new values
-    $Kelas->update([
-        'kelas' => $request->kelas,
-        'jurusan' => $request->jurusan,
-        'walas' => $request->walas
-    ]);
+        // Get Kelas by ID
+        $Kelas = Kelas::findOrFail($id);
 
-    // Redirect to the index with a success message
-    return redirect()->route('kelass.index')->with(['success' => 'Data Berhasil Diubah!']);
-}
+        // Update Kelas data with the new values
+        $Kelas->update([
+            'tingkat_kelas' => $request->tingkat_kelas,
+            'jurusan_id' => $request->jurusan_id,
+            'nomor_kelas' => $request->nomor_kelas,
+            'walas' => $request->walas
+        ]);
+
+        // Redirect to the index with a success message
+        return redirect()->route('kelass.index')->with(['success' => 'Data Berhasil Diubah!']);
+    }
 
     /**
      * destroy
