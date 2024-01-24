@@ -4,42 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jurusan;
-//return type View
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class JurusanController extends Controller
 {
     /**
-     * index
+     * Menampilkan daftar jurusan.
      *
-     * @return View
+     * @return \Illuminate\View\View
      */
     public function index(): View
     {
-        // if(auth()->user()->can('view_kelas')){
-        //get jurusans
-        $jurusans = Jurusan::latest()->paginate(10);
-
         $jurusans = Jurusan::orderBy('nama_jurusan', 'asc')->get();
-
-        // Menghitung nomor urut
         $counter = 1;
-
-        //render view with jurusans
         return view('jurusans.jurusan', compact('jurusans', 'counter'));
     }
-
-
-    // /**
-    //  * Menampilkan daftar jurusan.
-    //  *
-    //  * @return \Illuminate\View\View
-    //  */
-    // public function index()
-    // {
-    //     $jurusans = Jurusan::all();
-    //     return view('jurusans.index', compact('jurusans'));
-    // }
 
     /**
      * Menampilkan formulir untuk membuat jurusan baru.
@@ -57,7 +37,7 @@ class JurusanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $this->validate($request, [
             'nama_jurusan' => 'required|unique:jurusans,nama_jurusan'
@@ -89,7 +69,7 @@ class JurusanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): RedirectResponse
     {
         $this->validate($request, [
             'nama_jurusan' => 'required|unique:jurusans,nama_jurusan,' . $id
@@ -109,7 +89,7 @@ class JurusanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         $jurusan = Jurusan::findOrFail($id);
         $jurusan->delete();

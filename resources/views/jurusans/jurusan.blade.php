@@ -59,7 +59,7 @@
                         <tbody>
                             @foreach ($jurusans as $jurusan)
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $counter++ }}</td>
                                     <td>{{ $jurusan->nama_jurusan }}</td>
                                     <td>
                                         <a href="{{ route('jurusans.edit', $jurusan->id) }}"

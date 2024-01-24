@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 //import Model "Jurusan
 
 use App\Http\Requests\Kelas\KelasPostRequest;
+
 use App\Models\Jurusan;
 
 use App\Models\Siswa;
@@ -35,8 +36,6 @@ class KelasController extends Controller
         // if(auth()->user()->can('view_kelas')){
         //get kelass
         $kelass = Kelas::with('jurusan')->orderBy('tingkat_kelas', 'asc')->get();
-
-        // $kelass = Kelas::orderBy('kelas', 'asc')->get();
 
         // Menghitung nomor urut
         $counter = 1;

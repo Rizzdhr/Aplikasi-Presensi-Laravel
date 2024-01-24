@@ -36,14 +36,16 @@
                             </div>
                         </div>
 
-                        <form action="{{ route('jurusans.store') }}" method="POST">
+                        <form action="{{ route('mapels.store') }}" method="POST">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="nama_jurusan">Nama Jurusan</label>
-                                    <input type="text" class="form-control @error('nama_jurusan') is-invalid @enderror" id="nama_jurusan" name="nama_jurusan"
-                                        value="{{ old('nama_jurusan') }}" >
-                                    @error('nama_jurusan')
+                                    <label for="nama_mapel">Nama Mapel</label>
+                                    <input type="text" class="form-control @error('nama_mapel') is-invalid @enderror"
+                                        id="nama_mapel" name="nama_mapel" value="{{ old('nama_mapel') }}">
+
+
+                                    @error('nama_mapel')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -60,4 +62,4 @@
         </section>
         <!-- /.content -->
     </div>
-    @endsection
+@endsection

@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\StudentController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\MapelController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/', function () {
+        return view('auth.login');
+    });
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
@@ -41,38 +46,48 @@ Route::put('/kelass/{kelas}', [KelasController::class, 'update'])->name('kelass.
 Route::delete('/kelass/{kelas}', [KelasController::class, 'destroy'])->name('kelass.destroy');
 
 // data siswa
-// Menampilkan daftar siswa
 Route::get('/siswas', [SiswaController::class, 'index'])->name('siswas.index');
-// Menampilkan formulir untuk membuat siswa baru
 Route::get('/siswas/create', [SiswaController::class, 'create'])->name('siswas.create');
-// Menyimpan siswa baru ke database
 Route::post('/siswas', [SiswaController::class, 'store'])->name('siswas.store');
-// Menampilkan detail siswa
-// Route::get('/siswas/{siswa}', [SiswaController::class, 'show'])->name('siswas.show');
-// Menampilkan formulir untuk mengedit siswa
 Route::get('/siswas/{siswa}/edit', [SiswaController::class, 'edit'])->name('siswas.edit');
-// Menyimpan perubahan pada siswa yang sudah diedit
 Route::put('/siswas/{siswa}', [SiswaController::class, 'update'])->name('siswas.update');
-// Menghapus siswa
 Route::delete('/siswas/{siswa}', [SiswaController::class, 'destroy'])->name('siswas.destroy');
+
+// data guru
+Route::get('/gurus', [GuruController::class, 'index'])->name('gurus.index');
+Route::get('/gurus/create', [GuruController::class, 'create'])->name('gurus.create');
+Route::post('/gurus', [GuruController::class, 'store'])->name('gurus.store');
+Route::get('/gurus/{guru}/edit', [GuruController::class, 'edit'])->name('gurus.edit');
+Route::put('/gurus/{guru}', [GuruController::class, 'update'])->name('gurus.update');
+Route::delete('/gurus/{guru}', [GuruController::class, 'destroy'])->name('gurus.destroy');
+
+// data mapel
+Route::get('/mapels', [MapelController::class, 'index'])->name('mapels.index');
+Route::get('/mapels/create', [MapelController::class, 'create'])->name('mapels.create');
+Route::post('/mapels', [MapelController::class, 'store'])->name('mapels.store');
+Route::get('/mapels/{mapel}/edit', [MapelController::class, 'edit'])->name('mapels.edit');
+Route::put('/mapels/{mapel}', [MapelController::class, 'update'])->name('mapels.update');
+Route::delete('/mapels/{mapel}', [MapelController::class, 'destroy'])->name('mapels.destroy');
+
+// data jurusan
+Route::get('/jurusans', [JurusanController::class, 'index'])->name('jurusans.index');
+Route::get('/jurusans/create', [JurusanController::class, 'create'])->name('jurusans.create');
+Route::post('/jurusans', [JurusanController::class, 'store'])->name('jurusans.store');
+Route::get('/jurusans/{jurusan}/edit', [JurusanController::class, 'edit'])->name('jurusans.edit');
+Route::put('/jurusans/{jurusan}', [JurusanController::class, 'update'])->name('jurusans.update');
+Route::delete('/jurusans/{jurusan}', [JurusanController::class, 'destroy'])->name('jurusans.destroy');
+
+
+
+
+
+
 
 // // data kelas
 // Route::resource('/kelass', KelasController::class);
 // data siswa
 // Route::resource('/students', StudentController::class);
 
-// Rute untuk menampilkan formulir tambah jurusan
-Route::get('/jurusans/create', [JurusanController::class, 'create'])->name('jurusans.create');
-// Rute untuk menyimpan data jurusan yang baru
-Route::post('/jurusans', [JurusanController::class, 'store'])->name('jurusans.store');
-// Rute untuk menampilkan daftar jurusan
-Route::get('/jurusans', [JurusanController::class, 'index'])->name('jurusans.index');
-// Rute untuk menampilkan formulir edit jurusan
-Route::get('/jurusans/{jurusan}/edit', [JurusanController::class, 'edit'])->name('jurusans.edit');
-// Rute untuk memperbarui data jurusan yang sudah ada
-Route::put('/jurusans/{jurusan}', [JurusanController::class, 'update'])->name('jurusans.update');
-// Rute untuk menghapus data jurusan
-Route::delete('/jurusans/{jurusan}', [JurusanController::class, 'destroy'])->name('jurusans.destroy');
 
 // Route::get('/user', [HomeController::class, 'index']);
 
@@ -87,9 +102,6 @@ Route::delete('/jurusans/{jurusan}', [JurusanController::class, 'destroy'])->nam
 // data kelas
 
 
-Route::get('/', function () {
-        return view('auth.login');
-    });
 
 
     // Route::middleware(['guest'])->group(function(){

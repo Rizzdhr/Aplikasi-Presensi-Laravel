@@ -17,8 +17,6 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
 
-
-
 class SiswaController extends Controller
 {
     /**
@@ -30,9 +28,7 @@ class SiswaController extends Controller
     {
         // if(auth()->user()->can('view_siswa')){
         //get siswas
-        $siswas = Siswa::with('kelas','jurusan')->orderBy('nama', 'asc')->latest();
-
-        // $siswas = Siswa::orderBy('nama', 'asc')->get();
+        $siswas = Siswa::with('kelas','jurusan')->orderBy('nama', 'asc')->get();
 
         // Menghitung nomor urut
         $counter = 1;

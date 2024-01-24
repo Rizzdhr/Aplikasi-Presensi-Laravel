@@ -13,6 +13,6 @@ class Mapel extends Model
 
     public function Guru()
     {
-        return $this->belongsToMany(Mapel::class, 'guru_mapel');
+        return $this->hasMany(Guru::class);
     }
 }

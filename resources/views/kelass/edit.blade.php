@@ -39,54 +39,74 @@
                             @csrf
 
                             @method('PUT')
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Kelas</label>
-                                <input type="text"  class="form-control @error('kelas') is-invalid @enderror" name="kelas" value="{{ old('kelas', $Kelas->kelas)}}">
-                                <!-- error message untuk kelas -->
-                                @error('kelas')
-                                    <div class="text-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Tingkat Kelas</label>
+                                    <select name="tingkat_kelas" class="form-control @error('tingkat_kelas') is-invalid @enderror">
+                                        <option value="10" {{ old('tingkat_kelas', $Kelas->tingkat_K) == '10' ? 'selected' : '' }}>10</option>
+                                        <option value="11" {{ old('tingkat_kelas', $Kelas->tingkat_kelas) == '11' ? 'selected' : '' }}>11</option>
+                                        <option value="12" {{ old('tingkat_kelas', $Kelas->tingkat_kelas) == '12' ? 'selected' : '' }}>12</option>
+                                    </select>
+                                    <!-- error message for tingkat kelas -->
+                                    @error('tingkat_kelas')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Jurusan</label>
+                                    <select class="form-control @error('jurusan_id') is-invalid @enderror"
+                                        name="jurusan_id">
+                                        @foreach ($jurusans as $jurusan)
+                                            <option value="{{ $jurusan->id }}"
+                                                {{ old('jurusan_id', $Kelas->jurusan_id) == $jurusan->id ? 'selected' : '' }}>
+                                                {{ $jurusan->nama_jurusan }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <!-- error message untuk jurusan -->
+                                    @error('jurusan')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="nomor_kelas">Nomor Kelas</label>
+                                    <input type="number" class="form-control  @error('nomor_kelas') is-invalid @enderror"
+                                        name="nomor_kelas" value="{{ old('nomor_kelas', $Kelas->nomor_kelas) }}"
+                                        placeholder="Masukkan nomor kelas">
+                                    <!-- error message untuk nomor_kelas -->
+                                    @error('nomor_kelas')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Walas</label>
+                                    <input type="text" class="form-control @error('walas') is-invalid @enderror"
+                                        name="walas" value="{{ old('walas', $Kelas->walas) }}">
+                                    <!-- error message untuk walas -->
+                                    @error('walas')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label>Jurusan</label>
-                                <select class="form-control @error('jurusan_id') is-invalid @enderror" name="jurusan_id">
-                                    @foreach ($jurusans as $jurusan)
-                                        <option value="{{ $jurusan->id }}" {{ old('jurusan_id', $Kelas->jurusan_id) == $jurusan->id ? 'selected' : '' }}>
-                                            {{ $jurusan->nama_jurusan }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <!-- error message untuk jurusan -->
-                                @error('jurusan')
-                                    <div class="text-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                            <div class="">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
+                                    <button type="reset" class="btn btn-md btn-warning">RESET</button>
+                                </div>
                             </div>
-
-                            <div class="form-group">
-                                <label>Walas</label>
-                                <input type="text" class="form-control @error('walas') is-invalid @enderror" name="walas" value="{{ old('walas', $Kelas->walas) }}">
-                                <!-- error message untuk walas -->
-                                @error('walas')
-                                    <div class="text-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="">
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
-                                <button type="reset" class="btn btn-md btn-warning">RESET</button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
