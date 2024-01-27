@@ -11,10 +11,12 @@
                     <div class="col-sm-6">
                         <h1>Data Guru</h1>
                         <br>
-                        <a href="{{ route('gurus.create') }}" class="btn btn-success">Tambah Data</a>
+                        @can('create_data')
+                            <a href="{{ route('gurus.create') }}" class="btn btn-success">Tambah Data</a>
+                        @endcan
                     </div>
                     <div class="col text-right">
-                        <ol class="breadcrumb float-sm-right">l
+                        <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                             <li class="breadcrumb-item active">Data Guru</li>
                         </ol>
@@ -65,20 +67,35 @@
                         <tbody>
                             @foreach ($gurus as $guru)
                                 <tr>
-                                    <td>{{ $counter++}} </td>
+                                    <td>{{ $counter++ }} </td>
                                     <td>{{ $guru->nama }}</td>
                                     <td>{{ $guru->mapel->nama_mapel }}</td>
                                     <td>{{ $guru->jenis_kelamin }}</td>
                                     <td>
-                                        <a href="{{ route('gurus.edit', $guru->id) }}"
-                                            class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('gurus.destroy', $guru->id) }}" method="POST"
-                                            style="display: inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Apakah Anda yakin ingin menghapus guru ini?')">Hapus</button>
-                                        </form>
+                                        <a href="{{ route('gurus.show', $guru->id) }}" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            View</a>
+
+
+                                        @can('edit_data')
+                                            <a href="{{ route('gurus.edit', $guru->id) }}" class="btn btn-info btn-sm">
+                                                <i class="fas fa-pencil-alt">
+                                                </i>Edit</a>
+                                        @endcan
+
+                                        @can('delete_data')
+                                            <form action="{{ route('gurus.destroy', $guru->id) }}" method="POST"
+                                                style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus guru ini?')" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    HAPUS</button>
+                                            </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

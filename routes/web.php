@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DahsboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\HomeController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\MapelController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,60 +25,68 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-        return view('auth.login');
-    });
+    return view('auth.login');
+});
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
+});
+
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+Route::get('/dashboard', [DahsboardController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 
 // Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function () {
 //     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard.index');
 // });
 
-// data kelas
-Route::get('/kelass', [KelasController::class, 'index'])->name('kelass.index');
-Route::get('/kelass/create', [KelasController::class, 'create'])->name('kelass.create');
-Route::post('/kelass', [KelasController::class, 'store'])->name('kelass.store');
-Route::get('/kelass/{kelas}', [KelasController::class, 'show'])->name('kelass.show');
-Route::get('/kelass/{kelas}/edit', [KelasController::class, 'edit'])->name('kelass.edit');
-Route::put('/kelass/{kelas}', [KelasController::class, 'update'])->name('kelass.update');
-Route::delete('/kelass/{kelas}', [KelasController::class, 'destroy'])->name('kelass.destroy');
+Route::middleware(['auth'])->group(function () {
+    // data kelas
+    Route::get('/kelass', [KelasController::class, 'index'])->name('kelass.index');
+    Route::get('/kelass/create', [KelasController::class, 'create'])->name('kelass.create');
+    Route::post('/kelass', [KelasController::class, 'store'])->name('kelass.store');
+    Route::get('/kelass/{kelas}', [KelasController::class, 'show'])->name('kelass.show');
+    Route::get('/kelass/{kelas}/edit', [KelasController::class, 'edit'])->name('kelass.edit');
+    Route::put('/kelass/{kelas}', [KelasController::class, 'update'])->name('kelass.update');
+    Route::delete('/kelass/{kelas}', [KelasController::class, 'destroy'])->name('kelass.destroy');
 
-// data siswa
-Route::get('/siswas', [SiswaController::class, 'index'])->name('siswas.index');
-Route::get('/siswas/create', [SiswaController::class, 'create'])->name('siswas.create');
-Route::post('/siswas', [SiswaController::class, 'store'])->name('siswas.store');
-Route::get('/siswas/{siswa}/edit', [SiswaController::class, 'edit'])->name('siswas.edit');
-Route::put('/siswas/{siswa}', [SiswaController::class, 'update'])->name('siswas.update');
-Route::delete('/siswas/{siswa}', [SiswaController::class, 'destroy'])->name('siswas.destroy');
+    // data siswa
+    Route::get('/siswas', [SiswaController::class, 'index'])->name('siswas.index');
+    Route::get('/siswas/create', [SiswaController::class, 'create'])->name('siswas.create');
+    Route::post('/siswas', [SiswaController::class, 'store'])->name('siswas.store');
+    Route::get('/siswas/{siswa}', [SiswaController::class, 'show'])->name('siswas.show');
+    Route::get('/siswas/{siswa}/edit', [SiswaController::class, 'edit'])->name('siswas.edit');
+    Route::put('/siswas/{siswa}', [SiswaController::class, 'update'])->name('siswas.update');
+    Route::delete('/siswas/{siswa}', [SiswaController::class, 'destroy'])->name('siswas.destroy');
 
-// data guru
-Route::get('/gurus', [GuruController::class, 'index'])->name('gurus.index');
-Route::get('/gurus/create', [GuruController::class, 'create'])->name('gurus.create');
-Route::post('/gurus', [GuruController::class, 'store'])->name('gurus.store');
-Route::get('/gurus/{guru}/edit', [GuruController::class, 'edit'])->name('gurus.edit');
-Route::put('/gurus/{guru}', [GuruController::class, 'update'])->name('gurus.update');
-Route::delete('/gurus/{guru}', [GuruController::class, 'destroy'])->name('gurus.destroy');
+    // data guru
+    Route::get('/gurus', [GuruController::class, 'index'])->name('gurus.index');
+    Route::get('/gurus/create', [GuruController::class, 'create'])->name('gurus.create');
+    Route::post('/gurus', [GuruController::class, 'store'])->name('gurus.store');
+    Route::get('/gurus/{guru}', [GuruController::class, 'show'])->name('gurus.show');
+    Route::get('/gurus/{guru}/edit', [GuruController::class, 'edit'])->name('gurus.edit');
+    Route::put('/gurus/{guru}', [GuruController::class, 'update'])->name('gurus.update');
+    Route::delete('/gurus/{guru}', [GuruController::class, 'destroy'])->name('gurus.destroy');
 
-// data mapel
-Route::get('/mapels', [MapelController::class, 'index'])->name('mapels.index');
-Route::get('/mapels/create', [MapelController::class, 'create'])->name('mapels.create');
-Route::post('/mapels', [MapelController::class, 'store'])->name('mapels.store');
-Route::get('/mapels/{mapel}/edit', [MapelController::class, 'edit'])->name('mapels.edit');
-Route::put('/mapels/{mapel}', [MapelController::class, 'update'])->name('mapels.update');
-Route::delete('/mapels/{mapel}', [MapelController::class, 'destroy'])->name('mapels.destroy');
+    // data mapel
+    Route::get('/mapels', [MapelController::class, 'index'])->name('mapels.index');
+    Route::get('/mapels/create', [MapelController::class, 'create'])->name('mapels.create');
+    Route::post('/mapels', [MapelController::class, 'store'])->name('mapels.store');
+    Route::get('/mapels/{mapel}', [MapelController::class, 'show'])->name('mapels.show');
+    Route::get('/mapels/{mapel}/edit', [MapelController::class, 'edit'])->name('mapels.edit');
+    Route::put('/mapels/{mapel}', [MapelController::class, 'update'])->name('mapels.update');
+    Route::delete('/mapels/{mapel}', [MapelController::class, 'destroy'])->name('mapels.destroy');
 
-// data jurusan
-Route::get('/jurusans', [JurusanController::class, 'index'])->name('jurusans.index');
-Route::get('/jurusans/create', [JurusanController::class, 'create'])->name('jurusans.create');
-Route::post('/jurusans', [JurusanController::class, 'store'])->name('jurusans.store');
-Route::get('/jurusans/{jurusan}/edit', [JurusanController::class, 'edit'])->name('jurusans.edit');
-Route::put('/jurusans/{jurusan}', [JurusanController::class, 'update'])->name('jurusans.update');
-Route::delete('/jurusans/{jurusan}', [JurusanController::class, 'destroy'])->name('jurusans.destroy');
-
+    // data jurusan
+    Route::get('/jurusans', [JurusanController::class, 'index'])->name('jurusans.index');
+    Route::get('/jurusans/create', [JurusanController::class, 'create'])->name('jurusans.create');
+    Route::post('/jurusans', [JurusanController::class, 'store'])->name('jurusans.store');
+    Route::get('/jurusans/{jurusan}', [JurusanController::class, 'show'])->name('jurusans.show');
+    Route::get('/jurusans/{jurusan}/edit', [JurusanController::class, 'edit'])->name('jurusans.edit');
+    Route::put('/jurusans/{jurusan}', [JurusanController::class, 'update'])->name('jurusans.update');
+    Route::delete('/jurusans/{jurusan}', [JurusanController::class, 'destroy'])->name('jurusans.destroy');
+});
 
 
 

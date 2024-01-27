@@ -28,6 +28,7 @@ class MapelController extends Controller
      */
     public function create()
     {
+        $this->authorize('create_data');
         return view('mapels.create');
     }
 
@@ -50,6 +51,13 @@ class MapelController extends Controller
         return redirect()->route('mapels.index')->with(['success' => 'Mapel berhasil disimpan!']);
     }
 
+    public function show($id)
+    {
+        $mapel = Mapel::findOrFail($id);
+        return view('mapels.show', compact('mapel'));
+    }
+
+
     /**
      * Menampilkan formulir untuk mengedit mapel.
      *
@@ -58,6 +66,8 @@ class MapelController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('edit_data');
+
         $mapel = Mapel::findOrFail($id);
         return view('mapels.edit', compact('mapel'));
     }
@@ -91,6 +101,8 @@ class MapelController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
+        $this->authorize('delete_data');
+
         $mapel = Mapel::findOrFail($id);
         $mapel->delete();
 

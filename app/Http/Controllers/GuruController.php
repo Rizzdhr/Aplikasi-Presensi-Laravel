@@ -36,6 +36,7 @@ class GuruController extends Controller
      */
     public function create(): View
     {
+        $this->authorize('create_data');
         $mapels = Mapel::all();
 
         return view('gurus.create', compact('mapels'));
@@ -75,6 +76,7 @@ class GuruController extends Controller
      */
     public function edit(string $id): View
     {
+        $this->authorize('edit_data');
         //get guru by ID
         $guru = Guru::findOrFail($id);
 
@@ -109,6 +111,13 @@ class GuruController extends Controller
         return redirect()->route('gurus.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
+    public function show($id)
+    {
+        $guru = Guru::findOrFail($id);
+        return view('gurus.show', compact('guru'));
+    }
+
+
     /**
      * Menghapus guru dari database.
      *
@@ -117,6 +126,7 @@ class GuruController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
+        $this->authorize('delete_data');
         $guru = Guru::findOrFail($id);
         $guru->delete();
 

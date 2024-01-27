@@ -12,7 +12,10 @@
                     <div class="col-sm-6">
                         <h1>Data Kelas</h1>
                         <br>
+                        @can('create_data')
                         <a href="{{ route('kelass.create') }}" class="btn btn-success">Tambah Data</a>
+
+                        @endcan
                     </div>
                     <div class="col text-right">
                         <ol class="breadcrumb float-sm-right">
@@ -84,11 +87,15 @@
                                                 View
                                             </a>
 
+                                            @can('edit_data')
                                             <a href="{{ route('kelass.edit', $kelas->id) }}" class="btn btn-info btn-sm"><i
                                                     class="fas fa-pencil-alt">
                                                 </i>
                                                 Edit
                                             </a>
+                                            @endcan
+
+                                            @can('delete_data')
                                             @csrf
 
                                             @method('DELETE')
@@ -96,6 +103,8 @@
                                                 <i class="fas fa-trash">
                                                 </i>
                                                 HAPUS</button>
+
+                                            @endcan
                                         </form>
                                     </td>
                                 </tr>

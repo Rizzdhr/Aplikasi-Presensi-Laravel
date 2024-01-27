@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('absensis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kelas_id')->constrained('kelas');
+            $table->enum('action', ['Hadir', 'Izin', 'Sakit', 'Alpha']);
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

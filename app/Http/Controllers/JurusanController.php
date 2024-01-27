@@ -28,6 +28,7 @@ class JurusanController extends Controller
      */
     public function create()
     {
+        $this->authorize('create_data');
         return view('jurusans.create');
     }
 
@@ -50,6 +51,13 @@ class JurusanController extends Controller
         return redirect()->route('jurusans.index')->with(['success' => 'Jurusan berhasil disimpan!']);
     }
 
+    public function show($id)
+    {
+        $jurusan = Jurusan::findOrFail($id);
+        return view('jurusans.show', compact('jurusan'));
+    }
+
+
     /**
      * Menampilkan formulir untuk mengedit jurusan.
      *
@@ -58,6 +66,7 @@ class JurusanController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('edit_data');
         $jurusan = Jurusan::findOrFail($id);
         return view('jurusans.edit', compact('jurusan'));
     }
@@ -91,6 +100,7 @@ class JurusanController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
+        $this->authorize('delete_data');
         $jurusan = Jurusan::findOrFail($id);
         $jurusan->delete();
 

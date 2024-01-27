@@ -11,12 +11,15 @@
                     <div class="col-sm-6">
                         <h1>Data Mata Pelajaran</h1>
                         <br>
+                        @can('create_data')
                         <a href="{{ route('mapels.create') }}" class="btn btn-success">Tambah Data</a>
+
+                        @endcan
                     </div>
                     <div class="col text-right">
-                        <ol class="breadcrumb float-sm-right">l
+                        <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Data Jurusan</li>
+                            <li class="breadcrumb-item active">Data Mapel</li>
                         </ol>
                     </div>
                 </div>
@@ -62,15 +65,32 @@
                                     <td>{{ $counter++ }}</td>
                                     <td>{{ $mapel->nama_mapel }}</td>
                                     <td>
-                                        <a href="{{ route('mapels.edit', $mapel->id) }}"
-                                            class="btn btn-warning btn-sm">Edit</a>
+                                        <a class="btn btn-primary btn-sm" href="{{ route('mapels.show', $mapel->id) }}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            View
+                                        </a>
+
+                                        @can('edit_data')
+                                        <a href="{{ route('mapels.edit', $mapel->id) }}" class="btn btn-info btn-sm">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>Edit</a>
+
+                                        @endcan
+
+                                        @can('delete_data')
                                         <form action="{{ route('mapels.destroy', $mapel->id) }}" method="POST"
                                             style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Apakah Anda yakin ingin menghapus mapel ini?')">Hapus</button>
+                                            <button type="submit"
+                                                onclick="return confirm('Apakah Anda yakin ingin menghapus mapel ini?') "class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash">
+                                                </i>
+                                                HAPUS</button>
                                         </form>
+
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

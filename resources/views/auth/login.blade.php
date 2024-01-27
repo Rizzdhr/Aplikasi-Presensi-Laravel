@@ -114,7 +114,11 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         @if ($message = Session::get('success'))
             <script>
-                Swal.fire('{{ $message }}')
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Good job!',
+                    text: '{{ $message }}',
+                })
             </script>
         @endif
 

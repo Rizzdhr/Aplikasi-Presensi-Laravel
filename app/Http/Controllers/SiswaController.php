@@ -46,6 +46,8 @@ class SiswaController extends Controller
      */
     public function create(): View
     {
+        $this->authorize('create_data');
+
         // $siswas = Siswa::all();
         $kelass = Kelas::all();
 
@@ -80,6 +82,14 @@ class SiswaController extends Controller
         //redirect to index
         return redirect()->route('siswas.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
+
+    public function show($id)
+    {
+        $siswa = Siswa::findOrFail($id);
+        return view('siswas.show', compact('siswa'));
+    }
+
+
     /**
      * edit
      *
@@ -88,12 +98,14 @@ class SiswaController extends Controller
      */
     public function edit(string $id): View
     {
+        $this->authorize('edit_data');
+
         //get siswa by ID
         $siswa = Siswa::findOrFail($id);
         $kelass = Kelas::all();
 
         //render view with siswa
-        return view('Siswas.edit', compact('siswa','kelass'));
+        return view('Siswas.edit', compact('siswa', 'kelass'));
     }
 
     // update
@@ -129,6 +141,8 @@ class SiswaController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
+        $this->authorize('delete_data');
+
         //get siswa by ID
         $siswa = Siswa::findOrFail($id);
 

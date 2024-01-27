@@ -38,30 +38,38 @@ class PermissionSeeder extends Seeder
 
         $permission = Permission::updateOrCreate(
             [
+                'name' => 'view_dashboard',
+            ],
+            ['name' => 'view_dashboard']
+        );
+
+        $permission2 = Permission::updateOrCreate(
+            [
                 'name' => 'view_kelas',
             ],
             ['name' => 'view_kelas']
         );
 
-        $permission2 = Permission::updateOrCreate(
+        $permission3= Permission::updateOrCreate(
             [
-                'name' => 'view_siswa',
+                'name' => 'view_siswas',
             ],
-            ['name' => 'view_siswa']
+            ['name' => 'view_siswas']
         );
 
         $role_admin->givePermissionTo($permission);
         $role_admin->givePermissionTo($permission2);
+        $role_admin->givePermissionTo($permission3);
 
         $role_guru->givePermissionTo($permission2);
 
         $user = User::find(1);
-        $user2 = User::find(2);
-        $user3 = User::find(3);
+        // $user2 = User::find(2);
+        // $user3 = User::find(3);
 
 
         $user->assignRole('admin');
-        $user2->assignRole('guru');
-        $user3->assignRole('bk');
+        // $user2->assignRole('guru');
+        // $user3->assignRole('bk');
     }
 }

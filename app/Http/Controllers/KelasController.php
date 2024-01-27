@@ -24,6 +24,9 @@ use Illuminate\Http\RedirectResponse;
 
 use Illuminate\Http\Request;
 
+use Spatie\Permission\Exceptions\UnauthorizedException;
+
+
 class KelasController extends Controller
 {
     /**
@@ -33,20 +36,17 @@ class KelasController extends Controller
      */
     public function index(): View
     {
-        // if(auth()->user()->can('view_kelas')){
         //get kelass
         $kelass = Kelas::with('jurusan')->orderByDesc('tingkat_kelas')
-        ->orderBy('jurusan_id')
-        ->orderBy('nomor_kelas')
-        ->get();
+            ->orderBy('jurusan_id')
+            ->orderBy('nomor_kelas')
+            ->get();
 
         // Menghitung nomor urut
         $counter = 1;
 
         //render view with kelass
         return view('kelass.kelas', compact('kelass', 'counter'));
-        // }
-        // return abort(403);
     }
 
     /**
@@ -56,6 +56,8 @@ class KelasController extends Controller
      */
     public function create(): View
     {
+        $this->authorize('create_data');
+
         $jurusans = Jurusan::all(); // Mendapatkan semua jurusan untuk ditampilkan di form
 
         return view('kelass.create', compact('jurusans'));
@@ -108,6 +110,8 @@ class KelasController extends Controller
      */
     public function edit(string $id): View
     {
+        $this->authorize('edit_data');
+
         //get Kelas by ID
         $Kelas = Kelas::findOrFail($id);
 
@@ -155,6 +159,8 @@ class KelasController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
+        $this->authorize('delete_data');
+
         //get Kelas by ID
         $Kelas = Kelas::findOrFail($id);
 

@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('judul')</title>
-    <link rel="icon" type="image/png" href="{{ asset('image/logo_RPL-removebg-preview.png')}}">
+    <link rel="icon" type="image/png" href="{{ asset('image/logo_RPL-removebg-preview.png') }}">
+
 
     {{-- datatables --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
@@ -80,7 +81,11 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         @if ($message = Session::get('success'))
             <script>
-                Swal.fire('{{ $message }}')
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Good job!',
+                    text: '{{ $message }}',
+                })
             </script>
         @endif
 
@@ -93,6 +98,7 @@
                 })
             </script>
         @endif
+
         {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
         <script>

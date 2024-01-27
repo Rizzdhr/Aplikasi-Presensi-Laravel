@@ -11,10 +11,13 @@
                     <div class="col-sm-6">
                         <h1>Data Jurusan</h1>
                         <br>
+                        @can('create_data')
                         <a href="{{ route('jurusans.create') }}" class="btn btn-success">Tambah Data</a>
+
+                        @endcan
                     </div>
                     <div class="col text-right">
-                        <ol class="breadcrumb float-sm-right">l
+                        <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                             <li class="breadcrumb-item active">Data Jurusan</li>
                         </ol>
@@ -62,15 +65,32 @@
                                     <td>{{ $counter++ }}</td>
                                     <td>{{ $jurusan->nama_jurusan }}</td>
                                     <td>
-                                        <a href="{{ route('jurusans.edit', $jurusan->id) }}"
-                                            class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('jurusans.destroy', $jurusan->id) }}" method="POST"
+                                        <a class="btn btn-primary btn-sm" href="{{ route('jurusans.show', $jurusan->id) }}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            View
+                                        </a>
+
+                                        @can('edit_data')
+                                        <a href="{{ route('jurusans.edit', $jurusan->id) }}" class="btn btn-info btn-sm">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>Edit</a>
+
+                                        @endcan
+
+                                        @can('delete_data')
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');""
+                                        action="{{ route('jurusans.destroy', $jurusan->id) }}" method="POST"
                                             style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Apakah Anda yakin ingin menghapus jurusan ini?')">Hapus</button>
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash">
+                                                </i>
+                                                HAPUS</button>
                                         </form>
+
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

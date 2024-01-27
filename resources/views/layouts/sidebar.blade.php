@@ -107,11 +107,17 @@
 
                 <li class="nav-item">
                     <a href="" class="nav-link">
-                        <i class="fas fa-file nav-icon"></i>
+                        <i class="fas fa-print nav-icon"></i>
                         <p>Laporan</p>
                     </a>
                 </li>
                 <br>
+
+                <form action="{{ route('logout') }}" method="GET" onclick="return confirm('Apakah Anda yakin ingin LogOut?') ">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+
 
 
 
@@ -709,10 +715,7 @@
             </a>
           </li>
         </ul> --}}
-                <form action="{{ route('logout') }}" method="GET">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Logout</button>
-                </form>
+
 
         </nav>
         <!-- /.sidebar-menu -->
