@@ -94,6 +94,6 @@ class MapelController extends Controller
         $mapel = Mapel::findOrFail($id);
         $mapel->delete();
 
-        return redirect()->route('mapels.index')->with(['success' => 'Jurusan berhasil dihapus!']);
+        return redirect()->route('mapels.index')->with(['success' => 'Mapel berhasil dihapus!']);
     }
 }

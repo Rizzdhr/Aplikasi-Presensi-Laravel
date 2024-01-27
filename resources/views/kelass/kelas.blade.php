@@ -42,7 +42,7 @@
                     </div> --}}
                 </div>
                 <div class="card-body p-0">
-                    <table id="tabledata" class="table table-striped projects">
+                    <table id="tabledata" class="display table table-striped projects">
                         <thead>
                             <tr>
                                 <th style="width: 1%">

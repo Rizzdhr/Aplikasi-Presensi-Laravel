@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('judul', 'Tambah Data Mapel')
+@section('judul', 'Edit Data Mapel')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Tambah Data Mapel</h1>
+                        <h1>Edit Data Mapel</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -36,13 +36,15 @@
                             </div>
                         </div>
 
-                        <form action="{{ route('mapels.store') }}" method="POST">
+                        <form action="{{ route('mapels.update', $mapel->id) }}" method="POST">
                             @csrf
+
+                            @method('PUT')
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="nama_mapel">Nama Mapel</label>
                                     <input type="text" class="form-control @error('nama_mapel') is-invalid @enderror"
-                                        id="nama_mapel" name="nama_mapel" value="{{ old('nama_mapel') }}">
+                                        id="nama_mapel" name="nama_mapel" value="{{ old('nama_mapel', $mapel->nama_mapel) }}">
 
 
                                     @error('nama_mapel')

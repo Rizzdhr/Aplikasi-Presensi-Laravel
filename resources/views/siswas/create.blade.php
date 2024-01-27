@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('judul', 'Create Data Siswa')
+@section('judul', 'Tambah Data Siswa')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -45,7 +45,7 @@
                                         name="nisn" value="{{ old('nisn') }}" placeholder="Masukkan NISN">
                                     <!-- error message untuk nisn -->
                                     @error('nisn')
-                                        <div class="alert alert-danger mt-2">
+                                        <div class="text-danger">
                                             {{ $message }}
                                         </div>
                                     @enderror
@@ -57,7 +57,7 @@
                                         name="nama" value="{{ old('nama') }}" placeholder="Masukkan Nama">
                                     <!-- error message untuk nama -->
                                     @error('nama')
-                                        <div class="alert alert-danger mt-2">
+                                        <div class="text-danger">
                                             {{ $message }}
                                         </div>
                                     @enderror
@@ -69,33 +69,13 @@
                                         name="kelas_id">
                                         <option selected disabled>Select one</option>
                                         @foreach ($kelass as $kelas)
-                                            <option value="{{ $kelas->id }}">{{ $kelas->kelas }}</option>
+                                            <option value="{{ $kelas->id }}">{{ $kelas->tingkat_jurusan }}</option>
                                         @endforeach
                                     </select>
 
                                     <!-- error message untuk kelas -->
                                     @error('kelas_id')
-                                        <div class="alert alert-danger mt-2">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="jurusan_id">Jurusan</label>
-                                    <select class="form-control  @error('jurusan_id') is-invalid @enderror" id="jurusan_id"
-                                        name="jurusan_id">
-                                        <option selected disabled>Select one</option>
-                                        @foreach ($jurusans as $jurusan)
-                                            <option value="{{ $jurusan->id }}">
-                                                {{ $jurusan->nama_jurusan }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-
-                                    <!-- error message untuk kelas -->
-                                    @error('jurusan_id')
-                                        <div class="alert alert-danger mt-2">
+                                        <div class="text-danger">
                                             {{ $message }}
                                         </div>
                                     @enderror
@@ -112,19 +92,50 @@
                                     </select>
                                     <!-- error message untuk jenis_kelamin -->
                                     @error('jenis_kelamin')
-                                        <div class="alert alert-danger mt-2">
+                                        <div class="text-danger">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
-                            </div>
 
-                            <div class="">
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
-                                    <button type="reset" class="btn btn-md btn-warning">RESET</button>
+                                <div class="">
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                        <button type="reset" class="btn btn-secondary">Reset</button>
+                                    </div>
                                 </div>
-                            </div>
+
+                                {{-- <div class="form-group">
+                                        <label for="kelas_id">Kelas</label>
+                                        <select name="kelas_id" class="form-control" required>
+                                            @foreach ($kelass as $kelas)
+                                                <option value="{{ $kelas->id }}">
+                                                    {{ $kelas->tingkat_kelas }} - {{ $kelas->jurusan->nama_jurusan }} - {{ $kelas->nomor_kelas }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div> --}}
+
+                                {{-- <div class="form-group">
+                                    <label for="jurusan_id">Jurusan</label>
+                                    <select class="form-control  @error('jurusan_id') is-invalid @enderror" id="jurusan_id"
+                                        name="jurusan_id">
+                                        <option selected disabled>Select one</option>
+                                        @foreach ($jurusans as $jurusan)
+                                            <option value="{{ $jurusan->id }}">
+                                                {{ $jurusan->nama_jurusan }}
+                                            </option>
+                                        @endforeach
+                                    </select> --}}
+
+                                {{-- <!-- error message untuk kelas -->
+                                    @error('jurusan_id')
+                                        <div class="alert alert-danger mt-2">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div> --}}
+
                         </form>
                         <!-- /.card-body -->
                     </div>

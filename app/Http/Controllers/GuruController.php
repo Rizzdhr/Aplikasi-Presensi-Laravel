@@ -27,9 +27,6 @@ class GuruController extends Controller
         $counter = 1;
 
         return view('gurus.guru', compact('gurus', 'counter'));
-
-
-
     }
 
     /**
@@ -68,5 +65,61 @@ class GuruController extends Controller
 
         //redirect to index
         return redirect()->route('gurus.index')->with(['success' => 'Data Berhasil Disimpan!']);
+    }
+
+    /**
+     * edit
+     *
+     * @param  mixed $id
+     * @return View
+     */
+    public function edit(string $id): View
+    {
+        //get guru by ID
+        $guru = Guru::findOrFail($id);
+
+        // Get the list of mapels
+        $mapels = Mapel::all();
+
+        //render view with guru
+        return view('gurus.edit', compact('guru', 'mapels'));
+    }
+
+    // update
+    public function update(Request $request, $id): RedirectResponse
+    {
+        // Validate form data
+        $this->validate($request, [
+            'nama'     => 'required',
+            'mapel_id'     => 'required',
+            'jenis_kelamin'   => 'required',
+        ]);
+
+        // Get guru by ID
+        $guru = Guru::findOrFail($id);
+
+        // Update guru data with the new values
+        $guru->update([
+            'nama'  => $request->nama,
+            'mapel_id'   => $request->mapel_id,
+            'jenis_kelamin'  => $request->jenis_kelamin,
+        ]);
+
+        // Redirect to the index with a success message
+        return redirect()->route('gurus.index')->with(['success' => 'Data Berhasil Diubah!']);
+    }
+
+    /**
+     * Menghapus guru dari database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id): RedirectResponse
+    {
+        $guru = Guru::findOrFail($id);
+        $guru->delete();
+
+        return redirect()->route('gurus.index')->with(['success' => 'Data berhasil dihapus!']);
     }
 }

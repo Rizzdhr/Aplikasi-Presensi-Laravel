@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('judul', 'Create Jurusan')
+@section('judul', 'Tambah Data Jurusan')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -25,7 +25,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-6 container">
-                    <div class="card card-primary">
+                    <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Jurusan</h3>
 
@@ -47,7 +47,8 @@
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="submit" class="btn btn-success">Simpan</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
 
                             </div>
                         </form>

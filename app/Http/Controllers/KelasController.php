@@ -35,7 +35,10 @@ class KelasController extends Controller
     {
         // if(auth()->user()->can('view_kelas')){
         //get kelass
-        $kelass = Kelas::with('jurusan')->orderBy('tingkat_kelas', 'asc')->get();
+        $kelass = Kelas::with('jurusan')->orderByDesc('tingkat_kelas')
+        ->orderBy('jurusan_id')
+        ->orderBy('nomor_kelas')
+        ->get();
 
         // Menghitung nomor urut
         $counter = 1;
@@ -92,7 +95,7 @@ class KelasController extends Controller
 
         // Menghitung nomor urut
         $counter = 1;
-        return view('kelass.show', compact('kelas','siswas','counter'));
+        return view('kelass.show', compact('kelas', 'siswas', 'counter'));
     }
 
 

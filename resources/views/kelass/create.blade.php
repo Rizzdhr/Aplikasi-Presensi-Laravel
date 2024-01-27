@@ -25,7 +25,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-6 container">
-                    <div class="card card-primary">
+                    <div class="card ">
                         <div class="card-header">
                             <h3 class="card-title">Data Kelas</h3>
 
@@ -106,8 +106,8 @@
 
                             <div class="">
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
-                                    <button type="reset" class="btn btn-md btn-warning">RESET</button>
+                                    <button type="submit" class="btn btn-md btn-success">SIMPAN</button>
+                                    <button type="reset" class="btn btn-md btn-secondary">RESET</button>
                                 </div>
 
                             </div>

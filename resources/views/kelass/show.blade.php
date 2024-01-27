@@ -51,12 +51,9 @@
                                 <th style="">
                                     Nama
                                 </th>
-                                <th style="">
+                                {{-- <th style="">
                                     Kelas
-                                </th>
-                                <th style="">
-                                    Jurusan
-                                </th>
+                                </th> --}}
                                 <th style="">
                                     Jenis Kelamin
                                 </th>
@@ -72,8 +69,7 @@
                                     <td>{{ $counter++ }}</td>
                                     <td>{{ $siswa->nisn }}</td>
                                     <td>{{ $siswa->nama }}</td>
-                                    <td>{{ $siswa->kelas->kelas }}</td>
-                                    <td>{{ $siswa->kelas->jurusan->nama_jurusan }}</td>
+                                    {{-- <td>{{ $siswa->kelas->tingkat_jurusan }}</td> --}}
                                     <td>{{ $siswa->jenis_kelamin }}</td>
 
                                     <td class="text-center">

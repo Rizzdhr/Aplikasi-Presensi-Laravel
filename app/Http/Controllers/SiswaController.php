@@ -28,7 +28,7 @@ class SiswaController extends Controller
     {
         // if(auth()->user()->can('view_siswa')){
         //get siswas
-        $siswas = Siswa::with('kelas','jurusan')->orderBy('nama', 'asc')->get();
+        $siswas = Siswa::with(['kelas'])->orderBy('nama', 'asc')->get();
 
         // Menghitung nomor urut
         $counter = 1;
@@ -46,11 +46,10 @@ class SiswaController extends Controller
      */
     public function create(): View
     {
-        $siswas = Siswa::all();
+        // $siswas = Siswa::all();
         $kelass = Kelas::all();
-        $jurusans = Jurusan::all();
 
-        return view('siswas.create', compact('siswas', 'kelass', 'jurusans'));
+        return view('siswas.create', compact('kelass'));
     }
 
     /**
@@ -63,10 +62,9 @@ class SiswaController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'nisn'     => 'required',
+            'nisn'     => 'required|unique:siswas,nisn',
             'nama'     => 'required',
-            'kelas_id'   => 'required',
-            'jurusan_id'   => 'required',
+            'kelas_id'  => 'required',
             'jenis_kelamin'  => 'required'
         ]);
 
@@ -76,7 +74,6 @@ class SiswaController extends Controller
             'nisn'  => $request->nisn,
             'nama'   => $request->nama,
             'kelas_id'  => $request->kelas_id,
-            'jurusan_id'   => $request->jurusan_id,
             'jenis_kelamin'   => $request->jenis_kelamin
         ]);
 
@@ -93,9 +90,10 @@ class SiswaController extends Controller
     {
         //get siswa by ID
         $siswa = Siswa::findOrFail($id);
+        $kelass = Kelas::all();
 
         //render view with siswa
-        return view('Siswas.edit', compact('siswa'));
+        return view('Siswas.edit', compact('siswa','kelass'));
     }
 
     // update
@@ -103,10 +101,9 @@ class SiswaController extends Controller
     {
         // Validate form data
         $this->validate($request, [
-            'nisn' => 'required',
+            'nisn' => 'required|unique:siswas,nisn,' . $id,
             'nama' => 'required',
-            'kelas_id' => 'required',
-            'jurusan_id'   => 'required',
+            'kelas_id'  => 'required',
             'jenis_kelamin' => 'required'
         ]);
 
@@ -117,8 +114,7 @@ class SiswaController extends Controller
         $siswa->update([
             'nisn' => $request->nisn,
             'nama' => $request->nama,
-            'kelas_id' => $request->kelas_id,
-            'jurusan_id'   => $request->jurusan_id,
+            'kelas_id'  => $request->kelas_id,
             'jenis_kelamin' => $request->jenis_kelamin,
         ]);
 
