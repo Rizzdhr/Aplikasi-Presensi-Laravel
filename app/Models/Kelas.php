@@ -16,7 +16,7 @@ class Kelas extends Model
         return $this->belongsTo(Jurusan::class);
     }
 
-    public function getTingkatJurusanAttribute()
+    public function getHasilKelasAttribute()
     {
         return $this->tingkat_kelas . ' ' . $this->jurusan->nama_jurusan . ' ' . $this->nomor_kelas;
     }

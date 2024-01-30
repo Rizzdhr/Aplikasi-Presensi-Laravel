@@ -55,6 +55,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/siswas', [SiswaController::class, 'index'])->name('siswas.index');
     Route::get('/siswas/create', [SiswaController::class, 'create'])->name('siswas.create');
     Route::post('/siswas', [SiswaController::class, 'store'])->name('siswas.store');
+    Route::get('/siswas/export', [SiswaController::class, 'export'])->name('siswas.export');
+    Route::post('/siswas/import', [SiswaController::class, 'import'])->name('siswas.import');
     Route::get('/siswas/{siswa}', [SiswaController::class, 'show'])->name('siswas.show');
     Route::get('/siswas/{siswa}/edit', [SiswaController::class, 'edit'])->name('siswas.edit');
     Route::put('/siswas/{siswa}', [SiswaController::class, 'update'])->name('siswas.update');

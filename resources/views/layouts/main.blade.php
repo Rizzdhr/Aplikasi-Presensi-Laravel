@@ -8,6 +8,8 @@
     <link rel="icon" type="image/png" href="{{ asset('image/logo_RPL-removebg-preview.png') }}">
 
 
+    {{-- bootstrap 5 --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     {{-- datatables --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css">
@@ -107,6 +109,22 @@
             } );
         </script> --}}
 
+        {{-- import --}}
+        <script>
+            document.getElementById('importButton').addEventListener('click', function() {
+                // Menyembunyikan tombol untuk sementara
+                this.style.display = 'none';
+
+                // Mengirim formulir secara otomatis
+                document.getElementById('importForm').submit();
+
+                // Menampilkan tombol kembali setelah pengiriman formulir
+                this.style.display = 'block';
+            });
+        </script>
+
+        {{-- bootstrap 5 --}}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <!-- jQuery -->
         <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
         <!-- jQuery UI 1.11.4 -->

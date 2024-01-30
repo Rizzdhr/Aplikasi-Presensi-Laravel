@@ -69,7 +69,7 @@
                             @forelse ($kelass as $kelas)
                                 <tr>
                                     <td>{{ $counter++ }}</td>
-                                    <td>{{ $kelas->tingkat_jurusan }}</td>
+                                    <td>{{ $kelas->hasil_kelas }}</td>
                                     {{-- <td>
                                         <a href="{{ route('kelass.show', $kelas->id) }}">{{ $kelas->kelas }}</a>
                                     </td> --}}

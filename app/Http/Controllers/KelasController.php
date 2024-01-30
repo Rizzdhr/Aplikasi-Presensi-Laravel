@@ -74,6 +74,14 @@ class KelasController extends Controller
         // // Debugging: Cek data dari form
         // dd($request->all());
 
+        if (Kelas::where('tingkat_kelas', $request->tingkat_kelas)
+            ->where('jurusan_id', $request->jurusan_id)
+            ->where('nomor_kelas', $request->nomor_kelas)
+            ->first()
+        ) {
+            return back()->with(['failed' => 'Data Sudah Ada']);
+        }
+
         //create Kelas
         Kelas::create([
             'tingkat_kelas'  => $request->tingkat_kelas,
@@ -97,10 +105,9 @@ class KelasController extends Controller
 
         // Menghitung nomor urut
         $counter = 1;
+
         return view('kelass.show', compact('kelas', 'siswas', 'counter'));
     }
-
-
 
     /**
      * edit
@@ -130,7 +137,7 @@ class KelasController extends Controller
 
         // Validate form data
         $this->validate($request, [
-            'tingkat_kelas' => 'required' . $Kelas->id,
+            'tingkat_kelas' => 'required',
             'jurusan_id' => 'required',
             'nomor_kelas' => 'required',
             'walas' => 'required'
@@ -139,6 +146,14 @@ class KelasController extends Controller
         // Get Kelas by ID
         $Kelas = Kelas::findOrFail($id);
 
+        if (Kelas::where('tingkat_kelas', $request->tingkat_kelas)
+            ->where('jurusan_id', $request->jurusan_id)
+            ->where('nomor_kelas', $request->nomor_kelas)
+            ->where('id','!=', $id)
+            ->first()
+        ) {
+            return back()->with(['failed' => 'Data Sudah Ada']);
+        }
         // Update Kelas data with the new values
         $Kelas->update([
             'tingkat_kelas' => $request->tingkat_kelas,

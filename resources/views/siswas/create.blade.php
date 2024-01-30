@@ -25,7 +25,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-6 container">
-                    <div class="card card-primary">
+                    <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Data Siswa</h3>
 
@@ -69,7 +69,7 @@
                                         name="kelas_id">
                                         <option selected disabled>Select one</option>
                                         @foreach ($kelass as $kelas)
-                                            <option value="{{ $kelas->id }}">{{ $kelas->tingkat_jurusan }}</option>
+                                            <option value="{{ $kelas->id }}">{{ $kelas->hasil_kelas }}</option>
                                         @endforeach
                                     </select>
 

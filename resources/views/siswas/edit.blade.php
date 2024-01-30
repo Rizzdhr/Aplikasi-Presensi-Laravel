@@ -70,7 +70,7 @@
                                     <option selected disabled>Select one</option>
                                     @foreach ($kelass as $kelas)
                                         <option value="{{ $kelas->id }}" {{ $siswa->kelas_id == $kelas->id ? 'selected' : '' }}>
-                                            {{ $kelas->tingkat_jurusan }}
+                                            {{ $kelas->hasil_kelas }}
                                         </option>
                                     @endforeach
                                 </select>
