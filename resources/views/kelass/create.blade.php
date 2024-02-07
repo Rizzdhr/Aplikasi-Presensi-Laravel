@@ -92,11 +92,19 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Walas</label>
-                                    <input type="text" class="form-control @error('walas') is-invalid @enderror"
-                                        name="walas" value="{{ old('walas') }}" placeholder="Masukkan Walas">
-                                    <!-- error message untuk walas -->
-                                    @error('walas')
+                                    <label for="guru_id">Wali Kelas</label>
+                                    <select class="form-control @error('guru_id') is-invalid @enderror"
+                                        name="guru_id">
+                                        <option selected disabled>Select one</option>
+                                        @foreach ($gurus as $guru)
+                                            <option value="{{ $guru->id }}">
+                                                {{ $guru->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    <!-- error message untuk jurusan -->
+                                    @error('guru_id')
                                         <div class="text-danger">
                                             {{ $message }}
                                         </div>

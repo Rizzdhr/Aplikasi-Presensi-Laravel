@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Kelas;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class KelasPostRequest extends FormRequest
+class UserPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,11 @@ class KelasPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "tingkat_kelas" => ['required'],
-            "jurusan_id" => ['required'],
-            "nomor_kelas" => ['required'],
-            "guru_id" => ['required']
+            "guru_id" => ['required'],
+            "email" => ['required'],
+            "roles" => ['required'],
+            "password" => ['required']
+
         ];
     }
 }

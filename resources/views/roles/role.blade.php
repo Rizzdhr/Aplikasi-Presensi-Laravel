@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('judul', 'Data Guru')
+@section('judul', 'Role')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -9,16 +9,17 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Data Guru</h1>
+                        <h1>Role</h1>
                         <br>
                         {{-- @can('create_data') --}}
-                            <a href="{{ route('gurus.create') }}" class="btn btn-success">Tambah Data</a>
+                        <a href="{{ route('roles.create') }}" class="btn btn-success">Tambah Role</a>
+
                         {{-- @endcan --}}
                     </div>
                     <div class="col text-right">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Data Guru</li>
+                            <li class="breadcrumb-item active">Role</li>
                         </ol>
                     </div>
                 </div>
@@ -31,7 +32,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Data Guru</h3>
+                    <h3 class="card-title">Role</h3>
                     {{-- <div class="card-tools float-left">
                     <a href="{{ route('kelass.create')}}" class="btn btn-success">Tambah Data</a>
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -50,51 +51,40 @@
                                 <th style="width: 1%">
                                     No
                                 </th>
-                                <th style="">
-                                    Nama
+                                <th style="width: 20%">
+                                    Role
                                 </th>
-                                <th style="">
-                                    Mata Pelajaran
-                                </th>
-                                <th style="">
-                                    Jenis Kelamin
-                                </th>
-                                <th style="">
+                                <th style="width: 20%">
                                     Action
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($gurus as $guru)
+                            @foreach ($roles as $role)
                                 <tr>
-                                    <td>{{ $counter++ }} </td>
-                                    <td>{{ $guru->nama }}</td>
-                                    <td>{{ $guru->mapel->nama_mapel }}</td>
-                                    <td>{{ $guru->jenis_kelamin }}</td>
+                                    <td>{{ $counter++ }}</td>
+                                    <td>{{ $role->nama }}</td>
                                     <td>
-                                        <a href="{{ route('gurus.show', $guru->id) }}" class="btn btn-primary btn-sm">
-                                            <i class="fas fa-folder">
-                                            </i>
-                                            View</a>
-
 
                                         {{-- @can('edit_data') --}}
-                                            <a href="{{ route('gurus.edit', $guru->id) }}" class="btn btn-info btn-sm">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>Edit</a>
+                                        {{-- <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-info btn-sm">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>Edit</a> --}}
+
                                         {{-- @endcan --}}
 
                                         {{-- @can('delete_data') --}}
-                                            <form action="{{ route('gurus.destroy', $guru->id) }}" method="POST"
-                                                style="display: inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus guru ini?')" class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash">
-                                                    </i>
-                                                    HAPUS</button>
-                                            </form>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');""
+                                        action="{{ route('roles.destroy', $role->id) }}" method="POST"
+                                            style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash">
+                                                </i>
+                                                HAPUS</button>
+                                        </form>
+
                                         {{-- @endcan --}}
                                     </td>
                                 </tr>

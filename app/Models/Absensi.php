@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Absensi extends Model
 {
-    use HasFactory;
+    protected $table='Absensi';
+    protected $primaryKey = 'id_absensi';
 
-    protected $fillable = ['kelas_id', 'jurusan_id','nomor_kelas', 'walas'];
-
+    public function siswa()
+    {
+        return $this->belongsToMany(Siswa::class);
+    }
 }

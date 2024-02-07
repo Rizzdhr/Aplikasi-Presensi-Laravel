@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('judul')</title>
-    <link rel="icon" type="image/png" href="{{ asset('image/logo_RPL-removebg-preview.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('image/logo_cn-removebg-preview.png') }}">
 
 
     {{-- bootstrap 5 --}}
@@ -50,6 +50,8 @@
         @include('layouts.navbar')
 
         @include('layouts.sidebar')
+
+        @include('sweetalert::alert')
 
         <div class="mt-4">
             @yield('content')

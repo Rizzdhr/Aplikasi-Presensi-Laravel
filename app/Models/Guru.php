@@ -15,4 +15,9 @@ class Guru extends Model
     {
         return $this->belongsTo(Mapel::class);
     }
+
+    public function Kelas()
+    {
+        return $this->hasOne(Kelas::class, 'guru_id');
+    }
 }

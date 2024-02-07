@@ -40,7 +40,7 @@
                         <dd class="col-sm-9">{{ $siswa->nama }}</dd>
 
                         <dt class="col-sm-3">Kelas:</dt>
-                        <dd class="col-sm-9">{{ $siswa->kelas->tingkat_jurusan }}</dd>
+                        <dd class="col-sm-9">{{ $siswa->kelas->hasil_kelas }}</dd>
 
                         {{-- Uncomment the following lines if you have a relationship to Jurusan --}}
                         {{-- <dt class="col-sm-3">Jurusan:</dt>

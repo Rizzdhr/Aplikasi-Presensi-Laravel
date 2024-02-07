@@ -26,7 +26,7 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Welcome Message -->
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-lg-12">
                         <div class="alert alert-info">
                             <h4 class="alert-heading">Halo, <b>{{ Auth::user()->name }}!</b></h4>
@@ -39,7 +39,7 @@
                             @endif
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row">
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">

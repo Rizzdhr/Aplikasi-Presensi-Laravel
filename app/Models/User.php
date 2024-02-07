@@ -18,9 +18,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'guru_id',
+        'username',
         'email',
-        'password',
+        'password'
         // 'role'
 
     ];
@@ -34,4 +35,20 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+
+    public function Guru()
+    {
+        return $this->belongsTo(Guru::class, 'guru_id');
+    }
+
+    /**
+     * The roles that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
+    }
 }

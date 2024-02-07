@@ -88,11 +88,18 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Walas</label>
-                                    <input type="text" class="form-control @error('walas') is-invalid @enderror"
-                                        name="walas" value="{{ old('walas', $Kelas->walas) }}">
-                                    <!-- error message untuk walas -->
-                                    @error('walas')
+                                    <label>Wali Kelas</label>
+                                    <select class="form-control @error('guru_id') is-invalid @enderror"
+                                        name="guru_id">
+                                        @foreach ($gurus as $guru)
+                                            <option value="{{ $guru->id }}"
+                                                {{ old('guru_id', $Kelas->guru_id) == $guru->id ? 'selected' : '' }}>
+                                                {{ $guru->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <!-- error message untuk guru -->
+                                    @error('guru')
                                         <div class="text-danger">
                                             {{ $message }}
                                         </div>

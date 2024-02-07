@@ -11,10 +11,10 @@
                     <div class="col-sm-6">
                         <h1>Data Mata Pelajaran</h1>
                         <br>
-                        @can('create_data')
+                        {{-- @can('create_data') --}}
                         <a href="{{ route('mapels.create') }}" class="btn btn-success">Tambah Data</a>
 
-                        @endcan
+                        {{-- @endcan --}}
                     </div>
                     <div class="col text-right">
                         <ol class="breadcrumb float-sm-right">
@@ -71,14 +71,14 @@
                                             View
                                         </a>
 
-                                        @can('edit_data')
+                                        {{-- @can('edit_data') --}}
                                         <a href="{{ route('mapels.edit', $mapel->id) }}" class="btn btn-info btn-sm">
                                             <i class="fas fa-pencil-alt">
                                             </i>Edit</a>
 
-                                        @endcan
+                                        {{-- @endcan --}}
 
-                                        @can('delete_data')
+                                        {{-- @can('delete_data') --}}
                                         <form action="{{ route('mapels.destroy', $mapel->id) }}" method="POST"
                                             style="display: inline;">
                                             @csrf
@@ -90,7 +90,7 @@
                                                 HAPUS</button>
                                         </form>
 
-                                        @endcan
+                                        {{-- @endcan --}}
                                     </td>
                                 </tr>
                             @endforeach

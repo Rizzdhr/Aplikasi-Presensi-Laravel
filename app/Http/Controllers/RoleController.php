@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Jurusan;
+use App\Models\Role;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
-class JurusanController extends Controller
+class RoleController extends Controller
 {
     /**
-     * Menampilkan daftar jurusan.
+     * Menampilkan daftar role.
      *
      * @return \Illuminate\View\View
      */
     public function index(): View
     {
-        $jurusans = Jurusan::orderBy('nama_jurusan', 'asc')->get();
+        $roles = Role::orderBy('nama', 'asc')->get();
         $counter = 1;
-        return view('jurusans.jurusan', compact('jurusans', 'counter'));
+        return view('roles.role', compact('roles', 'counter'));
     }
 
     /**
@@ -29,7 +29,7 @@ class JurusanController extends Controller
     public function create()
     {
         // $this->authorize('create_data');
-        return view('jurusans.create');
+        return view('roles.create');
     }
 
     /**
@@ -41,20 +41,20 @@ class JurusanController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $this->validate($request, [
-            'nama_jurusan' => 'required|unique:jurusans,nama_jurusan'
+            'nama' => 'required|unique:roles,nama'
         ]);
 
-        Jurusan::create([
-            'nama_jurusan' => $request->nama_jurusan
+        Role::create([
+            'nama' => $request->nama
         ]);
 
-        return redirect()->route('jurusans.index')->with(['success' => 'Jurusan berhasil disimpan!']);
+        return redirect()->route('roles.index')->with(['success' => 'Role berhasil disimpan!']);
     }
 
     public function show($id)
     {
-        $jurusan = Jurusan::findOrFail($id);
-        return view('jurusans.show', compact('jurusan'));
+        $role = Role::findOrFail($id);
+        return view('roles.show', compact('role'));
     }
 
 
@@ -67,8 +67,8 @@ class JurusanController extends Controller
     public function edit($id)
     {
         // $this->authorize('edit_data');
-        $jurusan = Jurusan::findOrFail($id);
-        return view('jurusans.edit', compact('jurusan'));
+        $role = Role::findOrFail($id);
+        return view('roles.edit', compact('role'));
     }
 
     /**
@@ -81,15 +81,15 @@ class JurusanController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         $this->validate($request, [
-            'nama_jurusan' => 'required|unique:jurusans,nama_jurusan,' . $id
+            'nama' => 'required|unique:roles,nama,' . $id
         ]);
 
-        $jurusan = Jurusan::findOrFail($id);
-        $jurusan->update([
-            'nama_jurusan' => $request->nama_jurusan
+        $role = Role::findOrFail($id);
+        $role->update([
+            'nama' => $request->nama
         ]);
 
-        return redirect()->route('jurusans.index')->with(['success' => 'Jurusan berhasil diperbarui!']);
+        return redirect()->route('roles.index')->with(['success' => 'Role berhasil diperbarui!']);
     }
 
     /**
@@ -101,13 +101,11 @@ class JurusanController extends Controller
     public function destroy($id): RedirectResponse
     {
         // $this->authorize('delete_data');
-        $jurusan = Jurusan::findOrFail($id);
+        $role = Role::findOrFail($id);
 
-        if ($jurusan->kelas()->exists()) {
-            return redirect()->route('jurusans.index')->with(['failed' => 'Jurusan tidak dapat dihapus karena masih terkait dengan kelas.']);
-        }
-        $jurusan->delete();
 
-        return redirect()->route('jurusans.index')->with(['success' => 'Jurusan berhasil dihapus!']);
+        $role->delete();
+
+        return redirect()->route('roles.index')->with(['success' => 'Role berhasil dihapus!']);
     }
 }

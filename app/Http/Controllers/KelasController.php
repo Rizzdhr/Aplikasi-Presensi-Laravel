@@ -16,6 +16,8 @@ use App\Models\Siswa;
 //import Model "Kelas
 use App\Models\Kelas;
 
+use App\Models\Guru;
+
 //return type View
 use Illuminate\View\View;
 
@@ -37,10 +39,10 @@ class KelasController extends Controller
     public function index(): View
     {
         //get kelass
-        $kelass = Kelas::with('jurusan')->orderByDesc('tingkat_kelas')
-            ->orderBy('jurusan_id')
-            ->orderBy('nomor_kelas')
-            ->get();
+        $kelass = Kelas::orderBy('tingkat_kelas')
+        ->orderBy('jurusan_id')
+        ->orderBy('nomor_kelas')
+        ->get();
 
         // Menghitung nomor urut
         $counter = 1;
@@ -56,11 +58,12 @@ class KelasController extends Controller
      */
     public function create(): View
     {
-        $this->authorize('create_data');
+        // $this->authorize('create_data');
 
         $jurusans = Jurusan::all(); // Mendapatkan semua jurusan untuk ditampilkan di form
+        $gurus = Guru::all();
 
-        return view('kelass.create', compact('jurusans'));
+        return view('kelass.create', compact('jurusans','gurus'));
     }
 
     /**
@@ -69,17 +72,24 @@ class KelasController extends Controller
      * @param  mixed $request
      * @return RedirectResponse
      */
-    public function store(KelasPostRequest $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         // // Debugging: Cek data dari form
         // dd($request->all());
+        //validate form
+        $this->validate($request, [
+            "tingkat_kelas" => 'required',
+            "jurusan_id" => 'required',
+            "nomor_kelas" => 'required',
+            "guru_id" => 'required|unique:gurus,nama'
+        ]);
 
         if (Kelas::where('tingkat_kelas', $request->tingkat_kelas)
             ->where('jurusan_id', $request->jurusan_id)
             ->where('nomor_kelas', $request->nomor_kelas)
             ->first()
         ) {
-            return back()->with(['failed' => 'Data Sudah Ada']);
+            return back()->with(['failed' => 'Kelas Sudah Ada!']);
         }
 
         //create Kelas
@@ -87,7 +97,7 @@ class KelasController extends Controller
             'tingkat_kelas'  => $request->tingkat_kelas,
             'jurusan_id'   => $request->jurusan_id,
             'nomor_kelas' => $request->nomor_kelas,
-            'walas'     => $request->walas
+            'guru_id'     => $request->guru_id
         ]);
 
         //redirect to index
@@ -117,7 +127,7 @@ class KelasController extends Controller
      */
     public function edit(string $id): View
     {
-        $this->authorize('edit_data');
+        // $this->authorize('edit_data');
 
         //get Kelas by ID
         $Kelas = Kelas::findOrFail($id);
@@ -125,8 +135,9 @@ class KelasController extends Controller
         // Get the list of jurusans
         $jurusans = Jurusan::all();
 
+        $gurus = Guru::all();
         //render view with Kelas
-        return view('kelass.edit', compact('Kelas', 'jurusans'));
+        return view('kelass.edit', compact('Kelas', 'jurusans', 'gurus'));
     }
 
     // update
@@ -140,7 +151,7 @@ class KelasController extends Controller
             'tingkat_kelas' => 'required',
             'jurusan_id' => 'required',
             'nomor_kelas' => 'required',
-            'walas' => 'required'
+            'guru_id' => 'required'
         ]);
 
         // Get Kelas by ID
@@ -159,7 +170,7 @@ class KelasController extends Controller
             'tingkat_kelas' => $request->tingkat_kelas,
             'jurusan_id' => $request->jurusan_id,
             'nomor_kelas' => $request->nomor_kelas,
-            'walas' => $request->walas
+            'guru_id' => $request->guru_id
         ]);
 
         // Redirect to the index with a success message
@@ -174,7 +185,7 @@ class KelasController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        $this->authorize('delete_data');
+        // $this->authorize('delete_data');
 
         //get Kelas by ID
         $Kelas = Kelas::findOrFail($id);

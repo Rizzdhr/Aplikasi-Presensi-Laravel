@@ -36,7 +36,7 @@ class GuruController extends Controller
      */
     public function create(): View
     {
-        $this->authorize('create_data');
+        // $this->authorize('create_data');
         $mapels = Mapel::all();
 
         return view('gurus.create', compact('mapels'));
@@ -52,7 +52,7 @@ class GuruController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'nama'     => 'required',
+            'nama'     => 'required|unique:gurus,nama',
             'mapel_id'     => 'required',
             'jenis_kelamin'   => 'required',
         ]);
@@ -76,7 +76,7 @@ class GuruController extends Controller
      */
     public function edit(string $id): View
     {
-        $this->authorize('edit_data');
+        // $this->authorize('edit_data');
         //get guru by ID
         $guru = Guru::findOrFail($id);
 
@@ -92,9 +92,9 @@ class GuruController extends Controller
     {
         // Validate form data
         $this->validate($request, [
-            'nama'     => 'required',
+            'nama'     => 'required|unique:gurus,nama,'. $id,
             'mapel_id'     => 'required',
-            'jenis_kelamin'   => 'required',
+            'jenis_kelamin'   => 'required'
         ]);
 
         // Get guru by ID
@@ -126,8 +126,14 @@ class GuruController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        $this->authorize('delete_data');
+        // $this->authorize('delete_data');
         $guru = Guru::findOrFail($id);
+
+        // Periksa apakah guru masih memiliki kelas terkait
+        if ($guru->kelas()->exists()) {
+            return redirect()->route('gurus.index')->with(['failed' => 'Guru tidak dapat dihapus karena masih terkait dengan kelas.']);
+        }
+
         $guru->delete();
 
         return redirect()->route('gurus.index')->with(['success' => 'Data berhasil dihapus!']);

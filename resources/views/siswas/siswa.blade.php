@@ -12,9 +12,9 @@
                     <div class="col-sm-6">
                         <h1>Data Siswa</h1>
                         <br>
-                        @can('create_data')
+                        {{-- @can('create_data') --}}
                             <a href="{{ route('siswas.create') }}" class="btn btn-success">Tambah Data</a>
-                        @endcan
+                        {{-- @endcan --}}
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -85,15 +85,15 @@
                                                 View
                                             </a>
 
-                                            @can('edit_data')
+                                            {{-- @can('edit_data') --}}
                                                 <a href="{{ route('siswas.edit', $siswa->id) }}" class="btn btn-info btn-sm"><i
                                                         class="fas fa-pencil-alt">
                                                     </i>">
                                                     EDIT
                                                 </a>
-                                            @endcan
+                                            {{-- @endcan --}}
 
-                                            @can('delete_data')
+                                            {{-- @can('delete_data') --}}
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                     action="{{ route('siswas.destroy', $siswa->id) }}" method="POST">
                                                     @csrf
@@ -103,7 +103,7 @@
                                                         </i>
                                                         HAPUS</button>
                                                 </form>
-                                            @endcan
+                                            {{-- @endcan --}}
                                         </td>
                                     </tr>
                                 @empty

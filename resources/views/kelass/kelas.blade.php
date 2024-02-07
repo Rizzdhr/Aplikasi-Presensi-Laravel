@@ -12,10 +12,10 @@
                     <div class="col-sm-6">
                         <h1>Data Kelas</h1>
                         <br>
-                        @can('create_data')
+                        {{-- @can('create_data') --}}
                         <a href="{{ route('kelass.create') }}" class="btn btn-success">Tambah Data</a>
 
-                        @endcan
+                        {{-- @endcan --}}
                     </div>
                     <div class="col text-right">
                         <ol class="breadcrumb float-sm-right">
@@ -58,7 +58,7 @@
                                     Jurusan
                                 </th> --}}
                                 <th>
-                                    Walas
+                                    Wali Kelas
                                 </th>
                                 <th style="">
                                     Action
@@ -74,7 +74,7 @@
                                         <a href="{{ route('kelass.show', $kelas->id) }}">{{ $kelas->kelas }}</a>
                                     </td> --}}
                                     {{-- <td>{{ $kelas->jurusan->nama_jurusan }}</td> --}}
-                                    <td>{{ $kelas->walas }}</td>
+                                    <td>{{ $kelas->guru->nama }}</td>
 
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');"
@@ -87,15 +87,15 @@
                                                 View
                                             </a>
 
-                                            @can('edit_data')
+                                            {{-- @can('edit_data') --}}
                                             <a href="{{ route('kelass.edit', $kelas->id) }}" class="btn btn-info btn-sm"><i
                                                     class="fas fa-pencil-alt">
                                                 </i>
                                                 Edit
                                             </a>
-                                            @endcan
+                                            {{-- @endcan --}}
 
-                                            @can('delete_data')
+                                            {{-- @can('delete_data') --}}
                                             @csrf
 
                                             @method('DELETE')
@@ -104,7 +104,7 @@
                                                 </i>
                                                 HAPUS</button>
 
-                                            @endcan
+                                            {{-- @endcan --}}
                                         </form>
                                     </td>
                                 </tr>
