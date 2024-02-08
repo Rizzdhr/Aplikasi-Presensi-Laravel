@@ -7,7 +7,7 @@
         </li>
         <div class="container-fluid">
             <span class="navbar-text">
-                SMK CITRA NEGARA
+                <b>SMK CITRA NEGARA</b>
             </span>
         </div>
         {{-- <li class="nav-item d-none d-sm-inline-block">
@@ -16,28 +16,28 @@
 
     </ul>
 
-    {{-- <!-- Right navbar links -->
+    <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Akun Dropdown -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="fas fa-user"></i>
-                {{ Auth::user()->name }}
+                {{ Auth::user()->username }}
                 <i class="fas fa-caret-down "></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right"> --}}
-    <!-- Opsi Profil -->
-    {{-- <a href="#" class="dropdown-item">
-                <i class="fas fa-user-circle"></i> Profil
-            </a> --}}
-    {{-- <div class="dropdown-divider"></div>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <!-- Opsi Profil -->
+                {{-- <a href="#" class="dropdown-item">
+                    <i class="fas fa-user-circle"></i> Profil
+                </a> --}}
+                <div class="dropdown-divider"></div>
                 <!-- Opsi Logout -->
                 <a href="#" class="dropdown-item">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>
         </li>
-    </ul> --}}
+    </ul>
 
 </nav>
 <!-- /.navbar -->

@@ -13,8 +13,11 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Project Add</li>
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('kelass.index') }}">Data Kelas</a></li>
+                                <li class="breadcrumb-item active">Edit</li>
+                            </ol>
                         </ol>
                     </div>
                 </div>
@@ -27,7 +30,7 @@
                 <div class="col-md-6 container">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">General</h3>
+                            <h3 class="card-title">Data Kelas</h3>
 
                             {{-- <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">

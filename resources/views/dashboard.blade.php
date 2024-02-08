@@ -13,7 +13,6 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div><!-- /.col -->
@@ -93,6 +92,20 @@
                                 <i class="fas fa-graduation-cap nav-icon"></i>
                             </div>
                             <a href="{{ route('jurusans.index') }}" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>{{ $mapelCount }}</h3>
+                                <p>Mata Pelajaran</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-book nav-icon"></i>
+                            </div>
+                            <a href="{{ route('mapels.index') }}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>

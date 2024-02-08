@@ -1,4 +1,4 @@
-@extends('layouts.main')
+{{-- @extends('layouts.main')
 @section('judul', 'Absensi | Data Kelas')
 
 @section('content')
@@ -113,4 +113,4 @@
 </div>
 
 </section>
-@endsection
+@endsection --}}

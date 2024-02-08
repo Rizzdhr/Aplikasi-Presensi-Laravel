@@ -11,14 +11,14 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>Data Siswa</h1>
-                        <br>
+
                         {{-- @can('create_data') --}}
-                            <a href="{{ route('siswas.create') }}" class="btn btn-success">Tambah Data</a>
+
                         {{-- @endcan --}}
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Data Siswa</li>
                         </ol>
                     </div>
@@ -28,23 +28,25 @@
 
         <!-- Main content -->
         <section class="content">
-            <!-- export -->
-            <a href="{{ route('siswas.export') }}" class="btn btn-success">Export</a>
-            {{-- import --}}
-            <form id="importForm" action="{{ route('siswas.import') }}" method="post" style="display: none;">
-                @csrf
-                <input type="hidden" name="file" value="automatic-import">
-            </form>
-
-            <button id="importButton" class="btn btn-primary">Import Data</button>
 
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Data Siswa</h3>
+                    <a href="{{ route('siswas.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
+                    <!-- export -->
+                    {{-- <a href="{{ route('siswas.export') }}" class="btn btn-success">Export</a> --}}
+                    {{-- import --}}
+                    {{-- <form id="importForm" action="{{ route('siswas.import') }}" method="post" style="display: none;">
+                        @csrf
+                        <input type="hidden" name="file" value="automatic-import">
+                    </form> --}}
+
+                    {{-- <button id="importButton" class="btn btn-primary">Import Data</button> --}}
+
                 </div>
-                    <div class="card-body p-0">
-                        <table id="tabledata" class="table table-striped projects">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table id="tabledata" class=" table table-striped projects">
                             <thead>
                                 <tr>
                                     <th style="width: 1%">
@@ -86,23 +88,23 @@
                                             </a>
 
                                             {{-- @can('edit_data') --}}
-                                                <a href="{{ route('siswas.edit', $siswa->id) }}" class="btn btn-info btn-sm"><i
-                                                        class="fas fa-pencil-alt">
-                                                    </i>">
-                                                    EDIT
-                                                </a>
+                                            <a href="{{ route('siswas.edit', $siswa->id) }}" class="btn btn-info btn-sm"><i
+                                                    class="fas fa-pencil-alt">
+                                                </i>
+                                                EDIT
+                                            </a>
                                             {{-- @endcan --}}
 
                                             {{-- @can('delete_data') --}}
-                                                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('siswas.destroy', $siswa->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger"><i
-                                                            class="fas fa-trash">
-                                                        </i>
-                                                        HAPUS</button>
-                                                </form>
+                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                action="{{ route('siswas.destroy', $siswa->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger"><i
+                                                        class="fas fa-trash">
+                                                    </i>
+                                                    HAPUS</button>
+                                            </form>
                                             {{-- @endcan --}}
                                         </td>
                                     </tr>
@@ -114,6 +116,7 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
             </div>
         </section>
     </div>

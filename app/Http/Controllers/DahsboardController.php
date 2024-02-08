@@ -2,26 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-
-use App\Http\Requests\Kelas\KelasPostRequest;
-
 use App\Models\Jurusan;
-
 use App\Models\Siswa;
-
-//import Model "Kelas
 use App\Models\Kelas;
-
 use App\Models\Guru;
-
-//return type View
-use Illuminate\View\View;
-
-//return type redirectResponse
-use Illuminate\Http\RedirectResponse;
-
+use App\Models\Mapel;
 
 class DahsboardController extends Controller
 {
@@ -32,9 +17,10 @@ class DahsboardController extends Controller
     $siswaCount = Siswa::count();
     $guruCount = Guru::count();
     $jurusanCount = Jurusan::count();
+    $mapelCount = Mapel::count();
 
     // Kirim data ke tampilan
-    return view('dashboard', compact('kelasCount', 'siswaCount', 'guruCount', 'jurusanCount'));
+    return view('dashboard', compact('kelasCount', 'siswaCount', 'guruCount', 'jurusanCount', 'mapelCount'));
 }
 
 }

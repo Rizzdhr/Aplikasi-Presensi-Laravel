@@ -40,9 +40,9 @@ class KelasController extends Controller
     {
         //get kelass
         $kelass = Kelas::orderBy('tingkat_kelas')
-        ->orderBy('jurusan_id')
-        ->orderBy('nomor_kelas')
-        ->get();
+            ->orderBy('jurusan_id')
+            ->orderBy('nomor_kelas')
+            ->get();
 
         // Menghitung nomor urut
         $counter = 1;
@@ -63,7 +63,7 @@ class KelasController extends Controller
         $jurusans = Jurusan::all(); // Mendapatkan semua jurusan untuk ditampilkan di form
         $gurus = Guru::all();
 
-        return view('kelass.create', compact('jurusans','gurus'));
+        return view('kelass.create', compact('jurusans', 'gurus'));
     }
 
     /**
@@ -160,7 +160,7 @@ class KelasController extends Controller
         if (Kelas::where('tingkat_kelas', $request->tingkat_kelas)
             ->where('jurusan_id', $request->jurusan_id)
             ->where('nomor_kelas', $request->nomor_kelas)
-            ->where('id','!=', $id)
+            ->where('id', '!=', $id)
             ->first()
         ) {
             return back()->with(['failed' => 'Data Sudah Ada']);
@@ -189,6 +189,11 @@ class KelasController extends Controller
 
         //get Kelas by ID
         $Kelas = Kelas::findOrFail($id);
+
+        // Periksa apakah kelas masih memiliki siswa terkait
+        if ($Kelas->siswa()->exists()) {
+            return redirect()->route('kelass.index')->with(['failed' => 'Kelas tidak dapat dihapus karena masih terkait dengan siswa.']);
+        }
 
         //delete Kelas
         $Kelas->delete();

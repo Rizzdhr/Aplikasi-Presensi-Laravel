@@ -3,10 +3,9 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link d-flex justify-content-center">
         <img src="{{ asset('image/logo_cn-removebg-preview.png') }}" alt="logo_rpl"
-            class="brand-image img-circle elevation-3" style="max-height: 100px;">
+            class="brand-image img-circle elevation-3" style="">
         {{-- <span class="brand-text font-weight-light">SMK CITRA NEGARA</span> --}}
     </a>
-    <br><br><br>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -112,27 +111,30 @@
                         <p>Laporan</p>
                     </a>
                 </li>
+                <br>
 
                 <li class="nav-item">
-                    <a href="{{ route('roles.index')}}" class="nav-link">
-                        <i class="fas fa-print nav-icon"></i>
+                    <a href="{{ route('roles.index')}}" class="nav-link  @if (Route::is('roles.index')) active @endif">
+                        <i class="fas fa-user-shield nav-icon"></i>
                         <p>Role</p>
                     </a>
                 </li>
+                <br>
 
                 <li class="nav-item">
-                    <a href="{{ route('user.index')}}" class="nav-link">
-                        <i class="fas fa-print nav-icon"></i>
+                    <a href="{{ route('user.index')}}" class="nav-link  @if (Route::is('user.index')) active @endif">
+                        <i class="fas fa-user-plus nav-icon"></i>
                         <p>Users</p>
                     </a>
                 </li>
+                <br>
 
                 <form action="{{ route('logout') }}" method="GET"
                     onclick="return confirm('Apakah Anda yakin ingin LogOut?') ">
                     @csrf
                     <button type="submit" class="btn btn-danger">Logout</button>
                 </form>
-
+                <br>
 
 
 

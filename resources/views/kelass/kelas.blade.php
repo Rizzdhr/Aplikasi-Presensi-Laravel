@@ -11,15 +11,13 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>Data Kelas</h1>
-                        <br>
                         {{-- @can('create_data') --}}
-                        <a href="{{ route('kelass.create') }}" class="btn btn-success">Tambah Data</a>
 
                         {{-- @endcan --}}
                     </div>
                     <div class="col text-right">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                        <ol class="breadcrumb float-sm-right ">
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Data Kelas</li>
                         </ol>
                     </div>
@@ -33,87 +31,80 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Data Kelas</h3>
-                    {{-- <div class="card-tools float-left">
-                        <a href="{{ route('kelass.create')}}" class="btn btn-success">Tambah Data</a>
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div> --}}
+
+                    <a href="{{ route('kelass.create') }}" class="btn btn-success"><i class="fas fa-plus"></i>  Tambah</a>
                 </div>
                 <div class="card-body p-0">
-                    <table id="tabledata" class="display table table-striped projects">
-                        <thead>
-                            <tr>
-                                <th style="width: 1%">
-                                    No
-                                </th>
-                                <th style="">
-                                    Kelas
-                                </th>
-                                {{-- <th style="width: 20%">
-                                    Jurusan
-                                </th> --}}
-                                <th>
-                                    Wali Kelas
-                                </th>
-                                <th style="">
-                                    Action
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($kelass as $kelas)
+                    <div class="table-responsive">
+                        <table id="tabledata" class="display table table-striped projects">
+                            <thead>
                                 <tr>
-                                    <td>{{ $counter++ }}</td>
-                                    <td>{{ $kelas->hasil_kelas }}</td>
-                                    {{-- <td>
+                                    <th style="width: 1%">
+                                        No
+                                    </th>
+                                    <th style="">
+                                        Kelas
+                                    </th>
+                                    <th>
+                                        Wali Kelas
+                                    </th>
+                                    <th style="">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($kelass as $kelas)
+                                    <tr>
+                                        <td>{{ $counter++ }}</td>
+                                        <td>{{ $kelas->hasil_kelas }}</td>
+                                        {{-- <td>
                                         <a href="{{ route('kelass.show', $kelas->id) }}">{{ $kelas->kelas }}</a>
                                     </td> --}}
-                                    {{-- <td>{{ $kelas->jurusan->nama_jurusan }}</td> --}}
-                                    <td>{{ $kelas->guru->nama }}</td>
+                                        {{-- <td>{{ $kelas->jurusan->nama_jurusan }}</td> --}}
+                                        <td>{{ $kelas->guru->nama }}</td>
 
-                                    <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                            action="{{ route('kelass.destroy', $kelas->id) }}" method="POST">
+                                        <td class="text-center">
+                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                action="{{ route('kelass.destroy', $kelas->id) }}" method="POST">
 
 
-                                            <a class="btn btn-primary btn-sm" href="{{ route('kelass.show', $kelas->id) }}">
-                                                <i class="fas fa-folder">
-                                                </i>
-                                                View
-                                            </a>
+                                                <a class="btn btn-primary btn-sm"
+                                                    href="{{ route('kelass.show', $kelas->id) }}">
+                                                    <i class="fas fa-folder">
+                                                    </i>
+                                                    View
+                                                </a>
 
-                                            {{-- @can('edit_data') --}}
-                                            <a href="{{ route('kelass.edit', $kelas->id) }}" class="btn btn-info btn-sm"><i
-                                                    class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                            </a>
-                                            {{-- @endcan --}}
+                                                {{-- @can('edit_data') --}}
+                                                <a href="{{ route('kelass.edit', $kelas->id) }}"
+                                                    class="btn btn-info btn-sm"><i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    Edit
+                                                </a>
+                                                {{-- @endcan --}}
 
-                                            {{-- @can('delete_data') --}}
-                                            @csrf
+                                                {{-- @can('delete_data') --}}
+                                                @csrf
 
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                HAPUS</button>
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    HAPUS</button>
 
-                                            {{-- @endcan --}}
-                                        </form>
-                                    </td>
-                                </tr>
-                            @empty
-                                {{-- <div class="alert alert-danger">
+                                                {{-- @endcan --}}
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    {{-- <div class="alert alert-danger">
                                     Data Kelas belum Tersedia.
                                 </div> --}}
-                            @endforelse
-                        </tbody>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>

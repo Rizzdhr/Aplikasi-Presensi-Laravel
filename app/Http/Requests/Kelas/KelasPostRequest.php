@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Kelas;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class KelasPostRequest extends FormRequest
 {
@@ -25,7 +27,13 @@ class KelasPostRequest extends FormRequest
             "tingkat_kelas" => ['required'],
             "jurusan_id" => ['required'],
             "nomor_kelas" => ['required'],
-            "guru_id" => ['required']
+            "guru_id" => [
+                'required',
+                  // Menambahkan aturan validasi unique untuk field guru_id di dalam tabel kelas
+                Rule::unique('kelas', 'guru_id')->where(function ($query) {
+
+                }),
+            ],
         ];
     }
 }

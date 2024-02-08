@@ -13,9 +13,9 @@
                     </div>
                     <div class="col text-right">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('siswas.index') }}">Data Siswa</a></li>
-                            <li class="breadcrumb-item active">Detail Siswa</li>
+                            <li class="breadcrumb-item active">Detail</li>
                         </ol>
                     </div>
                 </div>
