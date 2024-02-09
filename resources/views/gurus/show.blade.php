@@ -33,6 +33,9 @@
 
                 <div class="card-body">
                     <dl class="row">
+                        <dt class="col-sm-3">NIP:</dt>
+                        <dd class="col-sm-9">{{ $guru->nip }}</dd>
+
                         <dt class="col-sm-3">Nama:</dt>
                         <dd class="col-sm-9">{{ $guru->nama }}</dd>
 

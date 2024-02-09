@@ -40,6 +40,9 @@
                                     <th style="width: 1%">
                                         No
                                     </th>
+                                    <th>
+                                        NIP
+                                    </th>
                                     <th style="">
                                         Nama
                                     </th>
@@ -58,6 +61,7 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $user->guru->nip }}</td>
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('gurus', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->unique();
+            $table->char('nip')->unique();
+            $table->string('nama');
             $table->foreignId('mapel_id')->constrained('mapels');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->timestamps();

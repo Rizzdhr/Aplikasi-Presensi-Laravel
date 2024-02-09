@@ -49,13 +49,15 @@ class GuruController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'nama'     => 'required|unique:gurus,nama',
+            'nip'   => 'required|unique:gurus,nip',
+            'nama'     => 'required',
             'mapel_id'     => 'required',
             'jenis_kelamin'   => 'required',
         ]);
 
         //create Guru
         Guru::create([
+            'nip'   => $request->nip,
             'nama'  => $request->nama,
             'mapel_id'   => $request->mapel_id,
             'jenis_kelamin'  => $request->jenis_kelamin,
@@ -89,7 +91,8 @@ class GuruController extends Controller
     {
         // Validate form data
         $this->validate($request, [
-            'nama'     => 'required|unique:gurus,nama,' . $id,
+            'nip'   => 'required|unique:gurus,nip,'  . $id,
+            'nama'     => 'required',
             'mapel_id'     => 'required',
             'jenis_kelamin'   => 'required'
         ]);
@@ -99,6 +102,7 @@ class GuruController extends Controller
 
         // Update guru data with the new values
         $guru->update([
+            'nip'   => $request->nip,
             'nama'  => $request->nama,
             'mapel_id'   => $request->mapel_id,
             'jenis_kelamin'  => $request->jenis_kelamin,

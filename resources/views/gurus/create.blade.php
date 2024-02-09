@@ -34,6 +34,17 @@
                         <form action="{{ route('gurus.store') }}" method="POST">
                             @csrf
                             <div class="card-body">
+
+                                <div class="form-group">
+                                    <label for="">NIP</label>
+                                    <input type="text" name="nip" class="form-control @error('nip') is-invalid @enderror" value="{{ old('nip') }}" placeholder="Masukkan NIP">
+
+                                    <!-- error message untuk nip -->
+                                    @error('nip')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
                                 <div class="form-group">
                                     <label for="">Nama</label>
                                     <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" placeholder="Masukkan Nama">

@@ -41,6 +41,9 @@
                                     <th style="width: 1%">
                                         No
                                     </th>
+                                    <th>
+                                        NIP
+                                    </th>
                                     <th style="">
                                         Nama
                                     </th>
@@ -59,6 +62,7 @@
                                 @foreach ($gurus as $guru)
                                     <tr>
                                         <td>{{ $loop->iteration }} </td>
+                                        <td>{{ $guru->nip }}</td>
                                         <td>{{ $guru->nama }}</td>
                                         <td>{{ $guru->mapel->nama_mapel }}</td>
                                         <td>{{ $guru->jenis_kelamin }}</td>
