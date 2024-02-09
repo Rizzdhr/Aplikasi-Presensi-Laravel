@@ -32,7 +32,7 @@
             <div class="card">
                 <div class="card-header">
 
-                    <a href="{{ route('kelass.create') }}" class="btn btn-success"><i class="fas fa-plus"></i>  Tambah</a>
+                    <a href="{{ route('kelass.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
@@ -65,10 +65,8 @@
                                         <td>{{ $kelas->guru->nama }}</td>
 
                                         <td class="text-center">
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                action="{{ route('kelass.destroy', $kelas->id) }}" method="POST">
-
-
+                                            <form id="deleteForm" action="{{ route('kelass.destroy', $kelas->id) }}"
+                                                method="POST">
                                                 <a class="btn btn-primary btn-sm"
                                                     href="{{ route('kelass.show', $kelas->id) }}">
                                                     <i class="fas fa-folder">
@@ -86,9 +84,9 @@
 
                                                 {{-- @can('delete_data') --}}
                                                 @csrf
-
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                    onclick="confirmDelete()">
                                                     <i class="fas fa-trash">
                                                     </i>
                                                     HAPUS</button>

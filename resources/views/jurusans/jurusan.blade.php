@@ -30,7 +30,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('jurusans.create') }}" class="btn btn-success"><i class="fas fa-plus"></i>    Tambah</a>
+                    <a href="{{ route('jurusans.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
                     {{-- <div class="card-tools float-left">
                     <a href="{{ route('kelass.create')}}" class="btn btn-success">Tambah Data</a>
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -64,28 +64,28 @@
                                         <td>{{ $counter++ }}</td>
                                         <td>{{ $jurusan->nama_jurusan }}</td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm"
-                                                href="{{ route('jurusans.show', $jurusan->id) }}">
-                                                <i class="fas fa-folder">
-                                                </i>
-                                                View
-                                            </a>
+                                            <form id="deleteForm" action="{{ route('jurusans.destroy', $jurusan->id) }}"
+                                                method="POST">
+                                                <a class="btn btn-primary btn-sm"
+                                                    href="{{ route('jurusans.show', $jurusan->id) }}">
+                                                    <i class="fas fa-folder">
+                                                    </i>
+                                                    View
+                                                </a>
 
-                                            {{-- @can('edit_data') --}}
-                                            <a href="{{ route('jurusans.edit', $jurusan->id) }}"
-                                                class="btn btn-info btn-sm">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>Edit</a>
+                                                {{-- @can('edit_data') --}}
+                                                <a href="{{ route('jurusans.edit', $jurusan->id) }}"
+                                                    class="btn btn-info btn-sm">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>Edit</a>
 
-                                            {{-- @endcan --}}
+                                                {{-- @endcan --}}
 
-                                            {{-- @can('delete_data') --}}
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');""
-                                                action="{{ route('jurusans.destroy', $jurusan->id) }}" method="POST"
-                                                style="display: inline;">
+                                                {{-- @can('delete_data') --}}
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                    onclick="confirmDelete()">
                                                     <i class="fas fa-trash">
                                                     </i>
                                                     HAPUS</button>

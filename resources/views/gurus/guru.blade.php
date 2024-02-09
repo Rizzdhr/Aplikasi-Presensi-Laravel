@@ -30,7 +30,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('gurus.create') }}" class="btn btn-success"><i class="fas fa-plus"></i>   Tambah</a>
+                    <a href="{{ route('gurus.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
                 </div>
 
                 <div class="card-body p-0">
@@ -63,26 +63,26 @@
                                         <td>{{ $guru->mapel->nama_mapel }}</td>
                                         <td>{{ $guru->jenis_kelamin }}</td>
                                         <td>
-                                            <a href="{{ route('gurus.show', $guru->id) }}" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-folder">
-                                                </i>
-                                                View</a>
+                                            <form id="deleteForm" action="{{ route('gurus.destroy', $guru->id) }}"
+                                                method="POST" >
+                                                <a href="{{ route('gurus.show', $guru->id) }}"
+                                                    class="btn btn-primary btn-sm">
+                                                    <i class="fas fa-folder">
+                                                    </i>
+                                                    View</a>
 
 
-                                            {{-- @can('edit_data') --}}
-                                            <a href="{{ route('gurus.edit', $guru->id) }}" class="btn btn-info btn-sm">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>Edit</a>
-                                            {{-- @endcan --}}
+                                                {{-- @can('edit_data') --}}
+                                                <a href="{{ route('gurus.edit', $guru->id) }}" class="btn btn-info btn-sm">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>Edit</a>
+                                                {{-- @endcan --}}
 
-                                            {{-- @can('delete_data') --}}
-                                            <form action="{{ route('gurus.destroy', $guru->id) }}" method="POST"
-                                                style="display: inline;">
+                                                {{-- @can('delete_data') --}}
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"
-                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus guru ini?')"
-                                                    class="btn btn-danger btn-sm">
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                    onclick="confirmDelete()">
                                                     <i class="fas fa-trash">
                                                     </i>
                                                     HAPUS</button>

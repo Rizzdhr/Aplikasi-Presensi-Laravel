@@ -26,7 +26,6 @@ class UserController extends Controller
         $users = User::all();
         // dd($users);
 
-
         return  view('user.index', ['users' => $users]);
     }
 

@@ -23,7 +23,7 @@
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="fas fa-user"></i>
                 {{ Auth::user()->username }}
-                <i class="fas fa-caret-down "></i>
+                {{-- <i class="fas fa-caret-down "></i> --}}
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- Opsi Profil -->

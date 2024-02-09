@@ -104,34 +104,46 @@
             </script>
         @endif
 
-        @if ($message = Session::get('confirm'))
         <script>
-            Swal.fire({
-                title: "Are you sure?",
-                text: "{{ $message }}",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
-                }
+            function confirmDelete() {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // If the user confirms, submit the delete form
+                        document.getElementById('deleteForm').submit();
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            // Add a click event listener to the logout button
+            document.getElementById('logoutButton').addEventListener('click', function() {
+                // Show SweetAlert confirmation dialog
+                Swal.fire({
+                    title: "Are you sure you want to log out?",
+                    text: "You will be logged out of your account.",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, log out"
+                }).then((result) => {
+                    // If the user clicks the confirm button
+                    if (result.isConfirmed) {
+                        // Submit the logout form
+                        document.getElementById('logoutForm').submit();
+                    }
+                });
             });
         </script>
-        @endif
-        {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-        <script>
-            $(document).ready( function () {
-                $('tabledata').DataTable();
-            } );
-        </script> --}}
 
         {{-- import --}}
         <script>
