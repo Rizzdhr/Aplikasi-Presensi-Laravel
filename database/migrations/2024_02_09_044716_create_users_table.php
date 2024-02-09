@@ -11,9 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('guru_id');
+
             $table->foreign('guru_id')->references('id')->on('gurus');
+            $table->string('username');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 
@@ -22,9 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['guru_id']);
-            $table->dropColumn('guru_id');
-        });
+        Schema::dropIfExists('users');
     }
 };

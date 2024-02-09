@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -93,7 +94,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Menghapus jurusan dari database.
+     * Menghapus role dari database.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
@@ -103,6 +104,9 @@ class RoleController extends Controller
         // $this->authorize('delete_data');
         $role = Role::findOrFail($id);
 
+        if ($role->user()->exists()) {
+            return redirect()->route('roles.index')->with(['failed' => 'Role tidak dapat dihapus karena masih terkait dengan user.']);
+        }
 
         $role->delete();
 

@@ -8,7 +8,7 @@ use App\Models\Mapel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MapelSeeder::class);
 
         \App\Models\User::factory()->create([
+            'name'  => 'Rizky',
             'guru_id'   => '1',
             'mapel_id'  => '1',
             'username' => 'Rizky Dharmawan (Admin)',

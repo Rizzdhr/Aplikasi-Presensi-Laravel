@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Mapel;
 
 use App\Models\Guru;
-
+use App\Models\User;
 use Illuminate\View\View;
 
 use Illuminate\Http\RedirectResponse;
@@ -22,7 +22,7 @@ class GuruController extends Controller
 
     public function index(): View
     {
-        $gurus = Guru::with('mapel')->orderBy('nama', 'asc')->get();
+        $gurus = Guru::orderBy('nama', 'asc')->get();
 
         $counter = 1;
 
@@ -92,7 +92,7 @@ class GuruController extends Controller
     {
         // Validate form data
         $this->validate($request, [
-            'nama'     => 'required|unique:gurus,nama,'. $id,
+            'nama'     => 'required|unique:gurus,nama,' . $id,
             'mapel_id'     => 'required',
             'jenis_kelamin'   => 'required'
         ]);
@@ -134,7 +134,13 @@ class GuruController extends Controller
             return redirect()->route('gurus.index')->with(['failed' => 'Guru tidak dapat dihapus karena masih terkait dengan kelas.']);
         }
 
+        // Periksa apakah guru masih memiliki user terkait
+        if ($guru->User()->exists()) {
+            return redirect()->route('gurus.index')->with(['failed' => 'Guru tidak dapat dihapus karena masih terkait dengan pengguna.']);
+        }
+
         $guru->delete();
+
 
         return redirect()->route('gurus.index')->with(['success' => 'Data berhasil dihapus!']);
     }
