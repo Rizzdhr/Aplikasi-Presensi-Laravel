@@ -41,12 +41,15 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DahsboardController::class, 'dashboard'])->name('dashboard');
 
-    // Rute untuk UserController
+    // User
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+    Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::post('/user', [UserController::class, 'store'])->name('user.store');
+    Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
-    // role
+    // Role
     Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
     Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
     Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
@@ -108,47 +111,3 @@ Route::middleware(['auth'])->group(function () {
 // Route::post('/rekap/pribadipdf/', 'RekapController@pdf');
 // Route::get('/rekap/kelas/{id}', 'RekapController@rekap');
 // Route::post('/rekap/', 'RekapController@hitung');
-
-
-
-
-
-
-
-// // data kelas
-// Route::resource('/kelass', KelasController::class);
-// data siswa
-// Route::resource('/students', StudentController::class);
-
-
-// Route::get('/user', [HomeController::class, 'index']);
-
-// Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard')->middleware('auth');
-
-// Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-
-// data siswa
-
-// data kelas
-
-
-
-
-    // Route::middleware(['guest'])->group(function(){
-    //     Route::get('/', [SesiController::class, 'index']);
-    //     Route::get('/', [SesiController::class, 'login']);
-    // });
-    // Route::get('/home', function(){
-    //     return redirect('/admin');
-    // });
-
-    // // auth
-    // Route::get('/register', [AuthController::class,'register']);
-    // Route::post('register', [AuthController::class,'registerpost'])->name('registerpost');
-
-    // Route::get('/login', [AuthController::class,'login']);
-    // Route::post('login', [AuthController::class,'loginpost'])->name('loginpost');
-
-// Route::get('/logout', [AuthController::class,'logout'])->name('logout');

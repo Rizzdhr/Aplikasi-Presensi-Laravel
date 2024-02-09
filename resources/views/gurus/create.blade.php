@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <label for="">Mata Pelajaran</label>
                                     <select name="mapel_id" class="form-control @error('mapel_id') is-invalid @enderror" value="{{ old('mapel_id') }}">
-                                        <option selected disabled>Pilih Mapel</option>
+                                        <option selected disabled>-Pilih mata pelajaran-</option>
                                         @foreach($mapels as $mapel)
                                         <option value="{{ $mapel->id }}">
                                             {{ $mapel->nama_mapel }}
@@ -66,7 +66,7 @@
                                 <div class="form-group">
                                     <label for="">Jenis Kelamin</label>
                                     <select name="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror" value="{{ old('jenis_kelamin') }}">
-                                        <option selected disabled>Pilih Jenis Kelamin</option>
+                                        <option selected disabled>-Pilih jenis kelamin-</option>
                                         <option value="Laki-laki">Laki-laki</option>
                                         <option value="Perempuan">Perempuan</option>
                                     </select>
@@ -79,7 +79,7 @@
                                     @enderror
                                 </div>
 
-                                <button type="submit" class="btn btn-success">Simpan</button>
+                                <button type="submit" class="btn btn-success">Tambah</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
                             </div>
                         </form>

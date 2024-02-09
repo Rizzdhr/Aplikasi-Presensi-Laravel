@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Mapel;
-
 use App\Models\Guru;
 use App\Models\User;
 use Illuminate\View\View;
-
 use Illuminate\Http\RedirectResponse;
 
 class GuruController extends Controller

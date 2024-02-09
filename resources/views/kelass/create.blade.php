@@ -13,8 +13,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('kelass.index')}}">Data Kelas</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('kelass.index') }}">Data Kelas</a></li>
                             <li class="breadcrumb-item active">Tambah</li>
                         </ol>
                     </div>
@@ -42,8 +42,10 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Tingkat Kelas</label>
-                                    <select name="tingkat_kelas" class="form-control @error('tingkat_kelas') is-invalid @enderror " value="{{ old('tingkat_kelas') }}">
-                                        <option selected disabled>Pilih Tingkat Kelas</option>
+                                    <select name="tingkat_kelas"
+                                        class="form-control @error('tingkat_kelas') is-invalid @enderror "
+                                        value="{{ old('tingkat_kelas') }}">
+                                        <option selected disabled>-Pilih tingkat kelas-</option>
                                         <option value="10">10</option>
                                         <option value="11">11</option>
                                         <option value="12">12</option>
@@ -63,7 +65,7 @@
                                     <label for="jurusan_id">Jurusan</label>
                                     <select class="form-control @error('jurusan_id') is-invalid @enderror"
                                         name="jurusan_id">
-                                        <option selected disabled>Select one</option>
+                                        <option selected disabled>-Pilih jurusan-</option>
                                         @foreach ($jurusans as $jurusan)
                                             <option value="{{ $jurusan->id }}">
                                                 {{ $jurusan->nama_jurusan }}
@@ -94,9 +96,8 @@
 
                                 <div class="form-group">
                                     <label for="guru_id">Wali Kelas</label>
-                                    <select class="form-control @error('guru_id') is-invalid @enderror"
-                                        name="guru_id">
-                                        <option selected disabled>Select one</option>
+                                    <select class="form-control @error('guru_id') is-invalid @enderror" name="guru_id">
+                                        <option selected disabled>-Pilih wali kelas-</option>
                                         @foreach ($gurus as $guru)
                                             <option value="{{ $guru->id }}">
                                                 {{ $guru->nama }}
@@ -111,15 +112,12 @@
                                         </div>
                                     @enderror
                                 </div>
+                                <button type="submit" class="btn btn-md btn-success">TAMBAH</button>
+                                <button type="reset" class="btn btn-md btn-secondary">RESET</button>
                             </div>
 
-                            <div class="">
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-md btn-success">SIMPAN</button>
-                                    <button type="reset" class="btn btn-md btn-secondary">RESET</button>
-                                </div>
 
-                            </div>
+
                         </form>
                         <!-- /.card-body -->
                     </div>

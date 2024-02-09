@@ -13,8 +13,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('siswas.index')}}">Data Siswa</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('siswas.index') }}">Data Siswa</a></li>
                             <li class="breadcrumb-item active">Tambah</li>
                         </ol>
                     </div>
@@ -68,7 +68,7 @@
                                     <label for="kelas_id">Kelas</label>
                                     <select class="form-control  @error('kelas_id') is-invalid @enderror" id="kelas_id"
                                         name="kelas_id">
-                                        <option selected disabled>Select one</option>
+                                        <option selected disabled>-Pilih kelas-</option>
                                         @foreach ($kelass as $kelas)
                                             <option value="{{ $kelas->id }}">{{ $kelas->hasil_kelas }}</option>
                                         @endforeach
@@ -87,7 +87,7 @@
                                     <select type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror"
                                         name="jenis_kelamin" value="{{ old('jenis_kelamin') }}"
                                         placeholder="Masukkan Jenis Kelamin">
-                                        <option selected disabled>Select one</option>
+                                        <option selected disabled>-Pilih jenis kelamin-</option>
                                         <option value="Laki-laki">Laki-Laki</option>
                                         <option value="Perempuan">Perempuan</option>
                                     </select>
@@ -99,12 +99,10 @@
                                     @enderror
                                 </div>
 
-                                <div class="">
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-success">Simpan</button>
-                                        <button type="reset" class="btn btn-secondary">Reset</button>
-                                    </div>
-                                </div>
+
+                                <button type="submit" class="btn btn-success">Tambah</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+
 
                                 {{-- <div class="form-group">
                                         <label for="kelas_id">Kelas</label>

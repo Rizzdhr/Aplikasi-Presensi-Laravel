@@ -25,16 +25,16 @@
                 {{ Auth::user()->username }}
                 {{-- <i class="fas fa-caret-down "></i> --}}
             </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                 <!-- Opsi Profil -->
                 {{-- <a href="#" class="dropdown-item">
                     <i class="fas fa-user-circle"></i> Profil
                 </a> --}}
-                <div class="dropdown-divider"></div>
+                {{-- <div class="dropdown-divider"></div> --}}
                 <!-- Opsi Logout -->
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
+                <form id="logoutForm" action="{{ route('logout') }}" class="dropdown-item" method="GET">
+                    <i type="button" id="logoutButton"  class="fas fa-sign-out-alt"> </i> Logout
+                </form>
             </div>
         </li>
     </ul>

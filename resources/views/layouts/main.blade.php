@@ -10,14 +10,12 @@
     {{-- responsive --}}
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
     {{-- bootstrap 5 --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     {{-- datatables --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css">
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -107,13 +105,14 @@
         <script>
             function confirmDelete() {
                 Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
+                    title: "Anda Yakin?",
+                    text: "Anda tidak akan dapat mengembalikan ini!",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
+                    confirmButtonText: "Ya, Hapus!",
+                    cancelButtonText : "Batal"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // If the user confirms, submit the delete form
@@ -144,6 +143,28 @@
                 });
             });
         </script>
+
+<script>
+    // Add a click event listener to the logout button
+    document.getElementById('logoutButton2').addEventListener('click', function() {
+        // Show SweetAlert confirmation dialog
+        Swal.fire({
+            title: "Are you sure you want to log out?",
+            text: "You will be logged out of your account.",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, log out"
+        }).then((result) => {
+            // If the user clicks the confirm button
+            if (result.isConfirmed) {
+                // Submit the logout form
+                document.getElementById('logoutForm2').submit();
+            }
+        });
+    });
+</script>
 
         {{-- import --}}
         <script>

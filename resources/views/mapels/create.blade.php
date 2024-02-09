@@ -14,7 +14,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('mapels.index') }}">Data Mata Pelajaranl</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('mapels.index') }}">Data Mata Pelajaran</a></li>
                             <li class="breadcrumb-item active">Tambah</li>
                         </ol>
                     </div>
@@ -28,7 +28,7 @@
                 <div class="col-md-6 container">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Data Mapel</h3>
+                            <h3 class="card-title">Data Mata Pelajaran</h3>
 
                             <div class="card-tools">
                                 {{-- <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -41,16 +41,16 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="nama_mapel">Nama Mapel</label>
+                                    <label for="nama_mapel">Nama Mata Pelajaran</label>
                                     <input type="text" class="form-control @error('nama_mapel') is-invalid @enderror"
-                                        id="nama_mapel" name="nama_mapel" value="{{ old('nama_mapel') }}">
+                                        id="nama_mapel" name="nama_mapel" value="{{ old('nama_mapel') }}" placeholder="Masukkan nama mata pelajaran">
 
 
                                     @error('nama_mapel')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-success">Simpan</button>
+                                <button type="submit" class="btn btn-success">Tambah</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
 
                             </div>

@@ -43,12 +43,12 @@
                                 <div class="form-group">
                                     <label for="nama_jurusan">Nama Jurusan</label>
                                     <input type="text" class="form-control @error('nama_jurusan') is-invalid @enderror" id="nama_jurusan" name="nama_jurusan"
-                                        value="{{ old('nama_jurusan') }}" >
+                                        value="{{ old('nama_jurusan') }}" placeholder="Masukkan nama jurusan">
                                     @error('nama_jurusan')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-success">Simpan</button>
+                                <button type="submit" class="btn btn-success">Tambah</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
 
                             </div>

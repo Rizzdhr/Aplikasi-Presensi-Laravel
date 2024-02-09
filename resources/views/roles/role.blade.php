@@ -63,12 +63,12 @@
                                             {{-- @endcan --}}
 
                                             {{-- @can('delete_data') --}}
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');""
-                                                action="{{ route('roles.destroy', $role->id) }}" method="POST"
-                                                style="display: inline;">
+                                            <form id="deleteForm" action="{{ route('roles.destroy', $role->id) }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                    onclick="confirmDelete()">
                                                     <i class="fas fa-trash">
                                                     </i>
                                                     HAPUS</button>

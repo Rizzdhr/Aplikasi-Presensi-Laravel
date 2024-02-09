@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('judul', 'Data User')
+@section('judul', 'User')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -70,20 +70,18 @@
                                             </ul>
                                         </td>
                                         <td>
+                                            <form id="deleteForm" action="{{ route('user.destroy', $user->id) }}" method="POST">
+                                                {{-- @can('edit_data') --}}
+                                                <a href="{{ route('user.edit', $user->id)}}" class="btn btn-info btn-sm">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>Edit</a>
+                                                {{-- @endcan --}}
 
-                                            {{-- @can('edit_data') --}}
-                                            <a href="" class="btn btn-info btn-sm">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>Edit</a>
-                                            {{-- @endcan --}}
-
-                                            {{-- @can('delete_data') --}}
-                                            <form action="" method="POST" style="display: inline;">
+                                                {{-- @can('delete_data') --}}
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"
-                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus guru ini?')"
-                                                    class="btn btn-danger btn-sm">
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                    onclick="confirmDelete()">
                                                     <i class="fas fa-trash">
                                                     </i>
                                                     HAPUS</button>

@@ -2,32 +2,15 @@
 
 namespace App\Http\Controllers;
 
-
-// use App\Models\User;
-
-//import Model "Jurusan
-
 use App\Http\Requests\Kelas\KelasPostRequest;
-
 use App\Models\Jurusan;
-
 use App\Models\Siswa;
-
-//import Model "Kelas
 use App\Models\Kelas;
-
 use App\Models\Guru;
-
-//return type View
 use Illuminate\View\View;
-
-//return type redirectResponse
 use Illuminate\Http\RedirectResponse;
-
 use Illuminate\Http\Request;
-
 use Spatie\Permission\Exceptions\UnauthorizedException;
-
 
 class KelasController extends Controller
 {

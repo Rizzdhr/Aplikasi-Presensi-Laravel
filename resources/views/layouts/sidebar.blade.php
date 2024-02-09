@@ -61,7 +61,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('kelass.index') }}"
-                        class="nav-link @if (Route::is('kelass.index')) active @endif">
+                        class="nav-link @if (Route::is('kelass.index', 'kelass.create', 'kelass.edit')) active @endif">
                         <i class="fas fa-school nav-icon"></i>
                         <p>Data Kelas</p>
                     </a>
@@ -70,7 +70,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('siswas.index') }}"
-                        class="nav-link @if (Route::is('siswas.index')) active @endif">
+                        class="nav-link @if (Route::is('siswas.index', 'siswas.create', 'siswas.edit')) active @endif">
                         <i class="fas fa-users nav-icon"></i>
                         <p>Data Siswa</p>
                     </a>
@@ -79,7 +79,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('gurus.index') }}"
-                        class="nav-link @if (Route::is('gurus.index')) active @endif">
+                        class="nav-link @if (Route::is('gurus.index', 'gurus.create', 'gurus.edit')) active @endif">
                         <i class="fas fa-user-tie nav-icon"></i>
                         <p>Data Guru</p>
                     </a>
@@ -88,7 +88,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('jurusans.index') }}"
-                        class="nav-link @if (Route::is('jurusans.index')) active @endif">
+                        class="nav-link @if (Route::is('jurusans.index', 'jurusans.create', 'jurusans.edit')) active @endif">
                         <i class="fas fa-graduation-cap nav-icon"></i>
                         <p>Data Jurusan</p>
                     </a>
@@ -97,7 +97,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('mapels.index') }}"
-                        class="nav-link @if (Route::is('mapels.index')) active @endif">
+                        class="nav-link @if (Route::is('mapels.index', 'mapels.create', 'mapels.edit')) active @endif">
                         <i class="fas fa-book nav-icon"></i>
                         <p>Data Mapel</p>
                     </a>
@@ -112,6 +112,7 @@
                 </li>
                 <br>
 
+                <li class="nav-header">Admin</li>
                 <li class="nav-item">
                     <a href="{{ route('roles.index') }}"
                         class="nav-link  @if (Route::is('roles.index')) active @endif">
@@ -119,7 +120,6 @@
                         <p>Role</p>
                     </a>
                 </li>
-                <br>
 
                 <li class="nav-item">
                     <a href="{{ route('user.index') }}"
@@ -130,11 +130,14 @@
                 </li>
                 <br>
 
-                <form id="logoutForm" action="{{ route('logout') }}" method="GET">
-                    @csrf
-                    <button type="button" id="logoutButton" class="btn btn-danger">Logout</button>
-                </form>
-                <br>
+                <div class="row">
+                    <div class="col">
+                        <form id="logoutForm2" action="{{ route('logout') }}" method="GET">
+                            @csrf
+                            <button id="logoutButton2" type="button" class="btn btn-danger btn-block">Logout</button>
+                        </form>
+                    </div>
+                </div>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

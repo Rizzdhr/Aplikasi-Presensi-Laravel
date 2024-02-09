@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserPostRequest;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\User\UserPutRequest;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
 use App\Models\RoleUser;
 use Illuminate\Support\Facades\Auth;
@@ -42,48 +42,94 @@ class UserController extends Controller
 
     public function store(UserPostRequest $request)
     {
-        //
-        try {
-            // mengecek apakah guru yang di daftarkan itu ada datanya di table guru
-            $guru = Guru::where('id', $request->validated('guru_id'))->first();
+        // mengecek apakah guru yang di daftarkan itu ada datanya di table guru
+        $guru = Guru::where('id', $request->validated('guru_id'))->first();
 
-            // mengecek bila tidak ada
-            if (!$guru) {
+        // mengecek bila tidak ada
+        if (!$guru) {
 
-                Alert::error('error', 'Guru tidak tersedia');
-                return redirect()->route('user');
-            }
-
-            // menambahkan/register user baru
-            $createUser = User::create([
-                'guru_id' => $guru->id,
-                'username' => $guru->nama,
-                'email' => $request->validated('email'),
-                'password' => Hash::make($request->validated('password'))
-            ]);
-
-            // membuat role user yang dipilih
-            foreach ($request->validated('roles') as $role){
-                $createRoleUser = DB::table('role_user')->insert([
-                    'user_id' => $createUser->id,
-                    'role_id' => $role
-                ]);
-            }
-
-            // melakukan pengecekan menambah dan membuat role untuk user nya harus berhasil semua
-            if ($createUser && $createRoleUser) {
-
-                return redirect()->route('user.index')->with('success', 'Berhasil membuat user');
-                // toast('Berhasil membuat user', 'success' );
-            }
-        } catch (\Throwable $th) {
-
-            // jika terjadi kesalahan/error akan membuat sebuah pesan log kesalahan nya
-            Alert::error('error', 'Terjadi kesalahan');
-            Log::error('Error Create User: ' . $th->getMessage());
+            return back()->with('failed', 'Guru tidak tersedia');
         }
 
-        return redirect()->route('user.index');
+        // menambahkan/register user baru
+        $createUser = User::create([
+            'guru_id' => $guru->id,
+            'username' => $guru->nama,
+            'email' => $request->validated('email'),
+            'password' => Hash::make($request->validated('password'))
+        ]);
+
+        // membuat role user yang dipilih
+        foreach ($request->validated('roles') as $role) {
+            $createRoleUser = DB::table('role_user')->insert([
+                'user_id' => $createUser->id,
+                'role_id' => $role
+            ]);
+        }
+
+        // melakukan pengecekan menambah dan membuat role untuk user nya harus berhasil semua
+        if ($createUser && $createRoleUser) {
+
+            return redirect()->route('user.index')->with('success', 'Berhasil membuat user');
+        }
     }
 
+    public function edit(User $user)
+    {
+        $roles = Role::all();
+        $dataGuru = Guru::where('id', '!=', $user->guru_id)->get();
+
+        return view('user.edit', ['dataGuru' => $dataGuru, 'roles' => $roles, 'user' => $user]);
+    }
+
+    public function update(User $user, UserPutRequest $request)
+    {
+
+        $guru = Guru::where('id', $user->guru_id)->first();
+
+        if (!$guru) {
+
+            return back()->with('failed', 'Guru tidak tersedia');
+        }
+
+        // menghapus data lama lalu membuat yang baru
+        $deleteOldRoleUser = RoleUser::where('user_id', $user->id)->delete();
+
+        $updateUser = $user->update([
+            'guru_id' => $guru->id,
+            'username' => $guru->nama,
+            'email' => $request->validated('email'),
+            'password'  => Hash::make($request->validated('password'))
+        ]);
+
+        $updateNewRoleUser =  null;
+        foreach ($request->validated('roles') as $role) {
+            $updateNewRoleUser = DB::table('role_user')->insert([
+                'user_id' => $user->id,
+                'role_id' => $role
+            ]);
+        }
+
+        if ($updateUser && $updateNewRoleUser){
+
+            return redirect()->route('user.index')->with('success', 'Berhasil mengupdate user');
+        }
+    }
+
+    public function destroy(User $user)
+    {
+
+        if (Auth::user()->id == $user->id) {
+
+            return redirect()->route('user.index')->with('failed', 'Anda tidak dapat menghapus akun anda sendiri');
+        }
+
+        $deleteRoleUser = RoleUser::where('user_id', $user->id)->delete();
+        $deleteUser = $user->delete();
+
+        if ($deleteRoleUser && $deleteUser) {
+
+            return redirect()->route('user.index')->with('success', 'Berhasil menghapus user');
+        }
+    }
 }
