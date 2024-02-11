@@ -69,11 +69,11 @@
                                         <td>
                                             <form id="deleteForm" action="{{ route('gurus.destroy', $guru->id) }}"
                                                 method="POST" >
-                                                <a href="{{ route('gurus.show', $guru->id) }}"
+                                                {{-- <a href="{{ route('gurus.show', $guru->id) }}"
                                                     class="btn btn-primary btn-sm">
                                                     <i class="fas fa-folder">
                                                     </i>
-                                                    View</a>
+                                                    View</a> --}}
 
 
                                                 {{-- @can('edit_data') --}}

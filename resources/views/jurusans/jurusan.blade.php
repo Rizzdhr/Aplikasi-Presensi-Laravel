@@ -66,12 +66,12 @@
                                         <td>
                                             <form id="deleteForm" action="{{ route('jurusans.destroy', $jurusan->id) }}"
                                                 method="POST">
-                                                <a class="btn btn-primary btn-sm"
+                                                {{-- <a class="btn btn-primary btn-sm"
                                                     href="{{ route('jurusans.show', $jurusan->id) }}">
                                                     <i class="fas fa-folder">
                                                     </i>
                                                     View
-                                                </a>
+                                                </a> --}}
 
                                                 {{-- @can('edit_data') --}}
                                                 <a href="{{ route('jurusans.edit', $jurusan->id) }}"

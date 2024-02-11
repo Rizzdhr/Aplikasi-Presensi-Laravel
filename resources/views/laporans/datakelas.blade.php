@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('judul', 'Absensi | Daftar Kelas')
+@section('title', 'AN Absensi | Data Kelas')
 
 @section('content')
     <div class="content-wrapper">
@@ -32,7 +32,7 @@
                             <tr>
                                 <th style="width: 1%">No</th>
                                 <th>Kelas</th>
-                                <th>Wali Kelas</th>
+                                <th>Wali kelas</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -43,7 +43,7 @@
                                     <td>{{ $res->hasil_kelas }}</td>
                                     <td>{{ $res->guru->nama }}</td>
                                     <td>
-                                        <a href="{{ route('absensis.show', $res->id) }}" class="btn btn-primary btn-sm">
+                                        <a href="{{ route('laporans.show', $res->id) }}" class="btn btn-primary btn-sm">
                                             <i class="fas fa-folder">
                                             </i>
                                             View</a>

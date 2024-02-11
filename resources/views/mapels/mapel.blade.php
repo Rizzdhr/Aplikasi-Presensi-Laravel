@@ -57,12 +57,12 @@
                                         <td>
                                             <form id="deleteForm" action="{{ route('mapels.destroy', $mapel->id) }}"
                                                 method="POST">
-                                                <a class="btn btn-primary btn-sm"
+                                                {{-- <a class="btn btn-primary btn-sm"
                                                     href="{{ route('mapels.show', $mapel->id) }}">
                                                     <i class="fas fa-folder">
                                                     </i>
                                                     View
-                                                </a>
+                                                </a> --}}
 
                                                 {{-- @can('edit_data') --}}
                                                 <a href="{{ route('mapels.edit', $mapel->id) }}"

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Absensi extends Model
 {
-    protected $table='Absensi';
+    protected $table='absensis';
     protected $primaryKey = 'id_absensi';
 
     public function siswa()

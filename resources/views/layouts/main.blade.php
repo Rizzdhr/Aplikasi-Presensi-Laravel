@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     {{-- datatables --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -42,9 +42,10 @@
     <div class="wrapper">
 
         <!-- Preloader -->
-        {{-- <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div> --}}
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__wobble" src="{{ asset('image/logo_cn-removebg-preview.png') }}" alt="AdminLTELogo"
+                height="95" width="110">
+        </div>
 
         @include('layouts.navbar')
 
@@ -77,7 +78,7 @@
         <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
         <script>
-            new DataTable('#tabledata');
+           let table = new DataTable('#tabledata');
         </script>
 
         {{-- sweetalert --}}
@@ -112,7 +113,7 @@
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
                     confirmButtonText: "Ya, Hapus!",
-                    cancelButtonText : "Batal"
+                    cancelButtonText: "Batal"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // If the user confirms, submit the delete form
@@ -144,30 +145,52 @@
             });
         </script>
 
-<script>
-    // Add a click event listener to the logout button
-    document.getElementById('logoutButton2').addEventListener('click', function() {
-        // Show SweetAlert confirmation dialog
-        Swal.fire({
-            title: "Are you sure you want to log out?",
-            text: "You will be logged out of your account.",
-            icon: "question",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, log out"
-        }).then((result) => {
-            // If the user clicks the confirm button
-            if (result.isConfirmed) {
-                // Submit the logout form
-                document.getElementById('logoutForm2').submit();
-            }
-        });
-    });
-</script>
+        <script>
+            // Add a click event listener to the logout button
+            document.getElementById('logoutButton2').addEventListener('click', function() {
+                // Show SweetAlert confirmation dialog
+                Swal.fire({
+                    title: "Are you sure you want to log out?",
+                    text: "You will be logged out of your account.",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, log out"
+                }).then((result) => {
+                    // If the user clicks the confirm button
+                    if (result.isConfirmed) {
+                        // Submit the logout form
+                        document.getElementById('logoutForm2').submit();
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var sidebar = document.querySelector('.main-sidebar');
+
+                sidebar.addEventListener('transitionend', function(event) {
+                    // Cek apakah elemen yang mengalami transition adalah main-sidebar
+                    if (event.target === sidebar) {
+                        // Cek apakah sidebar sedang ditutup (width-nya berkurang)
+                        var isSidebarClosed = sidebar.offsetWidth <
+                        250; // Ganti dengan lebar sidebar yang diinginkan
+
+                        // Dapatkan elemen tombol logout
+                        var logoutButtonContainer = document.getElementById('logoutButtonContainer');
+
+                        // Sembunyikan atau tampilkan tombol logout berdasarkan kondisi sidebar
+                        logoutButtonContainer.style.display = isSidebarClosed ? 'none' : 'block';
+                    }
+                });
+            });
+        </script>
+
 
         {{-- import --}}
-        <script>
+        {{-- <script>
             document.getElementById('importButton').addEventListener('click', function() {
                 // Menyembunyikan tombol untuk sementara
                 this.style.display = 'none';
@@ -178,7 +201,7 @@
                 // Menampilkan tombol kembali setelah pengiriman formulir
                 this.style.display = 'block';
             });
-        </script>
+        </script> --}}
 
         {{-- bootstrap 5 --}}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
