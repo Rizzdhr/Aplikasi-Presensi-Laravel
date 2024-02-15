@@ -41,7 +41,7 @@ Route::group(['middleware' => 'guest'], function () {
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['Admin'])->group(function () {
+//     Route::middleware(['Admin'])->group(function () {
         Route::get('/dashboard', [DahsboardController::class, 'dashboard'])->name('dashboard');
         // User
         Route::get('/user', [UserController::class, 'index'])->name('user.index');
@@ -97,31 +97,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/jurusans/{jurusan}/edit', [JurusanController::class, 'edit'])->name('jurusans.edit');
         Route::put('/jurusans/{jurusan}', [JurusanController::class, 'update'])->name('jurusans.update');
         Route::delete('/jurusans/{jurusan}', [JurusanController::class, 'destroy'])->name('jurusans.destroy');
-        // absensi
-        Route::get('/absensis', [AbsensiController::class, 'index'])->name('absensis.index');
-        Route::get('/absensis/{absensi}', [AbsensiController::class, 'show'])->name('absensis.show');
-        Route::get('/absensis/create', [AbsensiController::class, 'create'])->name('absensis.create');
-        // laporan
-        Route::get('/laporans', [LaporanController::class, 'index'])->name('laporans.index');
-        Route::get('/laporans/datakelas/{table}', [LaporanController::class, 'show'])->name('laporans.show');
-        Route::post('/rekap/pribadipdf/', [LaporanController::class, 'pdf']);
-        Route::get('/rekap/kelas/{id}', [LaporanController::class, 'rekap']);
-        Route::post('/rekap/', [LaporanController::class,'hitung']);
 
-
-
-        // presensi
-        // Route::get('/presensi/{kelasId}', [PresensiController::class, 'showPresensiForm'])->name('presensi.form');
-        // Route::post('/presensi', [PresensiController::class, 'storePresensi'])->name('presensi.store');
-    });
-
-
-    // Route::middleware(['BK'])->group(function () {
     // });
 });
-
-// Route::get('/admin/rekap/', 'RekapController@index');
-// Route::get('/admin/rekap/{table}', 'RekapController@show');
-// Route::post('/rekap/pribadipdf/', 'RekapController@pdf');
-// Route::get('/rekap/kelas/{id}', 'RekapController@rekap');
-// Route::post('/rekap/', 'RekapController@hitung');

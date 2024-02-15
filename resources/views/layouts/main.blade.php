@@ -42,10 +42,10 @@
     <div class="wrapper">
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
+        {{-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__wobble" src="{{ asset('image/logo_cn-removebg-preview.png') }}" alt="AdminLTELogo"
                 height="95" width="110">
-        </div>
+        </div> --}}
 
         @include('layouts.navbar')
 
@@ -56,10 +56,6 @@
         <div class="mt-4">
             @yield('content')
         </div>
-
-
-
-
 
         {{-- <!-- /.content-wrapper -->
         <footer class="main-footer">

@@ -130,15 +130,16 @@ class GuruController extends Controller
         // $this->authorize('delete_data');
         $guru = Guru::findOrFail($id);
 
+        // Periksa apakah guru masih memiliki user terkait
+        // if ($guru->User()->exists()) {
+        //     return redirect()->route('gurus.index')->with(['failed' => 'Guru tidak dapat dihapus karena masih terkait dengan pengguna.']);
+        // }
+
         // Periksa apakah guru masih memiliki kelas terkait
         if ($guru->kelas()->exists()) {
             return redirect()->route('gurus.index')->with(['failed' => 'Guru tidak dapat dihapus karena masih terkait dengan kelas.']);
         }
 
-        // Periksa apakah guru masih memiliki user terkait
-        if ($guru->User()->exists()) {
-            return redirect()->route('gurus.index')->with(['failed' => 'Guru tidak dapat dihapus karena masih terkait dengan pengguna.']);
-        }
 
         $guru->delete();
 

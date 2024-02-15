@@ -45,10 +45,17 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Tingkat Kelas</label>
-                                    <select name="tingkat_kelas" class="form-control @error('tingkat_kelas') is-invalid @enderror">
-                                        <option value="10" {{ old('tingkat_kelas', $Kelas->tingkat_K) == '10' ? 'selected' : '' }}>10</option>
-                                        <option value="11" {{ old('tingkat_kelas', $Kelas->tingkat_kelas) == '11' ? 'selected' : '' }}>11</option>
-                                        <option value="12" {{ old('tingkat_kelas', $Kelas->tingkat_kelas) == '12' ? 'selected' : '' }}>12</option>
+                                    <select name="tingkat_kelas"
+                                        class="form-control @error('tingkat_kelas') is-invalid @enderror">
+                                        <option value="10"
+                                            {{ old('tingkat_kelas', $Kelas->tingkat_kelas) == '10' ? 'selected' : '' }}>10
+                                        </option>
+                                        <option value="11  "
+                                            {{ old('tingkat_kelas', $Kelas->tingkat_kelas) == '11' ? 'selected' : '' }}>11
+                                        </option>
+                                        <option value="12"
+                                            {{ old('tingkat_kelas', $Kelas->tingkat_kelas) == '12' ? 'selected' : '' }}>12
+                                        </option>n
                                     </select>
                                     <!-- error message for tingkat kelas -->
                                     @error('tingkat_kelas')
@@ -92,8 +99,7 @@
 
                                 <div class="form-group">
                                     <label>Wali Kelas</label>
-                                    <select class="form-control @error('guru_id') is-invalid @enderror"
-                                        name="guru_id">
+                                    <select class="form-control @error('guru_id') is-invalid @enderror" name="guru_id">
                                         @foreach ($gurus as $guru)
                                             <option value="{{ $guru->id }}"
                                                 {{ old('guru_id', $Kelas->guru_id) == $guru->id ? 'selected' : '' }}>
@@ -108,14 +114,10 @@
                                         </div>
                                     @enderror
                                 </div>
+                                <button type="submit" class="btn btn-md btn-success">SIMPAN</button>
+                                {{-- <button type="reset" class="btn btn-md btn-secondary">RESET</button> --}}
                             </div>
 
-                            <div class="">
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-md btn-success">SIMPAN</button>
-                                    <button type="reset" class="btn btn-md btn-secondary">RESET</button>
-                                </div>
-                            </div>
                         </form>
                         <!-- /.card-body -->
                     </div>

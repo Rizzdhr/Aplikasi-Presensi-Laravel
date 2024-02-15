@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->char('nisn')->unique();
             $table->string('nama');
-            $table->foreignId('kelas_id')->constrained('kelas');
+            $table->foreignId('kelas_id')->references('id')->on('kelas');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->timestamps();
         });

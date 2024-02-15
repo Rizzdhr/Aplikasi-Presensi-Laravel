@@ -26,14 +26,13 @@
                 {{-- <i class="fas fa-caret-down "></i> --}}
             </a>
             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
-                <!-- Opsi Profil -->
-                {{-- <a href="#" class="dropdown-item">
-                    <i class="fas fa-user-circle"></i> Profil
-                </a> --}}
-                {{-- <div class="dropdown-divider"></div> --}}
                 <!-- Opsi Logout -->
                 <form id="logoutForm" action="{{ route('logout') }}" class="dropdown-item" method="GET">
-                    <i type="button" id="logoutButton"  class="fas fa-sign-out-alt"> </i> Logout
+                    @csrf
+                    <a href="{{ route('logout') }}" type="button" id="logoutButton" class="dropdown-item" >
+                        <i class="fas fa-sign-out-alt" > </i> Logout
+                    </a>
+                    {{-- <i type="button" id="logoutButton"  class="fas fa-sign-out-alt"> </i> Logout --}}
                 </form>
             </div>
         </li>

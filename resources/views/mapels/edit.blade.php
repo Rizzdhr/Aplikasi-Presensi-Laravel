@@ -53,7 +53,7 @@
                                     @enderror
                                 </div>
                                 <button type="submit" class="btn btn-success">Simpan</button>
-                                <button type="reset" class="btn btn-secondary">Reset</button>
+                                {{-- <button type="reset" class="btn btn-secondary">Reset</button> --}}
 
                             </div>
                         </form>

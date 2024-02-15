@@ -72,6 +72,12 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                    {{-- @if ($jurusans->count() <= 0)
+                                        <p class="text-danger mt-1">
+                                            Data jurusan kosong! <a href="{{ route('jurusans.create') }}"
+                                                class="text-decoration-none">Tambah</a>
+                                        </p>
+                                    @endif --}}
 
                                     <!-- error message untuk jurusan -->
                                     @error('jurusan_id')
@@ -104,6 +110,12 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                    {{-- @if ($gurus->count() <= 0)
+                                        <p class="text-danger mt-1">
+                                            Data guru kosong! <a href="{{ route('gurus.create') }}"
+                                                class="text-decoration-none">Tambah</a>
+                                        </p>
+                                    @endif --}}
 
                                     <!-- error message untuk jurusan -->
                                     @error('guru_id')

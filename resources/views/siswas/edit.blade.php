@@ -41,71 +41,77 @@
                             @csrf
 
                             @method('PUT')
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>NISN</label>
-                                <input type="text"  class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{ old('nisn', $siswa->nisn)}}">
-                                <!-- error message untuk nisn -->
-                                @error('nisn')
-                                    <div class="text-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>NISN</label>
+                                    <input type="text" class="form-control @error('nisn') is-invalid @enderror"
+                                        name="nisn" value="{{ old('nisn', $siswa->nisn) }}">
+                                    <!-- error message untuk nisn -->
+                                    @error('nisn')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
 
-                            <div class="form-group">
-                                <label>Nama</label>
-                                <input type="text"  class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama', $siswa->nama)}}">
-                                <!-- error message untuk nisn -->
-                                @error('nisn')
-                                    <div class="text-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+                                <div class="form-group">
+                                    <label>Nama</label>
+                                    <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                                        name="nama" value="{{ old('nama', $siswa->nama) }}">
+                                    <!-- error message untuk nisn -->
+                                    @error('nisn')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
 
-                            <div class="form-group">
-                                <label for="kelas_id">Kelas</label>
-                                <select class="form-control @error('kelas_id') is-invalid @enderror" id="kelas_id"
-                                    name="kelas_id">
-                                    <option selected disabled>Select one</option>
-                                    @foreach ($kelass as $kelas)
-                                        <option value="{{ $kelas->id }}" {{ $siswa->kelas_id == $kelas->id ? 'selected' : '' }}>
-                                            {{ $kelas->hasil_kelas }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <div class="form-group">
+                                    <label for="kelas_id">Kelas</label>
+                                    <select class="form-control @error('kelas_id') is-invalid @enderror" id="kelas_id"
+                                        name="kelas_id">
+                                        <option selected disabled>Select one</option>
+                                        @foreach ($kelass as $kelas)
+                                            <option value="{{ $kelas->id }}"
+                                                {{ $siswa->kelas_id == $kelas->id ? 'selected' : '' }}>
+                                                {{ $kelas->hasil_kelas }}
+                                            </option>
+                                        @endforeach
+                                    </select>
 
-                                <!-- error message untuk kelas -->
-                                @error('kelas_id')
-                                    <div class="text-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+                                    <!-- error message untuk kelas -->
+                                    @error('kelas_id')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
 
-                            <div class="form-group">
-                                <label >Jenis Kelamin</label>
-                                <select class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin">
-                                    <option value="Laki-laki" {{ old('jenis_kelamin', $siswa->jenis_kelamin) == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                                    <option value="Perempuan" {{ old('jenis_kelamin', $siswa->jenis_kelamin) == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                                </select>
+                                <div class="form-group">
+                                    <label>Jenis Kelamin</label>
+                                    <select class="form-control @error('jenis_kelamin') is-invalid @enderror"
+                                        name="jenis_kelamin">
+                                        <option value="Laki-laki"
+                                            {{ old('jenis_kelamin', $siswa->jenis_kelamin) == 'Laki-laki' ? 'selected' : '' }}>
+                                            Laki-laki</option>
+                                        <option value="Perempuan"
+                                            {{ old('jenis_kelamin', $siswa->jenis_kelamin) == 'Perempuan' ? 'selected' : '' }}>
+                                            Perempuan</option>
+                                    </select>
 
-                                <!-- error message untuk jenis kelamin -->
-                                @error('jenis_kelamin')
-                                    <div class="text-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+                                    <!-- error message untuk jenis kelamin -->
+                                    @error('jenis_kelamin')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
 
-                        <div class="">
-                            <div class="col-12">
+
                                 <button type="submit" class="btn btn-success">Simpan</button>
-                                <button type="reset" class="btn btn-secondary">Reset</button>
-                            </div>
-                        </div>
-                    </form>
+                                {{-- <button type="reset" class="btn btn-secondary">Reset</button> --}}
+
+                        </form>
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->

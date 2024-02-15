@@ -59,6 +59,7 @@ class KelasController extends Controller
     {
         // // Debugging: Cek data dari form
         // dd($request->all());
+
         //validate form
         $this->validate($request, [
             "tingkat_kelas" => 'required',

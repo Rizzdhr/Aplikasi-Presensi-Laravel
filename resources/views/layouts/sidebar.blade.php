@@ -9,29 +9,6 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        {{-- <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="" class="img-circle elevation-2" alt="">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">
-            user
-        </a>
-        </div>
-      </div> --}}
-
-        <!-- SidebarSearch Form -->
-        {{-- <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div> --}}
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -51,17 +28,10 @@
                 </li>
                 <br>
 
-                <li class="nav-item">
-                    <a href="{{ url('/absensis/') }}" class="nav-link @if (Route::is('absensis.index', 'absensis.show')) active @endif">
-                        <i class="fas fa-calendar-check nav-icon"></i>
-                        <p>Presensi</p>
-                    </a>
-                </li>
-                <br>
 
                 <li class="nav-item">
                     <a href="{{ route('kelass.index') }}"
-                        class="nav-link @if (Route::is('kelass.index', 'kelass.create', 'kelass.edit')) active @endif">
+                    class="nav-link @if (Route::is('kelass.index', 'kelass.create', 'kelass.edit', 'kelass.show')) active @endif">
                         <i class="fas fa-school nav-icon"></i>
                         <p>Data Kelas</p>
                     </a>
@@ -70,7 +40,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('siswas.index') }}"
-                        class="nav-link @if (Route::is('siswas.index', 'siswas.create', 'siswas.edit')) active @endif">
+                    class="nav-link @if (Route::is('siswas.index', 'siswas.create', 'siswas.edit')) active @endif">
                         <i class="fas fa-users nav-icon"></i>
                         <p>Data Siswa</p>
                     </a>
@@ -105,7 +75,15 @@
                 <br>
 
                 <li class="nav-item">
-                    <a href=" {{ route('laporans.index') }}" class="nav-link @if (Route::is('laporans.index', 'laporans.show')) active @endif">
+                    <a href="" class="nav-link">
+                        <i class="fas fa-calendar-check nav-icon"></i>
+                        <p>Presensi</p>
+                    </a>
+                </li>
+                <br>
+
+                <li class="nav-item">
+                    <a href="" class="nav-link">
                         <i class="fas fa-print nav-icon"></i>
                         <p>Laporan</p>
                     </a>

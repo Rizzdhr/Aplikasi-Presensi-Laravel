@@ -70,12 +70,12 @@
                                         <td class="text-center">
                                             <form id="deleteForm" action="{{ route('siswas.destroy', $siswa->id) }}"
                                                 method="POST">
-                                                <a class="btn btn-primary btn-sm"
+                                                {{-- <a class="btn btn-primary btn-sm"
                                                     href="{{ route('siswas.show', $siswa->id) }}">
                                                     <i class="fas fa-folder">
                                                     </i>
                                                     View
-                                                </a>
+                                                </a> --}}
 
                                                 {{-- @can('edit_data') --}}
                                                 <a href="{{ route('siswas.edit', $siswa->id) }}"
