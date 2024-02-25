@@ -33,15 +33,15 @@
                     <a href="{{ route('mapels.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
                 </div>
 
-                <div class="card-body p-0">
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table id="tabledata" class="table table-striped projects">
-                            <thead>
+                        <table id="tabledata" class="table projects">
+                            <thead class="table-dark">
                                 <tr>
                                     <th style="width: 1%">
                                         No
                                     </th>
-                                    <th style="">
+                                    <th class="text-truncate" style="">
                                         Mata Pelajaran
                                     </th>
                                     <th style="">
@@ -52,10 +52,10 @@
                             <tbody>
                                 @foreach ($mapels as $mapel)
                                     <tr>
-                                        <td>{{ $counter++ }}</td>
-                                        <td>{{ $mapel->nama_mapel }}</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td class="text-truncate">{{ $mapel->nama_mapel }}</td>
                                         <td>
-                                            <form id="deleteForm" action="{{ route('mapels.destroy', $mapel->id) }}"
+                                            <form class="text-truncate" id="deleteForm" action="{{ route('mapels.destroy', $mapel->id) }}"
                                                 method="POST">
                                                 {{-- <a class="btn btn-primary btn-sm"
                                                     href="{{ route('mapels.show', $mapel->id) }}">

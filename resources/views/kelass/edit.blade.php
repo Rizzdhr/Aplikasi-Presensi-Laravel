@@ -8,17 +8,9 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Edit Data Kelas</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('kelass.index') }}">Data Kelas</a></li>
-                                <li class="breadcrumb-item active">Edit</li>
-                            </ol>
-                        </ol>
+                    <div class="d-flex col-sm-6 align-items-center">
+                        <a href="{{ url()->previous() }}" class="btn btn-dark"><i class="fas fa-arrow-left nav-icon"></i>   </a>
+                        <span class="ml-2"><h1>Edit Data Kelas</h1></span>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -28,7 +20,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-6 container">
-                    <div class="card">
+                    <div class="card card-dark">
                         <div class="card-header">
                             <h3 class="card-title">Data Kelas</h3>
 

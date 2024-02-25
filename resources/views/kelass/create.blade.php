@@ -8,15 +8,9 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Tambah Data Kelas</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('kelass.index') }}">Data Kelas</a></li>
-                            <li class="breadcrumb-item active">Tambah</li>
-                        </ol>
+                    <div class="d-flex col-sm-6 align-items-center">
+                        <a href="{{ url()->previous() }}" class="btn btn-dark"><i class="fas fa-arrow-left nav-icon"></i>   </a>
+                        <span class="ml-2"><h1>Tambah Data Kelas</h1></span>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -26,7 +20,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-6 container">
-                    <div class="card ">
+                    <div class="card card-dark ">
                         <div class="card-header">
                             <h3 class="card-title">Data Kelas</h3>
 
@@ -50,9 +44,7 @@
                                         <option value="11">11</option>
                                         <option value="12">12</option>
                                     </select>
-                                    {{-- <input type="text" class="form-control @error('tingkat_kelas') is-invalid @enderror"
-                                        name="tingkat_kelas" value="{{ old('tingkat_kelas') }}"
-                                        placeholder="Masukkan tingkat kelas"> --}}
+
                                     <!-- error message untuk tingkat kelas -->
                                     @error('tingkat_kelas')
                                         <div class="text-danger">
@@ -72,12 +64,12 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    {{-- @if ($jurusans->count() <= 0)
+                                    @if ($jurusans->count() <= 0)
                                         <p class="text-danger mt-1">
                                             Data jurusan kosong! <a href="{{ route('jurusans.create') }}"
                                                 class="text-decoration-none">Tambah</a>
                                         </p>
-                                    @endif --}}
+                                    @endif
 
                                     <!-- error message untuk jurusan -->
                                     @error('jurusan_id')
@@ -110,12 +102,12 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    {{-- @if ($gurus->count() <= 0)
+                                    @if ($gurus->count() <= 0)
                                         <p class="text-danger mt-1">
                                             Data guru kosong! <a href="{{ route('gurus.create') }}"
                                                 class="text-decoration-none">Tambah</a>
                                         </p>
-                                    @endif --}}
+                                    @endif
 
                                     <!-- error message untuk jurusan -->
                                     @error('guru_id')

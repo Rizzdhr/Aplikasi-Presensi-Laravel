@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
-use App\Models\Jurusan;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\SiswaExport;
-use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 use Illuminate\View\View;
@@ -32,21 +28,6 @@ class SiswaController extends Controller
         return view('siswas.siswa', compact('siswas', 'counter'));
         // }
         // return abort(403);
-    }
-
-    public function import(Request $request)
-    {
-        $file = $request->file('file');
-        $namaFile = $file->getClientOriginalName();
-        $file->move('DataSiswa', $namaFile);
-
-        Excel::import(new SiswaImport, public_path('/DataSiswa/'.$namaFile));
-        return redirect('siswas.index');
-    }
-
-    public function export()
-    {
-        return Excel::download(new SiswaExport, 'siswa.xlsx');
     }
 
     /**

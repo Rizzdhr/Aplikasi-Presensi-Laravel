@@ -44,10 +44,10 @@
                     {{-- <button id="importButton" class="btn btn-primary">Import Data</button> --}}
 
                 </div>
-                <div class="card-body p-0">
+                <div class="card-body ">
                     <div class="table-responsive">
-                        <table id="tabledata" class="ol table table-striped projects">
-                            <thead>
+                        <table id="tabledata" class="table projects">
+                            <thead class="table-dark">
                                 <tr>
                                     <th style="width: 1%">
                                         No
@@ -61,7 +61,7 @@
                                     <th style="">
                                         Kelas
                                     </th>
-                                    <th style="">
+                                    <th class="text-truncate" style="">
                                         Jenis Kelamin
                                     </th>
                                     <th style="">
@@ -73,14 +73,14 @@
                             <tbody>
                                 @forelse ($siswas as $siswa)
                                     <tr>
-                                        <td>{{ $counter++ }}</td>
-                                        <td>{{ $siswa->nisn }}</td>
-                                        <td>{{ $siswa->nama }}</td>
-                                        <td>{{ $siswa->kelas->hasil_kelas }}</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td class="text-truncate">{{ $siswa->nisn }}</td>
+                                        <td class="text-truncate">{{ $siswa->nama }}</td>
+                                        <td class="text-truncate">{{ $siswa->kelas->hasil_kelas }}</td>
                                         {{-- <td>{{ $siswa->jurusan->nama_jurusan }}</td> --}}
-                                        <td>{{ $siswa->jenis_kelamin }}</td>
+                                        <td class="text-truncate">{{ $siswa->jenis_kelamin }}</td>
 
-                                        <td class="text-center">
+                                        <td class="text-truncate">
                                             <form id="deleteForm" action="{{ route('siswas.destroy', $siswa->id) }}"
                                                 method="POST">
                                                 {{-- <a class="btn btn-primary btn-sm"

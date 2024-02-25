@@ -42,10 +42,10 @@
                 </div> --}}
                 </div>
 
-                <div class="card-body p-0">
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table id="tabledata" class="table table-striped projects">
-                            <thead>
+                        <table id="tabledata" class="table projects">
+                            <thead class="table-dark">
                                 <tr>
                                     <th style="width: 1%">
                                         No
@@ -61,11 +61,11 @@
                             <tbody>
                                 @foreach ($jurusans as $jurusan)
                                     <tr>
-                                        <td>{{ $counter++ }}</td>
-                                        <td>{{ $jurusan->nama_jurusan }}</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td class="text-truncate">{{ $jurusan->nama_jurusan }}</td>
                                         <td>
-                                            <form id="deleteForm" action="{{ route('jurusans.destroy', $jurusan->id) }}"
-                                                method="POST">
+                                            <form class="text-truncate" id="deleteForm"
+                                                action="{{ route('jurusans.destroy', $jurusan->id) }}" method="POST">
                                                 {{-- <a class="btn btn-primary btn-sm"
                                                     href="{{ route('jurusans.show', $jurusan->id) }}">
                                                     <i class="fas fa-folder">

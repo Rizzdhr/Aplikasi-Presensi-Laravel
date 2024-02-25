@@ -11,8 +11,6 @@ class Kelas extends Model
 {
     use HasFactory;
 
-
-    
     protected $fillable = ['tingkat_kelas', 'jurusan_id','nomor_kelas', 'guru_id'];
 
     public function getHasilKelasAttribute()
@@ -35,9 +33,9 @@ class Kelas extends Model
         return $this->belongsTo(Guru::class, 'guru_id');
     }
 
-    public function Absensi()
+    public function Presensi()
     {
-        return $this->belongsToMany(Absensi::class, 'kelas_id')->withPivot('status', 'tanggal', 'keterangan')->wherePivot('tanggal', Carbon::now('Asia/Jakarta')->format('Y-m-d'));
+        return $this->hasMany(Presensi::class, 'kelas_id');
     }
 
 

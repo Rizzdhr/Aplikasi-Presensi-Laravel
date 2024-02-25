@@ -97,6 +97,22 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/jurusans/{jurusan}/edit', [JurusanController::class, 'edit'])->name('jurusans.edit');
         Route::put('/jurusans/{jurusan}', [JurusanController::class, 'update'])->name('jurusans.update');
         Route::delete('/jurusans/{jurusan}', [JurusanController::class, 'destroy'])->name('jurusans.destroy');
-
+        // presensi
+        Route::get('/presensis', [PresensiController::class, 'index'])->name('presensis.index');
+        Route::get('/presensis/{id}', [PresensiController::class, 'show'])->name('presensis.show');
+        Route::post('/presensis/{id}', [PresensiController::class, 'store'])->name('presensis.store');
+        Route::get('/presensis/filter', [PresensiController::class, 'filter'])->name('presensis.filter');
+        // laporan
+        Route::get('/laporans', [LaporanController::class, 'index'])->name('laporans.index');
+        //
+        Route::resources([
+            'roles' => RoleController::class,
+            'users' => UserController::class,
+            // 'products' => ProductController::class,
+        ]);
     // });
 });
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

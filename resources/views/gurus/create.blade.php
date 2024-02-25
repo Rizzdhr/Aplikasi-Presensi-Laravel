@@ -8,15 +8,9 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Tambah Data Guru</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('gurus.index') }}">Data Guru</a></li>
-                            <li class="breadcrumb-item active">Tambah</li>
-                        </ol>
+                    <div class="d-flex col-sm-6 align-items-center">
+                        <a href="{{ url()->previous() }}" class="btn btn-dark"><i class="fas fa-arrow-left nav-icon"></i></a>
+                        <span class="ml-2"><h1>Tambah Data Guru</h1></span>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -26,7 +20,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-6 container">
-                    <div class="card">
+                    <div class="card card-dark">
                         <div class="card-header">
                             <h3 class="card-title">Data Guru</h3>
                         </div>
@@ -37,7 +31,9 @@
 
                                 <div class="form-group">
                                     <label for="">NIP</label>
-                                    <input type="text" name="nip" class="form-control @error('nip') is-invalid @enderror" value="{{ old('nip') }}" placeholder="Masukkan NIP">
+                                    <input type="text" name="nip"
+                                        class="form-control @error('nip') is-invalid @enderror" value="{{ old('nip') }}"
+                                        placeholder="Masukkan NIP">
 
                                     <!-- error message untuk nip -->
                                     @error('nip')
@@ -47,7 +43,9 @@
 
                                 <div class="form-group">
                                     <label for="">Nama</label>
-                                    <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" placeholder="Masukkan Nama">
+                                    <input type="text" name="nama"
+                                        class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}"
+                                        placeholder="Masukkan Nama">
 
                                     <!-- error message untuk nama -->
                                     @error('nama')
@@ -57,14 +55,21 @@
 
                                 <div class="form-group">
                                     <label for="">Mata Pelajaran</label>
-                                    <select name="mapel_id" class="form-control @error('mapel_id') is-invalid @enderror" value="{{ old('mapel_id') }}">
+                                    <select name="mapel_id" class="form-control @error('mapel_id') is-invalid @enderror"
+                                        value="{{ old('mapel_id') }}">
                                         <option selected disabled>-Pilih mata pelajaran-</option>
-                                        @foreach($mapels as $mapel)
-                                        <option value="{{ $mapel->id }}">
-                                            {{ $mapel->nama_mapel }}
-                                        </option>
+                                        @foreach ($mapels as $mapel)
+                                            <option value="{{ $mapel->id }}">
+                                                {{ $mapel->nama_mapel }}
+                                            </option>
                                         @endforeach
                                     </select>
+                                    @if ($mapels->count() <= 0)
+                                        <p class="text-danger mt-1">
+                                            Data mata pelajaran kosong! <a href="{{ route('mapels.create') }}"
+                                                class="text-decoration-none">Tambah</a>
+                                        </p>
+                                    @endif
 
                                     <!-- error message untuk mapel -->
                                     @error('mapel_id')
@@ -76,7 +81,9 @@
 
                                 <div class="form-group">
                                     <label for="">Jenis Kelamin</label>
-                                    <select name="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror" value="{{ old('jenis_kelamin') }}">
+                                    <select name="jenis_kelamin"
+                                        class="form-control @error('jenis_kelamin') is-invalid @enderror"
+                                        value="{{ old('jenis_kelamin') }}">
                                         <option selected disabled>-Pilih jenis kelamin-</option>
                                         <option value="Laki-laki">Laki-laki</option>
                                         <option value="Perempuan">Perempuan</option>

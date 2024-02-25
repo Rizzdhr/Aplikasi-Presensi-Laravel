@@ -32,17 +32,17 @@
                     <a href="{{ route('user.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
                 </div>
 
-                <div class="card-body p-0">
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table id="tabledata" class="table table-striped projects">
-                            <thead>
+                        <table id="tabledata" class="table projects">
+                            <thead class="table-dark">
                                 <tr>
                                     <th style="width: 1%">
                                         No
                                     </th>
-                                    <th>
+                                    {{-- <th>
                                         NIP
-                                    </th>
+                                    </th> --}}
                                     <th style="">
                                         Nama
                                     </th>
@@ -58,44 +58,70 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @forelse ($users as $user)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $user->guru->nip }}</td>
+                                        {{-- <td>{{ $user->guru->nip }}</td> --}}
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
                                             <ul>
                                                 @foreach ($user->roles as $role)
                                                     <li>
-                                                        {{ $role->nama }}
+                                                        {{ $role->name }}
                                                     </li>
                                                 @endforeach
                                             </ul>
                                         </td>
                                         <td>
-                                            <form id="deleteForm" action="{{ route('user.destroy', $user->id) }}" method="POST">
-                                                {{-- @can('edit_data') --}}
-                                                <a href="{{ route('user.edit', $user->id)}}" class="btn btn-info btn-sm">
-                                                    <i class="fas fa-pencil-alt">
-                                                    </i>Edit</a>
-                                                {{-- @endcan --}}
-
-                                                {{-- @can('delete_data') --}}
+                                            <form id="deleteForm" action="{{ route('user.destroy', $user->id) }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" class="btn btn-sm btn-danger"
-                                                    onclick="confirmDelete()">
-                                                    <i class="fas fa-trash">
+
+                                                <a href="{{ route('users.show', $user->id) }}"
+                                                    class="btn btn-primary btn-sm"> <i class="fas fa-folder">
                                                     </i>
-                                                    HAPUS</button>
+                                                    Show</a>
+
+                                                @if (in_array('Admin', $user->getRoleNames()->toArray() ?? []))
+                                                    @if (Auth::user()->hasRole('Admin'))
+                                                        <a href="{{ route('users.edit', $user->id) }}"
+                                                            class="btn btn-info btn-sm">
+                                                            <i class="fas fa-pencil-alt">
+                                                            </i>Edit</a>
+                                                    @endif
+                                                @else
+                                                    @can('edit-user')
+                                                        <a href="{{ route('users.edit', $user->id) }}"
+                                                            class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>
+                                                            Edit</a>
+                                                    @endcan
+
+                                                    @can('delete-user')
+                                                        @if (Auth::user()->id != $user->id)
+                                                            <button type="button" class="btn btn-sm btn-danger"
+                                                                onclick="confirmDelete()">
+                                                                <i class="fas fa-trash">
+                                                                </i>
+                                                                HAPUS</button>
+                                                        @endif
+                                                    @endcan
+                                                @endif
+
                                             </form>
-                                            {{-- @endcan --}}
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <td colspan="5">
+                                        <span class="text-danger">
+                                            <strong>No User Found!</strong>
+                                        </span>
+                                    </td>
+                                @endforelse
                             </tbody>
                         </table>
+                        {{ $users->links() }}
                     </div>
                 </div>
             </div>

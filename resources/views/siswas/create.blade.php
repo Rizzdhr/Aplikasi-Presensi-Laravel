@@ -8,15 +8,9 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Tambah Data Siswa</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('siswas.index') }}">Data Siswa</a></li>
-                            <li class="breadcrumb-item active">Tambah</li>
-                        </ol>
+                    <div class="d-flex col-sm-6 align-items-center">
+                        <a href="{{ url()->previous() }}" class="btn btn-dark"><i class="fas fa-arrow-left nav-icon"></i></a>
+                        <span class="ml-2"><h1>Tambah Data Siswa</h1></span>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -26,7 +20,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-6 container">
-                    <div class="card">
+                    <div class="card card-dark">
                         <div class="card-header">
                             <h3 class="card-title">Data Siswa</h3>
 
@@ -73,6 +67,12 @@
                                             <option value="{{ $kelas->id }}">{{ $kelas->hasil_kelas }}</option>
                                         @endforeach
                                     </select>
+                                    @if ($kelass->count() <= 0)
+                                        <p class="text-danger mt-1">
+                                            Data kelas kosong! <a href="{{ route('kelass.create') }}"
+                                                class="text-decoration-none">Tambah</a>
+                                        </p>
+                                    @endif
 
                                     <!-- error message untuk kelas -->
                                     @error('kelas_id')

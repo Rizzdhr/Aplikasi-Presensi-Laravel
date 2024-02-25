@@ -15,4 +15,14 @@ class Mapel extends Model
     {
         return $this->hasMany(Guru::class);
     }
+
+    /**
+     * Get all of the comments for the Mapel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function Presensi()
+    {
+        return $this->hasMany(Presensi::class, 'mapel_id');
+    }
 }

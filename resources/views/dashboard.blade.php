@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('judul', 'Absensi')
+@section('judul', 'Dashboard')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->

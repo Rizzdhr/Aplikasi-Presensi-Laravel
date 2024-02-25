@@ -65,7 +65,7 @@ class KelasController extends Controller
             "tingkat_kelas" => 'required',
             "jurusan_id" => 'required',
             "nomor_kelas" => 'required',
-            "guru_id" => 'required|unique:gurus,nama'
+            "guru_id" => 'required'
         ]);
 
         if (Kelas::where('tingkat_kelas', $request->tingkat_kelas)
@@ -74,6 +74,8 @@ class KelasController extends Controller
             ->first()
         ) {
             return back()->with(['failed' => 'Kelas Sudah Ada!']);
+        } elseif (Kelas::where('guru_id', $request->guru_id)->first()) {
+            return back()->with(['failed' => 'Guru Sudah Ada!']);
         }
 
         //create Kelas
@@ -93,9 +95,6 @@ class KelasController extends Controller
     {
         // Mendapatkan data siswa untuk kelas tertentu
         $siswas = Siswa::where('kelas_id', $kelas->id)->get();
-
-        // Mengambil data kelas dengan relasi siswas
-        // $kelasWithSiswas = Kelas::with('siswas')->find($kelas->id);
 
         // Menghitung nomor urut
         $counter = 1;
@@ -148,7 +147,13 @@ class KelasController extends Controller
             ->first()
         ) {
             return back()->with(['failed' => 'Data Sudah Ada']);
+        } elseif (Kelas::where('guru_id', $request->guru_id)
+            ->where('id', '!=', $id)
+            ->first()
+        ) {
+            return back()->with(['failed' => 'Wali Kelas Sudah Ada!']);
         }
+
         // Update Kelas data with the new values
         $Kelas->update([
             'tingkat_kelas' => $request->tingkat_kelas,

@@ -3,20 +3,21 @@
     <!-- Brand Logo -->
     <a href="" class="brand-link d-flex justify-content-center">
         <img src="{{ asset('image/logo_cn-removebg-preview.png') }}" alt="logo_rpl"
-            class="brand-image img-circle elevation-3" style="">
+            class="brand-image img-circle elevation-3" style="max-height: 95px;">
+
         {{-- <span class="brand-text font-weight-light">SMK CITRA NEGARA</span> --}}
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-
+        <br>
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
+        <nav class="mt-5">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item">
+                <li class="nav-item mb-2">
                     <a href="{{ route('dashboard') }}"
                         class="nav-link nav-link @if (Route::is('dashboard')) active @endif">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -26,26 +27,23 @@
                         </p>
                     </a>
                 </li>
-                <br>
 
-
+                <li class="nav-header"><b>DATA</b></li>
                 <li class="nav-item">
                     <a href="{{ route('kelass.index') }}"
-                    class="nav-link @if (Route::is('kelass.index', 'kelass.create', 'kelass.edit', 'kelass.show')) active @endif">
+                        class="nav-link @if (Route::is('kelass.index', 'kelass.create', 'kelass.edit', 'kelass.show')) active @endif">
                         <i class="fas fa-school nav-icon"></i>
                         <p>Data Kelas</p>
                     </a>
                 </li>
-                <br>
 
                 <li class="nav-item">
                     <a href="{{ route('siswas.index') }}"
-                    class="nav-link @if (Route::is('siswas.index', 'siswas.create', 'siswas.edit')) active @endif">
+                        class="nav-link @if (Route::is('siswas.index', 'siswas.create', 'siswas.edit')) active @endif">
                         <i class="fas fa-users nav-icon"></i>
                         <p>Data Siswa</p>
                     </a>
                 </li>
-                <br>
 
                 <li class="nav-item">
                     <a href="{{ route('gurus.index') }}"
@@ -54,7 +52,6 @@
                         <p>Data Guru</p>
                     </a>
                 </li>
-                <br>
 
                 <li class="nav-item">
                     <a href="{{ route('jurusans.index') }}"
@@ -63,42 +60,36 @@
                         <p>Data Jurusan</p>
                     </a>
                 </li>
-                <br>
 
-                <li class="nav-item">
+                <li class="nav-item mb-2">
                     <a href="{{ route('mapels.index') }}"
                         class="nav-link @if (Route::is('mapels.index', 'mapels.create', 'mapels.edit')) active @endif">
                         <i class="fas fa-book nav-icon"></i>
                         <p>Data Mapel</p>
                     </a>
                 </li>
-                <br>
 
+
+                <li class="nav-header"><b>ABSEN</b></li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{ route('presensis.index') }}"
+                        class="nav-link  @if (Route::is('presensis.index', 'presensis.show')) active @endif">
                         <i class="fas fa-calendar-check nav-icon"></i>
                         <p>Presensi</p>
                     </a>
                 </li>
-                <br>
 
-                <li class="nav-item">
-                    <a href="" class="nav-link">
-                        <i class="fas fa-print nav-icon"></i>
+                <li class="nav-item mb-2">
+                    <a href="{{ route('laporans.index') }}"
+                        class="nav-link  @if (Route::is('laporans.index')) active @endif">
+                        <i class="fas fa-file nav-icon"></i>
                         <p>Laporan</p>
                     </a>
                 </li>
-                <br>
 
-                {{-- <li class="nav-header">Admin</li>
-                <li class="nav-item">
-                    <a href="{{ route('roles.index') }}"
-                        class="nav-link  @if (Route::is('roles.index')) active @endif">
-                        <i class="fas fa-user-shield nav-icon"></i>
-                        <p>Role</p>
-                    </a>
-                </li>
 
+                @if (Auth::user()->hasRole('Admin'))
+                <li class="nav-header"><b>REGISTER</b></li>
                 <li class="nav-item">
                     <a href="{{ route('user.index') }}"
                         class="nav-link  @if (Route::is('user.index')) active @endif">
@@ -106,16 +97,28 @@
                         <p>Users</p>
                     </a>
                 </li>
-                <br> --}}
 
-                    <div id="logoutButtonContainer" class="row">
-                        <div class="col">
-                            <form id="logoutForm2" action="{{ route('logout') }}" method="GET">
-                                @csrf
-                                <button id="logoutButton2" type="button" class="btn btn-danger btn-block">Logout</button>
-                            </form>
-                        </div>
+                <li class="nav-item">
+                    <a href="{{ route('roles.index') }}"
+                        class="nav-link  @if (Route::is('roles.index')) active @endif">
+                        <i class="fas fa-user-shield nav-icon"></i>
+                        <p>Role</p>
+                    </a>
+                </li>
+                @endif
+                <br>
+
+
+                <div id="logoutButtonContainer" class="row">
+                    <div class="btn-md">
+                        <form id="logoutForm2" action="{{ route('logout') }}" method="GET">
+                            @csrf
+                            <button id="logoutButton2" type="button" class="btn btn-danger btn-block">Logout</button>
+                        </form>
                     </div>
+                </div>
+
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

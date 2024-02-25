@@ -33,10 +33,10 @@
                     <a href="{{ route('gurus.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
                 </div>
 
-                <div class="card-body p-0">
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table id="tabledata" class="table table-striped projects">
-                            <thead>
+                        <table id="tabledata" class="table projects">
+                            <thead class="table-dark">
                                 <tr>
                                     <th style="width: 1%">
                                         No
@@ -47,10 +47,10 @@
                                     <th style="">
                                         Nama
                                     </th>
-                                    <th style="">
+                                    <th class="text-truncate" style="">
                                         Mata Pelajaran
                                     </th>
-                                    <th style="">
+                                    <th class="text-truncate" style="">
                                         Jenis Kelamin
                                     </th>
                                     <th style="">
@@ -62,12 +62,12 @@
                                 @foreach ($gurus as $guru)
                                     <tr>
                                         <td>{{ $loop->iteration }} </td>
-                                        <td>{{ $guru->nip }}</td>
-                                        <td>{{ $guru->nama }}</td>
-                                        <td>{{ $guru->mapel->nama_mapel }}</td>
-                                        <td>{{ $guru->jenis_kelamin }}</td>
+                                        <td class="text-truncate">{{ $guru->nip }}</td>
+                                        <td class="text-truncate">{{ $guru->nama }}</td>
+                                        <td class="text-truncate">{{ $guru->mapel->nama_mapel }}</td>
+                                        <td class="text-truncate">{{ $guru->jenis_kelamin }}</td>
                                         <td>
-                                            <form id="deleteForm" action="{{ route('gurus.destroy', $guru->id) }}"
+                                            <form class="text-truncate" id="deleteForm" action="{{ route('gurus.destroy', $guru->id) }}"
                                                 method="POST" >
                                                 {{-- <a href="{{ route('gurus.show', $guru->id) }}"
                                                     class="btn btn-primary btn-sm">

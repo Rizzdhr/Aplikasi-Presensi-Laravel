@@ -12,6 +12,7 @@ class DahsboardController extends Controller
 {
     public function dashboard()
 {
+    // dd(auth()->user());
     // Hitung jumlah data untuk masing-masing model
     $kelasCount = Kelas::count();
     $siswaCount = Siswa::count();

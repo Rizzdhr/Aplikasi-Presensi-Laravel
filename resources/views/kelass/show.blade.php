@@ -10,8 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Detail Kelas {{ $kelas->hasil_kelas }}</h1>
-                        <br>
+                        <h1>Siswa Kelas {{ $kelas->hasil_kelas }}</h1>
                         {{-- @can('create_data') --}}
                         {{-- <a href="{{ route('siswas.create') }}" class="btn btn-success">Tambah Data</a> --}}
 
@@ -34,12 +33,14 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Data Siswa</h3>
+                    <a href="{{ route('siswas.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
+
+                    {{-- <h3 class="card-title">Data Siswa</h3> --}}
                 </div>
-                <div class="card-body p-0">
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table id="tabledata" class="table table-striped projects">
-                            <thead>
+                        <table id="tabledata" class="table projects">
+                            <thead class="table-dark ">
                                 <tr>
                                     <th style="width: 1%">
                                         No
@@ -50,7 +51,7 @@
                                     <th style="">
                                         Nama
                                     </th>
-                                    <th style="">
+                                    <th class="text-truncate" style="">
                                         Jenis Kelamin
                                     </th>
                                     <th style="">
@@ -62,12 +63,12 @@
                             <tbody>
                                 @forelse ($siswas as $siswa)
                                     <tr>
-                                        <td>{{ $counter++ }}</td>
-                                        <td>{{ $siswa->nisn }}</td>
-                                        <td>{{ $siswa->nama }}</td>
-                                        <td>{{ $siswa->jenis_kelamin }}</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td class="text-truncate">{{ $siswa->nisn }}</td>
+                                        <td class="text-truncate">{{ $siswa->nama }}</td>
+                                        <td class="text-truncate">{{ $siswa->jenis_kelamin }}</td>
 
-                                        <td class="text-center">
+                                        <td class="text-truncate">
                                             <form id="deleteForm" action="{{ route('siswas.destroy', $siswa->id) }}"
                                                 method="POST">
                                                 {{-- <a class="btn btn-primary btn-sm"
