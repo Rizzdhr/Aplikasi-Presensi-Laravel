@@ -99,11 +99,21 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/jurusans/{jurusan}', [JurusanController::class, 'destroy'])->name('jurusans.destroy');
         // presensi
         Route::get('/presensis', [PresensiController::class, 'index'])->name('presensis.index');
+        Route::get('/presensis/create', [PresensiController::class, 'create'])->name('presensis.create');
+        Route::post('/presensis/store', [PresensiController::class, 'store'])->name('presensis.store');
         Route::get('/presensis/{id}', [PresensiController::class, 'show'])->name('presensis.show');
-        Route::post('/presensis/{id}', [PresensiController::class, 'store'])->name('presensis.store');
-        Route::get('/presensis/filter', [PresensiController::class, 'filter'])->name('presensis.filter');
+        Route::get('/presensis/{id}/edit', [PresensiController::class, 'edit'])->name('presensis.edit');
+        Route::put('/presensis/{id}', [PresensiController::class, 'update'])->name('presensis.update');
+        Route::delete('/presensis/{id}', [PresensiController::class, 'destroy'])->name('presensis.destroy');
+        Route::get('/laporan', [PresensiController::class, 'laporan'])->name('laporan');
+        // Route::resource('/presensis', PresensiController::class);
+
+        // Route::get('/presensis', [PresensiController::class, 'index'])->name('presensis.index');
+        // Route::get('/presensis/{id}', [PresensiController::class, 'show'])->name('presensis.show');
+        // Route::post('/presensis/{id}', [PresensiController::class, 'store'])->name('presensis.store');
+        // Route::get('/presensis/filter', [PresensiController::class, 'filter'])->name('presensis.filter');
         // laporan
-        Route::get('/laporans', [LaporanController::class, 'index'])->name('laporans.index');
+        // Route::get('/laporans', [LaporanController::class, 'index'])->name('laporans.index');
         //
         Route::resources([
             'roles' => RoleController::class,

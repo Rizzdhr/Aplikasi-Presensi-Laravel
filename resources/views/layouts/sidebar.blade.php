@@ -80,8 +80,8 @@
                 </li>
 
                 <li class="nav-item mb-2">
-                    <a href="{{ route('laporans.index') }}"
-                        class="nav-link  @if (Route::is('laporans.index')) active @endif">
+                    <a href="{{ route('laporan') }}"
+                        class="nav-link  @if (Route::is('laporan')) active @endif">
                         <i class="fas fa-file nav-icon"></i>
                         <p>Laporan</p>
                     </a>
@@ -91,16 +91,16 @@
                 @if (Auth::user()->hasRole('Admin'))
                 <li class="nav-header"><b>REGISTER</b></li>
                 <li class="nav-item">
-                    <a href="{{ route('user.index') }}"
-                        class="nav-link  @if (Route::is('user.index')) active @endif">
+                    <a href="{{ route('users.index') }}"
+                        class="nav-link  @if (Route::is('users.index','users.create', 'users.show', 'users.edit')) active @endif">
                         <i class="fas fa-user-plus nav-icon"></i>
-                        <p>Users</p>
+                        <p>User</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{ route('roles.index') }}"
-                        class="nav-link  @if (Route::is('roles.index')) active @endif">
+                        class="nav-link  @if (Route::is('roles.index','roles.create', 'roles.show', 'roles.edit')) active @endif">
                         <i class="fas fa-user-shield nav-icon"></i>
                         <p>Role</p>
                     </a>

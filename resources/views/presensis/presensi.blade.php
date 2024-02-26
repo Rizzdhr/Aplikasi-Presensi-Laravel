@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Daftar Kelas</h1>
+                        <h1>Presensi {{ ' (' . Carbon\Carbon::now('Asia/Jakarta')->translatedFormat('d F Y') . ')' }}</h1>
                         {{-- @can('create_data') --}}
 
                         {{-- @endcan --}}
@@ -31,8 +31,8 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-
-                    <a href="{{ route('kelass.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
+                    <a>Daftar Kelas</a>
+                    {{-- <a href="{{ route('kelass.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a> --}}
                 </div>
                 <div class="card-body ">
                     <div class="table-responsive">

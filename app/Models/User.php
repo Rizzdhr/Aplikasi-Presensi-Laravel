@@ -38,6 +38,15 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    /**
+     * Get all of the comments for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function presensi()
+    {
+        return $this->hasMany(presensi::class, 'user_id');
+    }
 
 //     public function Guru()
 //     {

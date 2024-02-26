@@ -29,7 +29,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('user.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
+                    <a href="{{ route('users.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
                 </div>
 
                 <div class="card-body">
@@ -62,8 +62,8 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         {{-- <td>{{ $user->guru->nip }}</td> --}}
-                                        <td>{{ $user->username }}</td>
-                                        <td>{{ $user->email }}</td>
+                                        <td class="text-truncate">{{ $user->username }}</td>
+                                        <td class="text-truncate">{{ $user->email }}</td>
                                         <td>
                                             <ul>
                                                 @foreach ($user->roles as $role)
@@ -73,7 +73,7 @@
                                                 @endforeach
                                             </ul>
                                         </td>
-                                        <td>
+                                        <td class="text-truncate">
                                             <form id="deleteForm" action="{{ route('user.destroy', $user->id) }}"
                                                 method="POST">
                                                 @csrf

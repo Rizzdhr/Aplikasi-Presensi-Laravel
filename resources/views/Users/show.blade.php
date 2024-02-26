@@ -32,7 +32,7 @@
 
                         <div class="card-body">
                             <div class="mb-3 row">
-                                <label for="name" class="col-md-4 col-form-label text-md-end text-start"><strong>Userame:</strong></label>
+                                <label for="name" class="col-md-4 col-form-label text-md-end text-start"><strong>Username:</strong></label>
                                 <div class="col-md-6" style="line-height: 35px;">
                                     {{ $user->username }}
                                 </div>

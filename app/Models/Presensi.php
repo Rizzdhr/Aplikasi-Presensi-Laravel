@@ -9,14 +9,14 @@ class Presensi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['siswa_id', 'mapel_id', 'tanggal', 'status', 'keterangan'];
+    protected $fillable = ['kelas_id', 'siswa_id', 'mapel_id', 'user_id', 'presensi', 'created_at'];
 
     /**
      * Get all of the Kelas for the Presensi
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function Kelas()
+    public function kelas()
     {
         return $this->belongsTo(Kelas::class, 'kelas_id');
     }
@@ -26,7 +26,7 @@ class Presensi extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function Siswa()
+    public function siswas()
     {
         return $this->belongsTo(Siswa::class, 'siswa_id');
     }
@@ -36,8 +36,18 @@ class Presensi extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function Mapel()
+    public function mapels()
     {
         return $this->belongsTo(Mapel::class, 'mapel_id');
+    }
+
+    /**
+     * Get the user that owns the Presensi
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -50,9 +50,9 @@
                             <tbody>
                                 @forelse ($roles as $role)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $role->name }}</td>
-                                        <td>
+                                        <td class="text-truncate">{{ $loop->iteration }}</td>
+                                        <td class="text-truncate">{{ $role->name }}</td>
+                                        <td class="text-truncate">
                                             <form action="{{ route('roles.destroy', $role->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')

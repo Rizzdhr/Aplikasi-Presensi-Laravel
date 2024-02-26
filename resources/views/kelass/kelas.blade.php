@@ -11,9 +11,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>Data Kelas</h1>
-                        {{-- @can('create_data') --}}
 
-                        {{-- @endcan --}}
                     </div>
                     <div class="col text-right">
                         <ol class="breadcrumb float-sm-right ">
@@ -30,10 +28,12 @@
 
             <!-- Default box -->
             <div class="card">
-                <div class="card-header">
+                @can('create-data')
+                    <div class="card-header">
+                        <a href="{{ route('kelass.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
+                    </div>
+                @endcan
 
-                    <a href="{{ route('kelass.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
-                </div>
                 <div class="card-body ">
                     <div class="table-responsive">
                         <table id="tabledata" class="display table projects">
@@ -59,7 +59,6 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="text-truncate">{{ $kelas->hasil_kelas }}</td>
                                         <td class="text-truncate">{{ $kelas->guru->nama }}</td>
-
                                         {{-- <td class="text-center" --}}
                                         <td class="text-truncate">
                                             <form id="deleteForm" action="{{ route('kelass.destroy', $kelas->id) }}"
@@ -72,45 +71,37 @@
                                                     View
                                                 </a>
 
-                                                {{-- @can('edit_data') --}}
+                                                @can('edit-data')
+                                                    <a href="{{ route('kelass.edit', $kelas->id) }}"
+                                                        class="btn btn-info btn-sm"><i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        Edit
+                                                    </a>
+                                                @endcan
 
-                                                <a href="{{ route('kelass.edit', $kelas->id) }}"
-                                                    class="btn btn-info btn-sm"><i class="fas fa-pencil-alt">
-                                                    </i>
-                                                    Edit
-                                                </a>
-
-                                                {{-- @endcan --}}
-
-                                                {{-- @can('delete_data') --}}
-
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" class="btn btn-danger btn-sm"
-                                                    onclick="confirmDelete()">
-                                                    <i class="fas fa-trash">
-                                                    </i>
-                                                    HAPUS</button>
+                                                @can('delete-data')
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                        onclick="confirmDelete()">
+                                                        <i class="fas fa-trash">
+                                                        </i>
+                                                        HAPUS</button>
+                                                @endcan
                                             </form>
                                         </td>
                                     </tr>
-
-                    </div>
-
-                    {{-- @endcan --}}
-
-
-                @empty
-                    {{-- <div class="alert alert-danger">
+                                @empty
+                                    {{-- <div class="alert alert-danger">
                                     Data Kelas belum Tersedia.
                                 </div> --}}
-                    @endforelse
-                    </tbody>
-                    </table>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-    </div>
-    </section>
+        </section>
     </div>
 
 

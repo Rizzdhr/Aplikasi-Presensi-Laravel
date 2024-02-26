@@ -21,7 +21,7 @@ class Mapel extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function Presensi()
+    public function mapels()
     {
         return $this->hasMany(Presensi::class, 'mapel_id');
     }

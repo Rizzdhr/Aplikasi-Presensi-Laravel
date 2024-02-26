@@ -53,6 +53,7 @@ class SiswaController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // dd($request);
         //validate form
         $this->validate($request, [
             'nisn'     => 'required|unique:siswas,nisn',
