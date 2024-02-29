@@ -12,6 +12,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Exports\PresensiExport;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class PresensiController extends Controller
@@ -29,21 +32,12 @@ class PresensiController extends Controller
     public function show($kelas_id)
     {
         $kelas = Kelas::where('id', $kelas_id)->get();
-        $siswas = Siswa::where('kelas_id', $kelas_id)->get();
+        $siswas = Siswa::where('kelas_id', $kelas_id)->orderBy('nama', 'asc')->get();
         $users = User::all();
         $mapels = Mapel::all();
 
         return view('presensis.create', compact('kelas', 'siswas', 'users', 'mapels'));
     }
-
-    // public function show(Request $request, $id): View
-    // {
-    //     $presensis = Kelas::findOrFail($id);
-    //     $mapels = Mapel::all();
-
-    //     return view('presensis.create', compact('mapels', 'presensis'));
-    // }
-
 
     public function create(Request $request)
     {
@@ -55,45 +49,86 @@ class PresensiController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $this->validate($request, [
             'kelas_id'  => 'required',
             'siswa_id'  => 'required',
-            'mapel_id'  => 'required',
             'user_id'   => 'required',
+            'mapel_id'  => 'required',
             'presensi'  => 'required|array',
-            'presensi.*' => 'required|in:Hadir,Izin,Sakit,Alpha',
+            'presensi.*'    => 'required|in:Hadir,Izin,Sakit,Alpha',
         ]);
 
         foreach ($request->presensi as $siswa_id => $presensi) {
-            // Mencari atau membuat presensi berdasarkan kelas, siswa, user, dan tanggal
-            $existingPresensi = Presensi::firstOrNew([
-                'kelas_id'    => $request->kelas_id,
-                'siswa_id'    => $siswa_id,
-                'mapel_id'    => $request->mapel_id,
-                'user_id'     => $request->user_id,
-                'created_at'  => now()->format('Y-m-d'),
+            Presensi::create([
+                'kelas_id' => $request->kelas_id,
+                'siswa_id'  => $siswa_id,
+                'user_id'   => $request->user_id,
+                'mapel_id'  => $request->mapel_id,
+                'presensi' => $presensi
             ]);
-
-            // Set nilai presensi
-            $existingPresensi->presensi = $presensi;
-
-            // Jika data baru, simpan
-            if (!$existingPresensi->exists) {
-                $existingPresensi->save();
-            } else {
-                // Jika data sudah ada, Anda dapat menangani kasus ini sesuai kebutuhan
-                // Misalnya, tampilkan pesan kesalahan atau lakukan tindakan tertentu.
-                return back()->with(['failed' => 'Presensi sudah ada untuk siswa ini pada hari ini dengan mapel yang sama.']);
-            }
         }
-
         return redirect()->route('laporan')->with(['success' => 'Data Berhasil Ditambahkan']);
     }
 
+    public function laporan()
+    {
+        $mapels = Mapel::all();
+        $kelas = Kelas::all();
+        $presensis = Presensi::with('kelas', 'siswas', 'mapels', 'users')
+            ->whereDate('created_at', Carbon::today())
+            ->get();
+        // dd($presensis); // Tambahkan ini untuk debugging
+        return view('presensis.laporan', compact('presensis', 'kelas', 'mapels'));
+    }
+
+    public function filter(Request $request)
+    {
+        $request->validate([
+            'TanggalMulai'  => 'nullable|date',
+            'TangglaSelesai'    => 'nullable|date|after_or_equal:TanggalMulai',
+            'kelas_id'  => 'nullable|exists:kelas,id',
+        ]);
+
+        $TanggalMulai = $request->input('TanggalMulai');
+        $TanggalSelesai = $request->input('TanggalSelesai');
+        $kelas_id = $request->input('kelas_id');
+
+        $siswas = Siswa::all();
+        $kelas = Kelas::all();
+
+        // Query untuk filter
+        $presensiQuery = Presensi::with('siswas', 'kelas');
+
+        if ($kelas_id) {
+            $presensiQuery->whereHas('kelas', function ($query) use ($kelas_id) {
+                $query->where('id', $kelas_id);
+            });
+        }
+
+        if ($TanggalMulai) {
+            $presensiQuery->whereDate('created_at', '>=', $TanggalMulai);
+        }
+
+        if ($TanggalSelesai) {
+            $presensiQuery->whereDate('created_at', '<=', $TanggalSelesai);
+        }
+
+        $presensis = $presensiQuery
+            ->orderBy('created_at')
+            ->get();
+
+        return view('presensis.laporan', compact('presensis', 'kelas'));
+    }
+
+    // public function export()
+    // {
+    //     return Excel::download(new PresensiExport(), 'presensi.xlsx');
+    // }
 
     public function edit($id)
     {
-        $presensi = Presensi::with('siswas', 'kelas')->findOrFail($id);
+        $presensi = Presensi::with('siswas', 'kelas')->where('user_id', Auth::user()->id)->findOrFail($id);
         $users = User::all();
         $kelas = Kelas::all();
         $siswas = Siswa::all();
@@ -103,34 +138,30 @@ class PresensiController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->presensi);
         $this->validate($request, [
-            'siswa_id'  => 'required',
             'kelas_id'  => 'required',
+            'siswa_id'  => 'required',
             'user_id'   => 'required',
             'mapel_id'  => 'required',
-            'presensi' => 'required|in:Hadir, Izin, Sakit, Alpha',
+            'presensi' => 'required',
         ]);
 
         $presensi = Presensi::findOrFail($id);
 
         $presensi->update([
-            'siswa_id'  => $request->siswa_id,
             'kelas_id'  => $request->kelas_id,
+            'siswa_id'  => $request->siswa_id,
             'user_id'   => $request->user_id,
             'mapel_id'  => $request->mapel_id,
             'presensi' => $request->presensi,
         ]);
+
+        // dd($presensi);
+
         return redirect()->route('laporan')->with(['success' => 'Data Berhasil Diubah']);
     }
 
-    public function laporan()
-    {
-        $mapels = Mapel::all();
-        $kelas = Kelas::all();
-        $presensis = Presensi::with('kelas', 'siswas', 'mapels', 'users')->get();
-        // dd($presensis); // Tambahkan ini untuk debugging
-        return view('presensis.laporan', compact('presensis', 'kelas', 'mapels'));
-    }
 
     public function destroy(string $id)
     {

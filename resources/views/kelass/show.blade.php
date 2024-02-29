@@ -9,19 +9,13 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Siswa Kelas {{ $kelas->hasil_kelas }}</h1>
+                    <div class="d-flex col-sm-6 align-items-center">
+                        <a href="{{ route('kelass.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left nav-icon"></i>   </a>
+                        <span class="ml-2"><h1>Siswa Kelas {{ $kelas->hasil_kelas }}</h1></span>
                         {{-- @can('create_data') --}}
                         {{-- <a href="{{ route('siswas.create') }}" class="btn btn-success">Tambah Data</a> --}}
 
                         {{-- @endcan --}}
-                    </div>
-                    <div class="col text-right">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('kelass.index') }}">Data Kelas</a></li>
-                            <li class="breadcrumb-item active">Detail</li>
-                        </ol>
                     </div>
                 </div>
             </div>

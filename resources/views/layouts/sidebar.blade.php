@@ -28,47 +28,50 @@
                     </a>
                 </li>
 
-                <li class="nav-header"><b>DATA</b></li>
-                <li class="nav-item">
-                    <a href="{{ route('kelass.index') }}"
-                        class="nav-link @if (Route::is('kelass.index', 'kelass.create', 'kelass.edit', 'kelass.show')) active @endif">
-                        <i class="fas fa-school nav-icon"></i>
-                        <p>Data Kelas</p>
-                    </a>
-                </li>
+                @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Guru'))
+                    <li class="nav-header"><b>DATA</b></li>
+                    <li class="nav-item">
+                        <a href="{{ route('kelass.index') }}"
+                            class="nav-link @if (Route::is('kelass.index', 'kelass.create', 'kelass.edit', 'kelass.show')) active @endif">
+                            <i class="fas fa-school nav-icon"></i>
+                            <p>Data Kelas</p>
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('siswas.index') }}"
-                        class="nav-link @if (Route::is('siswas.index', 'siswas.create', 'siswas.edit')) active @endif">
-                        <i class="fas fa-users nav-icon"></i>
-                        <p>Data Siswa</p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ route('siswas.index') }}"
+                            class="nav-link @if (Route::is('siswas.index', 'siswas.create', 'siswas.edit')) active @endif">
+                            <i class="fas fa-users nav-icon"></i>
+                            <p>Data Siswa</p>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="nav-item">
-                    <a href="{{ route('gurus.index') }}"
-                        class="nav-link @if (Route::is('gurus.index', 'gurus.create', 'gurus.edit')) active @endif">
-                        <i class="fas fa-user-tie nav-icon"></i>
-                        <p>Data Guru</p>
-                    </a>
-                </li>
+                @if (Auth::user()->hasRole('Admin'))
+                    <li class="nav-item">
+                        <a href="{{ route('gurus.index') }}"
+                            class="nav-link @if (Route::is('gurus.index', 'gurus.create', 'gurus.edit')) active @endif">
+                            <i class="fas fa-user-tie nav-icon"></i>
+                            <p>Data Guru</p>
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('jurusans.index') }}"
-                        class="nav-link @if (Route::is('jurusans.index', 'jurusans.create', 'jurusans.edit')) active @endif">
-                        <i class="fas fa-graduation-cap nav-icon"></i>
-                        <p>Data Jurusan</p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ route('jurusans.index') }}"
+                            class="nav-link @if (Route::is('jurusans.index', 'jurusans.create', 'jurusans.edit')) active @endif">
+                            <i class="fas fa-graduation-cap nav-icon"></i>
+                            <p>Data Jurusan</p>
+                        </a>
+                    </li>
 
-                <li class="nav-item mb-2">
-                    <a href="{{ route('mapels.index') }}"
-                        class="nav-link @if (Route::is('mapels.index', 'mapels.create', 'mapels.edit')) active @endif">
-                        <i class="fas fa-book nav-icon"></i>
-                        <p>Data Mapel</p>
-                    </a>
-                </li>
-
+                    <li class="nav-item mb-2">
+                        <a href="{{ route('mapels.index') }}"
+                            class="nav-link @if (Route::is('mapels.index', 'mapels.create', 'mapels.edit')) active @endif">
+                            <i class="fas fa-book nav-icon"></i>
+                            <p>Data Mapel</p>
+                        </a>
+                    </li>
+                @endif
 
                 <li class="nav-header"><b>ABSEN</b></li>
                 <li class="nav-item">
@@ -80,33 +83,31 @@
                 </li>
 
                 <li class="nav-item mb-2">
-                    <a href="{{ route('laporan') }}"
-                        class="nav-link  @if (Route::is('laporan')) active @endif">
+                    <a href="{{ route('laporan') }}" class="nav-link  @if (Route::is('laporan')) active @endif">
                         <i class="fas fa-file nav-icon"></i>
                         <p>Laporan</p>
                     </a>
                 </li>
 
+                {{-- @if (Auth::user()->hasRole('Admin'))
+                    <li class="nav-header"><b>REGISTER</b></li>
+                    <li class="nav-item">
+                        <a href="{{ route('users.index') }}"
+                            class="nav-link  @if (Route::is('users.index', 'users.create', 'users.show', 'users.edit')) active @endif">
+                            <i class="fas fa-user-plus nav-icon"></i>
+                            <p>User</p>
+                        </a>
+                    </li>
 
-                @if (Auth::user()->hasRole('Admin'))
-                <li class="nav-header"><b>REGISTER</b></li>
-                <li class="nav-item">
-                    <a href="{{ route('users.index') }}"
-                        class="nav-link  @if (Route::is('users.index','users.create', 'users.show', 'users.edit')) active @endif">
-                        <i class="fas fa-user-plus nav-icon"></i>
-                        <p>User</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{{ route('roles.index') }}"
-                        class="nav-link  @if (Route::is('roles.index','roles.create', 'roles.show', 'roles.edit')) active @endif">
-                        <i class="fas fa-user-shield nav-icon"></i>
-                        <p>Role</p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ route('roles.index') }}"
+                            class="nav-link  @if (Route::is('roles.index', 'roles.create', 'roles.show', 'roles.edit')) active @endif">
+                            <i class="fas fa-user-shield nav-icon"></i>
+                            <p>Role</p>
+                        </a>
+                    </li>
                 @endif
-                <br>
+                <br> --}}
 
 
                 <div id="logoutButtonContainer" class="row">

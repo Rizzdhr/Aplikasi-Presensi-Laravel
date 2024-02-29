@@ -55,8 +55,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="text-truncate">{{ $mapel->nama_mapel }}</td>
                                         <td>
-                                            <form class="text-truncate" id="deleteForm" action="{{ route('mapels.destroy', $mapel->id) }}"
-                                                method="POST">
+                                            <form class="text-truncate" id="deleteForm{{ $mapel->id }}"
+                                                action="{{ route('mapels.destroy', $mapel->id) }}" method="POST">
                                                 {{-- <a class="btn btn-primary btn-sm"
                                                     href="{{ route('mapels.show', $mapel->id) }}">
                                                     <i class="fas fa-folder">
@@ -75,7 +75,7 @@
                                                 {{-- @can('delete_data') --}}
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" onclick="confirmDelete()"
+                                                <button type="button" onclick="confirmDelete('{{ $mapel->id }}')"
                                                     class="btn btn-danger btn-sm">
                                                     <i class="fas fa-trash">
                                                     </i>

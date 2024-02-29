@@ -49,7 +49,7 @@ class GuruController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'nip'   => 'required|unique:gurus,nip',
+            'nip'   => 'required|min:14|max:18|unique:gurus,nip',
             'nama'     => 'required',
             'mapel_id'     => 'required',
             'jenis_kelamin'   => 'required',
@@ -91,7 +91,7 @@ class GuruController extends Controller
     {
         // Validate form data
         $this->validate($request, [
-            'nip'   => 'required|unique:gurus,nip,'  . $id,
+            'nip'   => 'required|min:14|max:18|unique:gurus,nip,' . $id,
             'nama'     => 'required',
             'mapel_id'     => 'required',
             'jenis_kelamin'   => 'required'

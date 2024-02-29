@@ -1,6 +1,5 @@
 @extends('layouts.main')
-@section('judul', 'Daftar Kelas')
-
+@section('judul', 'Laporan')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -18,7 +17,7 @@
                     <div class="col text-right">
                         <ol class="breadcrumb float-sm-right ">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Data Kelas</li>
+                            <li class="breadcrumb-item active">Laporan</li>
                         </ol>
                     </div>
                 </div>
@@ -31,18 +30,57 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <a>Cetak Laporan</a>
+                    <form action="{{ route('laporan.filter') }}" method="post">
+                        @csrf
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <a>Kelas</a>
+                                {{-- <label for="kelas">Kelas:</label> --}}
+                                <select class="form-select" id="kelasSelect" name="kelas_id">
+                                    <option value="" {{ empty(request('kelas')) ? 'selected' : '' }}>Semua Kelas
+                                    </option>
+                                    @foreach ($kelas as $kelasItem)
+                                        <option value="{{ $kelasItem->id }}"
+                                            {{ request('kelas') == $kelasItem->id ? 'selected' : '' }}>
+                                            {{ $kelasItem->hasil_kelas }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <a>Tanggal Mulai:</a>
+                                {{-- <label for="TanggalMulai">Tanggal Mulai:</label> --}}
+                                <input type="date" class="form-control" id="TanggalMulai" name="TanggalMulai"
+                                    value="{{ old('TanggalMulai') }}">
+                            </div>
+
+                            <div class="col-md-3">
+                                <a>Tanggal Selesai:</a>
+                                {{-- <label for="TanggalSelesai">Tanggal Selesai:</label> --}}
+                                <input type="date" class="form-control" id="TanggalSelesai" name="TanggalSelesai"
+                                    value="{{ request('TanggalSelesai') }}">
+                            </div>
+
+                            <div class="col-md-3 mt-4">
+                                <button type="submit" class="btn btn-primary">Filter</button>
+                            </div>
+
+                        </div>
+
+                        {{-- <a href="{{ route('laporan.export') }}" class="btn btn-success btn-md">EXPORT</a> --}}
+                    </form>
                     {{-- <a href="{{ route('kelass.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a> --}}
                 </div>
-                <div class="card-body ">
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table id="tabledata" class="display table projects">
+                        <table id="tabledata2" class="display table projects table-bordered">
                             <thead class="table-dark">
                                 <tr>
-                                    <th style="width: 1%">
+                                    <th style="">
                                         No
                                     </th>
-                                    <th>
+                                    <th class="text-left">
                                         NISN
                                     </th>
                                     <th>
@@ -72,16 +110,17 @@
                                 @foreach ($presensis as $presensi)
                                     <tr data-kelas="{{ $presensi->siswas->kelas_id }}">
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $presensi->siswas->nisn }}</td>
-                                        <td>{{ $presensi->siswas->nama }}</td>
-                                        <td>{{ $presensi->kelas->hasil_kelas }}</td>
-                                        <td>{{ $presensi->users->username }}</td>
-                                        <td>{{ $presensi->mapels->nama_mapel }}</td>
+                                        <td class="text-left">{{ $presensi->siswas->nisn }}</td>
+                                        <td class="text-truncate">{{ $presensi->siswas->nama }}</td>
+                                        <td class="text-truncate">{{ $presensi->kelas->hasil_kelas }}</td>
+                                        <td class="text-truncate">{{ $presensi->users->username }}</td>
+                                        <td class="text-truncate">{{ $presensi->mapels->nama_mapel }}</td>
                                         <td>{{ $presensi->presensi }}</td>
-                                        <td>{{ $presensi->created_at ? $presensi->created_at->format('d F Y') : 'N/A ' }}
+                                        <td class="text-truncate">
+                                            {{ $presensi->created_at ? $presensi->created_at->format('d F Y') : 'N/A ' }}
                                         </td>
                                         <td>
-                                            <form class="text-truncate" id="deleteForm"
+                                            <form id="deleteForm{{ $presensi->id }}"x`
                                                 action="{{ route('presensis.destroy', $presensi->id) }}" method="POST">
 
                                                 {{-- @can('edit_data') --}}
@@ -95,7 +134,7 @@
                                                 {{-- @can('delete_data') --}}
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" onclick="confirmDelete()"
+                                                <button type="button" onclick="confirmDelete('{{ $presensi->id }}')"
                                                     class="btn btn-danger btn-sm">
                                                     <i class="fas fa-trash">
                                                     </i>
@@ -106,6 +145,8 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{-- {{ $presensis->links() }} --}}
+
                     </div>
                 </div>
             </div>

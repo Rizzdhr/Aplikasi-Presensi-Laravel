@@ -64,7 +64,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="text-truncate">{{ $jurusan->nama_jurusan }}</td>
                                         <td>
-                                            <form class="text-truncate" id="deleteForm"
+                                            <form class="text-truncate" id="deleteForm{{ $jurusan->id }}"
                                                 action="{{ route('jurusans.destroy', $jurusan->id) }}" method="POST">
                                                 {{-- <a class="btn btn-primary btn-sm"
                                                     href="{{ route('jurusans.show', $jurusan->id) }}">
@@ -85,7 +85,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger btn-sm"
-                                                    onclick="confirmDelete()">
+                                                    onclick="confirmDelete('{{ $jurusan->id }}')">
                                                     <i class="fas fa-trash">
                                                     </i>
                                                     HAPUS</button>

@@ -53,7 +53,8 @@
                                         <td class="text-truncate">{{ $loop->iteration }}</td>
                                         <td class="text-truncate">{{ $role->name }}</td>
                                         <td class="text-truncate">
-                                            <form action="{{ route('roles.destroy', $role->id) }}" method="post">
+                                            <form id="deleteForm{{ $role->id }}"
+                                                action="{{ route('roles.destroy', $role->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
 
@@ -71,7 +72,7 @@
 
                                                     @can('delete-role')
                                                         @if ($role->name != Auth::user()->hasRole($role->name))
-                                                            <button type="button" onclick="confirmDelete()"
+                                                            <button type="button" onclick="confirmDelete('{{ $role->id }}')"
                                                                 class="btn btn-danger btn-sm">
                                                                 <i class="fas fa-trash">
                                                                 </i>

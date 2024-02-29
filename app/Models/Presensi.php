@@ -9,7 +9,7 @@ class Presensi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['kelas_id', 'siswa_id', 'mapel_id', 'user_id', 'presensi', 'created_at'];
+    protected $fillable = ['kelas_id', 'siswa_id',  'user_id', 'mapel_id', 'presensi', 'created_at'];
 
     /**
      * Get all of the Kelas for the Presensi

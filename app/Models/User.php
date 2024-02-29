@@ -20,11 +20,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        // 'guru_id',
+        'guru_id',
         'username',
         'email',
         'password'
-        // 'role'
+
 
     ];
 
@@ -48,10 +48,10 @@ class User extends Authenticatable
         return $this->hasMany(presensi::class, 'user_id');
     }
 
-//     public function Guru()
-//     {
-//         return $this->belongsTo(Guru::class, 'guru_id');
-//     }
+    public function Guru()
+    {
+        return $this->belongsTo(Guru::class, 'guru_id');
+    }
 
 //     /**
 //      * The roles that belong to the User

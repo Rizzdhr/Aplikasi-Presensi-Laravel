@@ -10,7 +10,9 @@
                 <div class="row mb-2">
                     <div class="d-flex col-sm-6 align-items-center">
                         <a href="{{ url()->previous() }}" class="btn btn-dark"><i class="fas fa-arrow-left nav-icon"></i></a>
-                        <span class="ml-2"><h1>Tambah User</h1></span>
+                        <span class="ml-2">
+                            <h1>Tambah User</h1>
+                        </span>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -29,13 +31,40 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
+                                    <label for="guru_id">Guru</label>
+                                    <select class="selectpicker form-control" data-live-search="true" id="guru_id"
+                                        name="guru_id" {{ $dataGuru->count() < 0 ? 'disabled' : '' }}>
+                                        <option {{ old('guru_id') ? '' : 'selected' }}>--PILIH--</option>
+                                        @foreach ($dataGuru as $guru)
+                                            <option data-tokens="{{ $guru->id }}"
+                                                {{ (int) old('guru_id') == (int) $guru->id ? 'selected' : '' }}
+                                                value="{{ $guru->id }}">
+                                                {{ $guru->nama . ' (' . $guru->nip . ') ' }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @if ($dataGuru->count() < 0)
+                                        <p class="text-danger mt-1">
+                                            Data guru kosong! <a href="{{ route('guru.create') }}"
+                                                class="text-decoration-none">Tambah</a>
+                                        </p>
+                                    @endif
+
+                                    @error('guru_id')
+                                        <div class="text-danger mt-1">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                {{-- <div class="form-group">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control @error('username') is-invalid @enderror"
                                         id="username" name="username" value="{{ old('username') }}">
                                     @if ($errors->has('username'))
                                         <span class="text-danger">{{ $errors->first('username') }}</span>
                                     @endif
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group">
                                     <label for="email">Email </label>
@@ -62,8 +91,8 @@
                                             @if ($role != 'Admin')
                                                 <div class="form-check me-3">
                                                     <input class="form-check-input @error('roles') is-invalid @enderror"
-                                                        type="checkbox" value="{{ $role }}" id="{{ $role }}"
-                                                        name="roles[]"
+                                                        type="checkbox" value="{{ $role }}"
+                                                        id="{{ $role }}" name="roles[]"
                                                         {{ in_array($role, old('roles') ?? []) ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="{{ $role }}">
                                                         {{ $role }}

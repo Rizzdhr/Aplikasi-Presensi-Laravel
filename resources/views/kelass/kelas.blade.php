@@ -61,8 +61,9 @@
                                         <td class="text-truncate">{{ $kelas->guru->nama }}</td>
                                         {{-- <td class="text-center" --}}
                                         <td class="text-truncate">
-                                            <form id="deleteForm" action="{{ route('kelass.destroy', $kelas->id) }}"
-                                                method="POST" class=" ">
+                                            <form id="deleteForm{{ $kelas->id }}"
+                                                action="{{ route('kelass.destroy', $kelas->id) }}" method="POST"
+                                                class=" ">
 
                                                 <a class="btn btn-primary btn-sm"
                                                     href="{{ route('kelass.show', $kelas->id) }}">
@@ -83,7 +84,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="button" class="btn btn-danger btn-sm"
-                                                        onclick="confirmDelete()">
+                                                        onclick="confirmDelete('{{ $kelas->id }}')">
                                                         <i class="fas fa-trash">
                                                         </i>
                                                         HAPUS</button>

@@ -44,7 +44,7 @@
                                         NIP
                                     </th> --}}
                                     <th style="">
-                                        Nama
+                                        Guru
                                     </th>
                                     <th style="">
                                         Email
@@ -74,8 +74,8 @@
                                             </ul>
                                         </td>
                                         <td class="text-truncate">
-                                            <form id="deleteForm" action="{{ route('user.destroy', $user->id) }}"
-                                                method="POST">
+                                            <form id="deleteForm{{ $user->id }}"
+                                                action="{{ route('user.destroy', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
 
@@ -84,30 +84,30 @@
                                                     </i>
                                                     Show</a>
 
-                                                @if (in_array('Admin', $user->getRoleNames()->toArray() ?? []))
+                                                {{-- @if (in_array('Admin', $user->getRoleNames()->toArray() ?? []))
                                                     @if (Auth::user()->hasRole('Admin'))
                                                         <a href="{{ route('users.edit', $user->id) }}"
                                                             class="btn btn-info btn-sm">
                                                             <i class="fas fa-pencil-alt">
                                                             </i>Edit</a>
                                                     @endif
-                                                @else
-                                                    @can('edit-user')
-                                                        <a href="{{ route('users.edit', $user->id) }}"
-                                                            class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>
-                                                            Edit</a>
-                                                    @endcan
+                                                @else --}}
+                                                @can('edit-user')
+                                                    <a href="{{ route('users.edit', $user->id) }}"
+                                                        class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>
+                                                        Edit</a>
+                                                @endcan
 
-                                                    @can('delete-user')
-                                                        @if (Auth::user()->id != $user->id)
-                                                            <button type="button" class="btn btn-sm btn-danger"
-                                                                onclick="confirmDelete()">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                HAPUS</button>
-                                                        @endif
-                                                    @endcan
-                                                @endif
+                                                @can('delete-user')
+                                                    @if (Auth::user()->id != $user->id)
+                                                        <button type="button" class="btn btn-sm btn-danger"
+                                                            onclick="confirmDelete('{{ $user->id }}')">
+                                                            <i class="fas fa-trash">
+                                                            </i>
+                                                            HAPUS</button>
+                                                    @endif
+                                                @endcan
+                                                {{-- @endif --}}
 
                                             </form>
                                         </td>
@@ -121,7 +121,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $users->links() }}
+                        {{-- {{ $users->links() }} --}}
                     </div>
                 </div>
             </div>

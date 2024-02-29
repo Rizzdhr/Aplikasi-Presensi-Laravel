@@ -20,7 +20,7 @@ class GuruSeeder extends Seeder
 
         // Tambahkan data guru contoh
         Guru::create([
-            'nip'   => '1234567890',
+            'nip'   => '1234.12.12.123',
             'nama' => 'Rizky Dharmawan',
             'mapel_id' => 1,
             'jenis_kelamin' => 'Laki-laki',

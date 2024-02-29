@@ -8,19 +8,14 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Presensi {{ ' (' . Carbon\Carbon::now('Asia/Jakarta')->translatedFormat('d F Y') . ')' }}
-                        </h1>
+                    <div class="d-flex col-sm-6 align-items-center">
+                        <a href="{{ route('presensis.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left nav-icon"></i></a>
+                        <span class="ml-2"><h1>Presensi {{ ' (' . Carbon\Carbon::now('Asia/Jakarta')->translatedFormat('d F Y') . ')' }}
+                        </h1></span>
 
                         {{-- @can('create_data') --}}
 
                         {{-- @endcan --}}
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Data Siswa</li>
-                        </ol>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -33,23 +28,9 @@
                 <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h5>Siswa Kelas
-                            {{-- {{ $siswas->Kelas->hasil_kelas}} --}}
-                            {{-- {{ $kelas->tingkat_kelas . ' ' . $kelas->jurusan->nama_jurusan . ' ' . $kelas->nomor_kelas }} --}}
-                        </h5>
-                        {{-- <form action="{{ route('presensis.filter', ['id' => $presensis->id]) }}" method="get">
-                        <div class="d-flex col-sm-3 align-items-center">
-                            <label for="tanggal">Tanggal:</label>
-                            <div class="input-group">
-                                <input type="date" name="tanggal" id="tanggal" class="form-control ml-2 mb-2">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-primary ml-2 mb-2">Filter</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form> --}}
-
-
+                        @foreach ($kelas as $kelasItem)
+                            <h5>Siswa Kelas {{ $kelasItem->hasil_kelas }}</h5>
+                        @endforeach
 
                         <div class="d-flex col-sm-3 align-items-center">
                             <label for="tanggal">Mapel:</label>
@@ -84,11 +65,8 @@
                                             Keterangan
                                         </th>
                                         {{-- <th style="">
-                                            Keterangan
+                                            Action
                                         </th> --}}
-                                        {{-- <th style="">
-                                        Action
-                                    </th> --}}
                                     </tr>
                                 </thead>
 
@@ -102,7 +80,7 @@
                                             <input type="hidden" name="kelas_id" value="{{ $siswa->kelas->id }} ">
                                             <input type="hidden" name="siswa_id[]" value="{{ $siswa->id }}">
                                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                            <td>
+                                            <td class="text-truncate">
                                                 <input type="radio" class="btn-check"
                                                     name="presensi[{{ $siswa->id }}]" id="Hadir_{{ $siswa->id }}"
                                                     value="Hadir" autocomplete="off">
@@ -113,23 +91,31 @@
                                                 <input type="radio" class="btn-check"
                                                     name="presensi[{{ $siswa->id }}]" id="Izin_{{ $siswa->id }}"
                                                     value="Izin" autocomplete="off">
-                                                <label for="Izin_{{ $siswa->id }}" class="btn btn-outline-success">
+                                                <label for="Izin_{{ $siswa->id }}" class="btn btn-outline-primary">
                                                     Izin
                                                 </label>
 
                                                 <input type="radio" class="btn-check"
                                                     name="presensi[{{ $siswa->id }}]" id="Sakit_{{ $siswa->id }}"
                                                     value="Sakit" autocomplete="off">
-                                                <label for="Sakit_{{ $siswa->id }}" class="btn btn-outline-success">
+                                                <label for="Sakit_{{ $siswa->id }}" class="btn btn-outline-warning">
                                                     Sakit
                                                 </label>
 
                                                 <input type="radio" class="btn-check"
                                                     name="presensi[{{ $siswa->id }}]" id="Alpha_{{ $siswa->id }}"
                                                     value="Alpha" autocomplete="off">
-                                                <label for="Alpha_{{ $siswa->id }}" class="btn btn-outline-success">
+                                                <label for="Alpha_{{ $siswa->id }}" class="btn btn-outline-danger">
                                                     Alpha
                                                 </label>
+
+                                                {{-- <select class="form-select" name="presensi[{{ $siswa->id }}]">
+                                                    <option value="Hadir">Hadir</option>
+                                                    <option value="Izin">Izin</option>
+                                                    <option value="Sakit">Sakit</option>
+                                                    <option value="Alpha">Alpha</option>
+                                                </select> --}}
+
                                                 {{-- <select name="keterangan[{{ $siswa->id }}]"
                                                     class="form-control form-select">
                                                     <option name="keterangan[{{ $siswa->id }}] value="Hadir"
@@ -163,15 +149,16 @@
 
                                         </tr>
 
-                                    @empty
+                                        @empty
                                         {{-- <div class="alert alert-danger">
                                     Data Siswa belum Tersedia.
                                 </div> --}}
-                                    @endforelse
-                                </tbody>
+                                @endforelse
+                            </tbody>
 
-                            </table>
-                            <button type="submit" class="btn btn-success float-right">Simpan</button>
+                        </table>
+                        <button type="submit" class="btn btn-success col-12">Simpan</button>
+                            {{-- <button type="submit" class="btn btn-success float-right">Simpan</button> --}}
 
                         </div>
                     </div>

@@ -105,7 +105,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/presensis/{id}/edit', [PresensiController::class, 'edit'])->name('presensis.edit');
         Route::put('/presensis/{id}', [PresensiController::class, 'update'])->name('presensis.update');
         Route::delete('/presensis/{id}', [PresensiController::class, 'destroy'])->name('presensis.destroy');
+
         Route::get('/laporan', [PresensiController::class, 'laporan'])->name('laporan');
+        Route::post('/laporan/filter', [PresensiController::class, 'filter'])->name('laporan.filter');
+        Route::get('/laporan/export', [PresensiController::class, 'export'])->name('laporan.export');
+
+
         // Route::resource('/presensis', PresensiController::class);
 
         // Route::get('/presensis', [PresensiController::class, 'index'])->name('presensis.index');

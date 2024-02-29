@@ -81,7 +81,7 @@
                                         <td class="text-truncate">{{ $siswa->jenis_kelamin }}</td>
 
                                         <td class="text-truncate">
-                                            <form id="deleteForm" action="{{ route('siswas.destroy', $siswa->id) }}"
+                                            <form id="deleteForm{{ $siswa->id }}" action="{{ route('siswas.destroy', $siswa->id) }}"
                                                 method="POST">
                                                 {{-- <a class="btn btn-primary btn-sm"
                                                     href="{{ route('siswas.show', $siswa->id) }}">
@@ -102,7 +102,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-sm btn-danger"
-                                                    onclick="confirmDelete()">
+                                                    onclick="confirmDelete('{{ $siswa->id }}')">
                                                     <i class="fas fa-trash">
                                                     </i>
                                                     HAPUS</button>

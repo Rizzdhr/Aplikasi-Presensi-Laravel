@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('judul', 'Daftar Kelas')
+@section('judul', 'Presensi')
 
 
 @section('content')
@@ -18,7 +18,7 @@
                     <div class="col text-right">
                         <ol class="breadcrumb float-sm-right ">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Data Kelas</li>
+                            <li class="breadcrumb-item active">Presensi</li>
                         </ol>
                     </div>
                 </div>

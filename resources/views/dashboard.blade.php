@@ -49,8 +49,8 @@
                             <div class="icon">
                                 <i class="fas fa-school nav-icon"></i>
                             </div>
-                            <a href="{{ route('kelass.index') }}" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            {{-- <a href="{{ route('kelass.index') }}" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a> --}}
                         </div>
                     </div>
 
@@ -63,8 +63,8 @@
                             <div class="icon">
                                 <i class="fas fa-users nav-icon"></i>
                             </div>
-                            <a href="{{ route('siswas.index') }}" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            {{-- <a href="{{ route('siswas.index') }}" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a> --}}
                         </div>
                     </div>
 
@@ -77,8 +77,8 @@
                             <div class="icon">
                                 <i class="fas fa-user-tie nav-icon"></i>
                             </div>
-                            <a href="{{ route('gurus.index') }}" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            {{-- <a href="{{ route('gurus.index') }}" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a> --}}
                         </div>
                     </div>
 
@@ -91,8 +91,8 @@
                             <div class="icon">
                                 <i class="fas fa-graduation-cap nav-icon"></i>
                             </div>
-                            <a href="{{ route('jurusans.index') }}" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            {{-- <a href="{{ route('jurusans.index') }}" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a> --}}
                         </div>
                     </div>
 
@@ -105,8 +105,8 @@
                             <div class="icon">
                                 <i class="fas fa-book nav-icon"></i>
                             </div>
-                            <a href="{{ route('mapels.index') }}" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            {{-- <a href="{{ route('mapels.index') }}" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a> --}}
                         </div>
                     </div>
                 </div>

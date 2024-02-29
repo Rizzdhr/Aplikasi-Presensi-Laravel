@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="d-flex col-sm-6 align-items-center">
-                        <a href="{{ url()->previous() }}" class="btn btn-dark"><i class="fas fa-arrow-left nav-icon"></i></a>
+                        <a href="{{ route('mapels.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left nav-icon"></i></a>
                         <span class="ml-2"><h1>Tambah Data Mapel</h1></span>
                     </div>
                 </div>

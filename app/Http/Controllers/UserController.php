@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Guru;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\View\View;
@@ -18,11 +19,10 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permission:create-user|edit-user|delete-user', ['only' => ['index','show']]);
-        $this->middleware('permission:create-user', ['only' => ['create','store']]);
-        $this->middleware('permission:edit-user', ['only' => ['edit','update']]);
+        $this->middleware('permission:create-user|edit-user|delete-user', ['only' => ['index', 'show']]);
+        $this->middleware('permission:create-user', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit-user', ['only' => ['edit', 'update']]);
         $this->middleware('permission:delete-user', ['only' => ['destroy']]);
-
     }
 
     /**
@@ -31,9 +31,8 @@ class UserController extends Controller
     public function index(): View
     {
         return view('users.index', [
-            'users' => User::latest('id')->paginate(3)
+            'users' => User::latest('id')->orderBy('username', 'asc')->get()
         ]);
-
     }
 
     /**
@@ -42,6 +41,7 @@ class UserController extends Controller
     public function create(): View
     {
         return view('users.create', [
+            'dataGuru'  => Guru::all(),
             'roles' => Role::pluck('name')->all()
         ]);
     }
@@ -51,15 +51,28 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        $input = $request->all();
-        $input['password'] = Hash::make($request->password);
+        // mengecek apakah guru yang di daftarkan itu ada datanya di table guru
+        $guru = Guru::where('id', $request->validated('guru_id'))->first();
 
-        $user = User::create($input);
+        $user = User::create([
+            'guru_id' => $guru->id,
+            'username' => $guru->nama,
+            'email' => $request->validated('email'),
+            'password' => Hash::make($request->validated('password'))
+        ]);
+
+        // $input = $request->all();
+
+        // $input['guru_id'] = $guru->input('id');
+        // $input['username'] = $guru->input('nama');
+        // $input['email'] = $request->input('email');
+        // $input['password'] = Hash::make($request->password);
+        // $user = User::create($input);
         $user->assignRole($request->roles);
 
 
         return redirect()->route('users.index')
-                ->withSuccess('New user is added successfully.');
+            ->withSuccess('New user is added successfully.');
     }
 
     /**
@@ -77,18 +90,22 @@ class UserController extends Controller
      */
     public function edit(User $user): View
     {
-        // Check Only Super Admin can update his own Profile
-        if ($user->hasRole('Super Admin')){
-            if($user->id != auth()->user()->id){
-                abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
-            }
-        }
+        // // Check Only Super Admin can update his own Profile
+        // if ($user->hasRole('Admin')){
+        //     if($user->id != auth()->user()->id){
+        //         abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
+        //     }
+        // }
+
+            // dd(Guru::where('id', '!=', $user->guru_id)->get());
 
         return view('users.edit', [
             'user' => $user,
             'roles' => Role::pluck('name')->all(),
-            'userRoles' => $user->roles->pluck('name')->all()
+            'userRoles' => $user->roles->pluck('name')->all(),
+            'dataGuru' => Guru::where('id', '!=', $user->guru_id)->get()
         ]);
+
     }
 
     /**
@@ -96,20 +113,29 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $input = $request->all();
+        $guru = Guru::where('id', $user->guru_id)->first();
 
-        if(!empty($request->password)){
-            $input['password'] = Hash::make($request->password);
-        }else{
-            $input = $request->except('password');
-        }
+        $user->update([
+            'guru_id' => $guru->id,
+            'username' => $guru->nama,
+            'email' => $request->validated('email'),
+            'password'  => Hash::make($request->validated('password'))
+        ]);
 
-        $user->update($input);
+        // $input = $request->all();
+
+        // if (!empty($request->password)) {
+        //     $input['password'] = Hash::make($request->password);
+        // } else {
+        //     $input = $request->except('password');
+        // }
+
+        // $user->update($input);
 
         $user->syncRoles($request->roles);
 
-        return redirect()->back()
-                ->withSuccess('User is updated successfully.');
+        return redirect()->route('user.index')
+            ->withSuccess('User is updated successfully.');
     }
 
     /**
@@ -117,16 +143,16 @@ class UserController extends Controller
      */
     public function destroy(User $user): RedirectResponse
     {
-        // About if user is Super Admin or User ID belongs to Auth User
-        if ($user->hasRole('Super Admin') || $user->id == auth()->user()->id)
-        {
-            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
-        }
+        // // About if user is Super Admin or User ID belongs to Auth User
+        // if ($user->hasRole('Admin') || $user->id == auth()->user()->id)
+        // {
+        //     abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
+        // }
 
         $user->syncRoles([]);
         $user->delete();
         return redirect()->route('users.index')
-                ->withSuccess('User is deleted successfully.');
+            ->withSuccess('User is deleted successfully.');
     }
 }
 

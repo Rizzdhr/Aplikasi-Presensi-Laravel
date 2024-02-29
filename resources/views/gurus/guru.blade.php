@@ -67,8 +67,8 @@
                                         <td class="text-truncate">{{ $guru->mapel->nama_mapel }}</td>
                                         <td class="text-truncate">{{ $guru->jenis_kelamin }}</td>
                                         <td>
-                                            <form class="text-truncate" id="deleteForm" action="{{ route('gurus.destroy', $guru->id) }}"
-                                                method="POST" >
+                                            <form class="text-truncate" id="deleteForm{{ $guru->id }}"
+                                                action="{{ route('gurus.destroy', $guru->id) }}" method="POST">
                                                 {{-- <a href="{{ route('gurus.show', $guru->id) }}"
                                                     class="btn btn-primary btn-sm">
                                                     <i class="fas fa-folder">
@@ -86,7 +86,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger btn-sm"
-                                                    onclick="confirmDelete()">
+                                                    onclick="confirmDelete('{{ $guru->id }}')">
                                                     <i class="fas fa-trash">
                                                     </i>
                                                     HAPUS</button>

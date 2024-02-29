@@ -32,7 +32,14 @@
 
                         <div class="card-body">
                             <div class="mb-3 row">
-                                <label for="name" class="col-md-4 col-form-label text-md-end text-start"><strong>Username:</strong></label>
+                                <label for="name" class="col-md-4 col-form-label text-md-end text-start"><strong>NIP:</strong></label>
+                                <div class="col-md-6" style="line-height: 35px;">
+                                    {{ $user->guru->nip }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="name" class="col-md-4 col-form-label text-md-end text-start"><strong>Guru:</strong></label>
                                 <div class="col-md-6" style="line-height: 35px;">
                                     {{ $user->username }}
                                 </div>

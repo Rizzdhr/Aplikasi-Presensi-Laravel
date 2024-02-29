@@ -56,7 +56,7 @@ class SiswaController extends Controller
         // dd($request);
         //validate form
         $this->validate($request, [
-            'nisn'     => 'required|unique:siswas,nisn',
+            'nisn'     => 'required|size:10|unique:siswas,nisn',
             'nama'     => 'required',
             'kelas_id'  => 'required',
             'jenis_kelamin'  => 'required'
@@ -105,7 +105,7 @@ class SiswaController extends Controller
     {
         // Validate form data
         $this->validate($request, [
-            'nisn' => 'required|unique:siswas,nisn,' . $id,
+            'nisn' => 'required|size:10|unique:siswas,nisn,' . $id,
             'nama' => 'required',
             'kelas_id'  => 'required',
             'jenis_kelamin' => 'required'

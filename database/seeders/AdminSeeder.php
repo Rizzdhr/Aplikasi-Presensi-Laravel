@@ -16,19 +16,28 @@ class AdminSeeder extends Seeder
     {
         // Creating Admin User
         $admin = User::create([
+            'guru_id'   => 1,
             'username' => 'Rizky Dharmawan',
             'email' => 'rizky@gmail.com',
             'password' => Hash::make('rizky123')
         ]);
         $admin->assignRole('Admin');
 
-        // Creating Product Manager User
-        // $productManager = User::create([
-        //     'name' => 'Abdul Muqeet',
-        //     'email' => 'muqeet@allphptricks.com',
-        //     'password' => Hash::make('muqeet1234')
+        // // Creating Guru User
+        // $guru = User::create([
+        //     'username' => 'Abdul',
+        //     'email' => 'Abdul@gmail.com',
+        //     'password' => Hash::make('abdul123')
         // ]);
-        // $productManager->assignRole('Product Manager');
+        // $guru->assignRole('Guru');
+
+        // // Creating BK User
+        // $bk = User::create([
+        //     'username' => 'Muqeet',
+        //     'email' => 'muqeet@gmail.com',
+        //     'password' => Hash::make('muqeet123')
+        // ]);
+        // $bk->assignRole('BK');
     }
 }
 
