@@ -39,8 +39,47 @@
                             @method('PUT')
 
                             <div class="card-body">
-                                <input type="hidden" value="{{ old('kelas_id', $presensi->kelas_id) }}" name="kelas_id">
-                                <input type="hidden" value="{{ old('siswa_id', $presensi->siswa_id) }}" name="siswa_id">
+                                {{-- <input type="hidden" value="{{ old('kelas_id', $presensi->kelas_id) }}" name="kelas_id"> --}}
+                                {{-- <input type="hidden" value="{{ old('siswa_id', $presensi->siswa_id) }}" name="siswa_id"> --}}
+
+                                <div class="form-group">
+                                    <label for="">Nama Siswa</label>
+                                    <select name="siswa_id" class="form-control @error('siswa_id') is-invalid @enderror"
+                                        id="siswa" disabled>
+                                        @foreach ($siswas as $siswa)
+                                            <option value="{{ $siswa->id }}"
+                                                {{ old('siswa_id', $presensi->siswa_id) == $siswa->id ? 'selected' : '' }}>
+                                                {{ $siswa->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('siswa_id')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="">Kelas</label>
+                                    <select name="kelas_id" class="form-control @error('kelas_id') is-invalid @enderror"
+                                        id="kelas" disabled>
+                                        @foreach ($kelas as $kelasitem)
+                                            <option value="{{ $kelasitem->id }}"
+                                                {{ old('kelas_id', $presensi->kelas_id) == $kelasitem->id ? 'selected' : '' }}>
+                                                {{ $kelasitem->hasil_kelas }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('kelas_id')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
 
                                 <div class="form-group">
                                     <label for="">Guru</label>

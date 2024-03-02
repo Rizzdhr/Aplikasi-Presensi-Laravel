@@ -91,21 +91,21 @@
                                                 <input type="radio" class="btn-check"
                                                     name="presensi[{{ $siswa->id }}]" id="Izin_{{ $siswa->id }}"
                                                     value="Izin" autocomplete="off">
-                                                <label for="Izin_{{ $siswa->id }}" class="btn btn-outline-primary">
+                                                <label for="Izin_{{ $siswa->id }}" class="btn btn-outline-success">
                                                     Izin
                                                 </label>
 
                                                 <input type="radio" class="btn-check"
                                                     name="presensi[{{ $siswa->id }}]" id="Sakit_{{ $siswa->id }}"
                                                     value="Sakit" autocomplete="off">
-                                                <label for="Sakit_{{ $siswa->id }}" class="btn btn-outline-warning">
+                                                <label for="Sakit_{{ $siswa->id }}" class="btn btn-outline-success">
                                                     Sakit
                                                 </label>
 
                                                 <input type="radio" class="btn-check"
                                                     name="presensi[{{ $siswa->id }}]" id="Alpha_{{ $siswa->id }}"
                                                     value="Alpha" autocomplete="off">
-                                                <label for="Alpha_{{ $siswa->id }}" class="btn btn-outline-danger">
+                                                <label for="Alpha_{{ $siswa->id }}" class="btn btn-outline-success">
                                                     Alpha
                                                 </label>
 

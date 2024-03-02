@@ -72,9 +72,9 @@ class Kernel extends HttpKernel
 
     protected $routeMiddleware = [
         // ...
-        'Admin' => \App\Http\Middleware\OnlyAdmin::class,
-        'Guru' => \App\Http\Middleware\OnlyGuru::class,
-        'BK' => \App\Http\Middleware\OnlyBK::class,
+        'guru' => \App\Http\Middleware\GuruMiddleware::class,
+
+        // 'checkPresensiOwnership' => \App\Http\Middleware\CheckPresensiOwnership::class,
     ];
 
 }

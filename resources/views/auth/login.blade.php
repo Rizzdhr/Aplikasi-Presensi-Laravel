@@ -94,8 +94,8 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                title: 'Good job!',
-                text: '{{ $message }}',
+                title: '{{ $message }}',
+                // text: '{{ $message }}',
             })
         </script>
     @endif

@@ -75,14 +75,14 @@
                                         </td>
                                         <td class="text-truncate">
                                             <form id="deleteForm{{ $user->id }}"
-                                                action="{{ route('user.destroy', $user->id) }}" method="POST">
+                                                action="{{ route('users.destroy', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
 
-                                                <a href="{{ route('users.show', $user->id) }}"
+                                                {{-- <a href="{{ route('users.show', $user->id) }}"
                                                     class="btn btn-primary btn-sm"> <i class="fas fa-folder">
                                                     </i>
-                                                    Show</a>
+                                                    Show</a> --}}
 
                                                 {{-- @if (in_array('Admin', $user->getRoleNames()->toArray() ?? []))
                                                     @if (Auth::user()->hasRole('Admin'))

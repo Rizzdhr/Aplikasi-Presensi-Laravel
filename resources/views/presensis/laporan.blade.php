@@ -99,11 +99,13 @@
                                         keterangan
                                     </th>
                                     <th>
-                                        Bln/Tgl/Thn
+                                        Tgl/Bln/Thn
                                     </th>
+                                    @can('presensi')
                                     <th style="">
                                         Action
                                     </th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,21 +119,18 @@
                                         <td class="text-truncate">{{ $presensi->mapels->nama_mapel }}</td>
                                         <td>{{ $presensi->presensi }}</td>
                                         <td class="text-truncate">
-                                            {{ $presensi->created_at ? $presensi->created_at->format('d F Y') : 'N/A ' }}
+                                            {{ $presensi->created_at ?  \Carbon\Carbon::parse($presensi->created_at)->isoFormat('D MMMM Y') : 'N/A ' }}
                                         </td>
+                                        @can('presensi')
                                         <td>
                                             <form id="deleteForm{{ $presensi->id }}"x`
                                                 action="{{ route('presensis.destroy', $presensi->id) }}" method="POST">
 
-                                                {{-- @can('edit_data') --}}
                                                 <a href="{{ route('presensis.edit', $presensi->id) }}"
                                                     class="btn btn-info btn-sm">
                                                     <i class="fas fa-pencil-alt">
                                                     </i>Edit</a>
 
-                                                {{-- @endcan --}}
-
-                                                {{-- @can('delete_data') --}}
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" onclick="confirmDelete('{{ $presensi->id }}')"
@@ -141,6 +140,7 @@
                                                     HAPUS</button>
                                             </form>
                                         </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                             </tbody>

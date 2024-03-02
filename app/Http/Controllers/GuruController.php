@@ -19,6 +19,8 @@ class GuruController extends Controller
 
     public function index(): View
     {
+        $this->authorize('view-data');
+
         $gurus = Guru::orderBy('nama', 'asc')->get();
 
         $counter = 1;
@@ -33,7 +35,7 @@ class GuruController extends Controller
      */
     public function create(): View
     {
-        // $this->authorize('create_data');
+        $this->authorize('create-data');
         $mapels = Mapel::all();
 
         return view('gurus.create', compact('mapels'));
@@ -75,7 +77,7 @@ class GuruController extends Controller
      */
     public function edit(string $id): View
     {
-        // $this->authorize('edit_data');
+        $this->authorize('edit-data');
         //get guru by ID
         $guru = Guru::findOrFail($id);
 
@@ -127,7 +129,7 @@ class GuruController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        // $this->authorize('delete_data');
+        $this->authorize('delete-data');
         $guru = Guru::findOrFail($id);
 
         // Periksa apakah guru masih memiliki user terkait

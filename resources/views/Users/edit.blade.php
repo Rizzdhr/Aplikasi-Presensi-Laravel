@@ -27,30 +27,43 @@
                             <h3 class="card-title">User</h3>
                         </div>
 
-                        <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
                             <div class="card-body">
-                                <label for="guru_id">Guru</label>
-                                <select class="selectpicker form-control mb-3" data-live-search="true" id="guru_id"
-                                    name="guru_id" {{ $dataGuru->count() < 0 ? 'disabled' : '' }}>
-                                    @foreach ($dataGuru as $guru)
-                                        <option data-tokens="{{ $guru->id }}"
-                                            {{ (int) old('guru_id', $user->guru_id) == (int) $guru->id ? 'selected' : '' }}
-                                            value="{{ $guru->id }}">
-                                            {{ $guru->nama }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <div class="form-group">
+                                    <label for="guru_id">Guru</label>
+                                    <select class="selectpicker form-control" data-live-search="true" id="guru_id"
+                                        name="guru_id" {{ $dataGuru->count() < 0 ? 'disabled' : '' }}>
+                                        <option selected disabled>--PILIH--</option>
+                                        @foreach ($dataGuru as $guru)
+                                            <option data-tokens="{{ $guru->id }}" value="{{ $guru->id }}"
+                                                {{  (int) old('guru_id', $user->guru_id) == (int) $guru->id ? 'selected' : '' }}>
+                                                {{ $guru->nama . ' (' . $guru->nip . ') ' }}
+                                            </option>
+                                        @endforeach
+                                    </select>
 
-                                @error('guru_id')
-                                    <div class="text-danger mt-1">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                    {{-- <label >Guru</label>
+                                    <select class="selectpicker form-control" name="guru_id">
+                                        <option selected disabled>-Pilih Guru-</option>
+                                        @foreach ($dataGuru as $guru)
+                                            <option data-tokens="{{ $guru->id }}" value="{{ $guru->id }}"
+                                                {{ $user->guru_id == $guru->id ? 'selected' : '' }}>
+                                                {{ $guru->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select> --}}
 
-                            {{-- <div class="form-group">
+                                    @error('guru_id')
+                                        <div class="text-danger mt-1">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                {{-- <div class="form-group">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control @error('username') is-invalid @enderror"
                                         id="username" name="username" value="{{ $user->username }}">
@@ -59,40 +72,29 @@
                                     @endif
                                 </div> --}}
 
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                    id="email" name="email" value="{{ $user->email }}">
-                                @if ($errors->has('email'))
-                                    <span class="text-danger">{{ $errors->first('email') }}</span>
-                                @endif
-                            </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                        id="email" name="email" value="{{ $user->email }}">
+                                    @if ($errors->has('email'))
+                                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    @endif
+                                </div>
 
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                    id="password" name="password">
-                                @if ($errors->has('password'))
-                                    <span class="text-danger">{{ $errors->first('password') }}</span>
-                                @endif
-                            </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        id="password" name="password">
+                                    @if ($errors->has('password'))
+                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                    @endif
+                                </div>
 
-                            <div class="form-group">
-                                <label for="roles">Roles</label>
-                                <div class="d-flex">
-                                    @forelse ($roles as $role)
-                                        @if ($role != 'Admin')
-                                            <div class="form-check me-3">
-                                                <input class="form-check-input @error('roles') is-invalid @enderror"
-                                                    type="checkbox" value="{{ $role }}" id="{{ $role }}"
-                                                    name="roles[]"
-                                                    {{ in_array($role, $userRoles ?? []) ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="{{ $role }}">
-                                                    {{ $role }}
-                                                </label>
-                                            </div>
-                                        @else
-                                            @if (Auth::user()->hasRole('Admin'))
+                                <div class="form-group">
+                                    <label for="roles">Roles</label>
+                                    <div class="d-flex">
+                                        @forelse ($roles as $role)
+                                            @if ($role != 'Admin')
                                                 <div class="form-check me-3">
                                                     <input class="form-check-input @error('roles') is-invalid @enderror"
                                                         type="checkbox" value="{{ $role }}"
@@ -102,28 +104,39 @@
                                                         {{ $role }}
                                                     </label>
                                                 </div>
+                                            @else
+                                                @if (Auth::user()->hasRole('Admin'))
+                                                    <div class="form-check me-3">
+                                                        <input class="form-check-input @error('roles') is-invalid @enderror"
+                                                            type="checkbox" value="{{ $role }}"
+                                                            id="{{ $role }}" name="roles[]"
+                                                            {{ in_array($role, $userRoles ?? []) ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="{{ $role }}">
+                                                            {{ $role }}
+                                                        </label>
+                                                    </div>
+                                                @endif
                                             @endif
-                                        @endif
-                                    @empty
-                                        <!-- Handle empty roles -->
-                                    @endforelse
+                                        @empty
+                                            <!-- Handle empty roles -->
+                                        @endforelse
 
-                                    @if ($errors->has('roles'))
-                                        <span class="text-danger">{{ $errors->first('roles') }}</span>
-                                    @endif
+                                        @if ($errors->has('roles'))
+                                            <span class="text-danger">{{ $errors->first('roles') }}</span>
+                                        @endif
+                                    </div>
+
                                 </div>
 
+                                <button type="submit" class="btn btn-success">Simpan</button>
                             </div>
 
-                            <button type="submit" class="btn btn-success">Simpan</button>
+                        </form>
                     </div>
-
-                    </form>
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
+                <!-- /.card -->
             </div>
-            <!-- /.card -->
-    </div>
     </div>
 
     </section>

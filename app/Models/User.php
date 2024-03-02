@@ -48,7 +48,7 @@ class User extends Authenticatable
         return $this->hasMany(presensi::class, 'user_id');
     }
 
-    public function Guru()
+    public function guru()
     {
         return $this->belongsTo(Guru::class, 'guru_id');
     }

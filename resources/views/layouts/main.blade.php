@@ -24,18 +24,7 @@
     <link href="https://cdn.datatables.net/fixedheader/3.4.0/css/fixedHeader.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/scroller/2.3.0/css/scroller.bootstrap5.min.css" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> --}}
-    {{-- <link href="https://cdn.datatables.net/autofill/2.7.0/css/autoFill.bootstrap5.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/buttons/3.0.0/css/buttons.bootstrap5.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/colreorder/2.0.0/css/colReorder.bootstrap5.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/fixedcolumns/5.0.0/css/fixedColumns.bootstrap5.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/fixedheader/4.0.0/css/fixedHeader.bootstrap5.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.bootstrap5.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/scroller/2.4.0/css/scroller.bootstrap5.min.css" rel="stylesheet"> --}}
-
-    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.0/css/buttons.dataTables.css">
-    <!-- Google Font: Source Sans Pro --> --}}
+    <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -124,9 +113,13 @@
                     emptyTable: "Data belum ada"
                 },
                 buttons: [
-                    'copy',
+                    {
+                        extend: 'copy',
+                        className: 'btn btn-secondary mr-1'
+                    },
                     {
                         extend: 'excelHtml5',
+                        className: 'btn btn-success mr-1',
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4, 5, 6, 7],
                             modifier: {
@@ -139,12 +132,14 @@
                     },
                     {
                         extend: 'print',
+                        className: 'btn btn-info mr-1',
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4, 5, 6, 7],
                         }
                     },
                     {
                         extend: 'pdf',
+                        className: 'btn btn-danger',
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4, 5, 6, 7],
                         }
@@ -153,83 +148,14 @@
             });
         </script>
 
-        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-        <script src="https://cdn.datatables.net/2.0.1/js/dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/2.0.1/js/dataTables.bootstrap5.min.js"></script>
-        <script src="https://cdn.datatables.net/autofill/2.7.0/js/dataTables.autoFill.min.js"></script>
-        <script src="https://cdn.datatables.net/autofill/2.7.0/js/autoFill.bootstrap5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/3.0.0/js/dataTables.buttons.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.bootstrap5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.colVis.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.print.min.js"></script>
-        <script src="https://cdn.datatables.net/colreorder/2.0.0/js/dataTables.colReorder.min.js"></script>
-        <script src="https://cdn.datatables.net/fixedcolumns/5.0.0/js/dataTables.fixedColumns.min.js"></script>
-        <script src="https://cdn.datatables.net/fixedheader/4.0.0/js/dataTables.fixedHeader.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/3.0.0/js/responsive.bootstrap5.js"></script>
-        <script src="https://cdn.datatables.net/scroller/2.4.0/js/dataTables.scroller.min.js"></script>
-        <script>
-            $('#tabledata').DataTable({
-                    responsive: true,
-                    lengthChange: false,
-                    searching: true,
-                    paging: false,
-                    info: false,
-                    ordering: false,
-                    dom: 'Bfrtip',
-                    language: {
-                        emptyTable: "Data belum ada"
-                    },
-                    buttons: [
-                        'copy',
-                        {
-                            extend: 'excelHtml5',
-                            exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5, 6, 7],
-                                modifier: {
-                                    selected: true
-                                }
-                            },
-                            customize: function(xlsx) {
-                                var sheet = xlsx.xl.worksheets['Laporan absen siswa.xml'];
-                            }
-                        },
-                        {
-                            extend: 'print',
-                            exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5, 6, 7],
-                            }
-                        },
-                        {
-                            extend: 'pdf',
-                            exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5, 6, 7],
-                            }
-                        }
-                    ]
-            });
-        </script> --}}
-
-        {{-- <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-        <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
-        <script>
-            let table = new DataTable('#tabledata');
-        </script> --}}
-
         {{-- sweetalert --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         @if ($message = Session::get('success'))
             <script>
                 Swal.fire({
                     icon: 'success',
-                    title: 'Good job!',
-                    text: '{{ $message }}',
+                    title: '{{ $message }}',
+                    // text: '{{ $message }}',
                 })
             </script>
         @endif
@@ -269,13 +195,13 @@
             document.getElementById('logoutButton').addEventListener('click', function() {
                 // Show SweetAlert confirmation dialog
                 Swal.fire({
-                    title: "Are you sure you want to log out?",
-                    text: "You will be logged out of your account.",
+                    title: "Kamu yakin ingin log out?",
+                    // text: "You will be logged out of your account.",
                     icon: "question",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, log out"
+                    confirmButtonText: "Ya, log out"
                 }).then((result) => {
                     // If the user clicks the confirm button
                     if (result.isConfirmed) {
@@ -291,13 +217,13 @@
             document.getElementById('logoutButton2').addEventListener('click', function() {
                 // Show SweetAlert confirmation dialog
                 Swal.fire({
-                    title: "Are you sure you want to log out?",
-                    text: "You will be logged out of your account.",
+                    title: "Kamu yakin ingin log out?",
+                    // text: "You will be logged out of your account.",
                     icon: "question",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, log out"
+                    confirmButtonText: "Ya, log out"
                 }).then((result) => {
                     // If the user clicks the confirm button
                     if (result.isConfirmed) {

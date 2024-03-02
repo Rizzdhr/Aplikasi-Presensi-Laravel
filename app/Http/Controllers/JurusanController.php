@@ -16,6 +16,8 @@ class JurusanController extends Controller
      */
     public function index(): View
     {
+        $this->authorize('view-data');
+
         $jurusans = Jurusan::orderBy('nama_jurusan', 'asc')->get();
         $counter = 1;
         return view('jurusans.jurusan', compact('jurusans', 'counter'));
@@ -28,7 +30,8 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        // $this->authorize('create_data');
+        $this->authorize('create-data');
+
         return view('jurusans.create');
     }
 
@@ -66,7 +69,8 @@ class JurusanController extends Controller
      */
     public function edit($id)
     {
-        // $this->authorize('edit_data');
+        $this->authorize('edit-data');
+
         $jurusan = Jurusan::findOrFail($id);
         return view('jurusans.edit', compact('jurusan'));
     }
@@ -100,7 +104,7 @@ class JurusanController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        // $this->authorize('delete_data');
+        $this->authorize('delete-data');
         $jurusan = Jurusan::findOrFail($id);
 
         if ($jurusan->kelas()->exists()) {

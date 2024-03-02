@@ -11,10 +11,6 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>Data Siswa</h1>
-
-                        {{-- @can('create_data') --}}
-
-                        {{-- @endcan --}}
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -31,19 +27,12 @@
 
             <!-- Default box -->
             <div class="card">
-                <div class="card-header">
-                    <a href="{{ route('siswas.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
-                    <!-- export -->
-                    {{-- <a href="{{ route('siswas.export') }}" class="btn btn-success">Export</a> --}}
-                    {{-- import --}}
-                    {{-- <form id="importForm" action="{{ route('siswas.import') }}" method="post" style="display: none;">
-                        @csrf
-                        <input type="hidden" name="file" value="automatic-import">
-                    </form> --}}
+                @can('create-data')
+                    <div class="card-header">
+                        <a href="{{ route('siswas.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
+                    </div>
+                @endcan
 
-                    {{-- <button id="importButton" class="btn btn-primary">Import Data</button> --}}
-
-                </div>
                 <div class="card-body ">
                     <div class="table-responsive">
                         <table id="tabledata" class="table projects">
@@ -64,9 +53,11 @@
                                     <th class="text-truncate" style="">
                                         Jenis Kelamin
                                     </th>
-                                    <th style="">
-                                        Action
-                                    </th>
+                                    @can('edit-data|delete-data')
+                                        <th style="">
+                                            Action
+                                        </th>
+                                    @endcan
                                 </tr>
                             </thead>
 
@@ -80,35 +71,34 @@
                                         {{-- <td>{{ $siswa->jurusan->nama_jurusan }}</td> --}}
                                         <td class="text-truncate">{{ $siswa->jenis_kelamin }}</td>
 
-                                        <td class="text-truncate">
-                                            <form id="deleteForm{{ $siswa->id }}" action="{{ route('siswas.destroy', $siswa->id) }}"
-                                                method="POST">
-                                                {{-- <a class="btn btn-primary btn-sm"
+                                        @can('edit-data|delete-data')
+                                            <td class="text-truncate">
+                                                <form id="deleteForm{{ $siswa->id }}"
+                                                    action="{{ route('siswas.destroy', $siswa->id) }}" method="POST">
+                                                    {{-- <a class="btn btn-primary btn-sm"
                                                     href="{{ route('siswas.show', $siswa->id) }}">
                                                     <i class="fas fa-folder">
                                                     </i>
                                                     View
                                                 </a> --}}
 
-                                                {{-- @can('edit_data') --}}
-                                                <a href="{{ route('siswas.edit', $siswa->id) }}"
-                                                    class="btn btn-info btn-sm"><i class="fas fa-pencil-alt">
-                                                    </i>
-                                                    EDIT
-                                                </a>
-                                                {{-- @endcan --}}
+                                                    <a href="{{ route('siswas.edit', $siswa->id) }}"
+                                                        class="btn btn-info btn-sm"><i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        EDIT
+                                                    </a>
 
-                                                {{-- @can('delete_data') --}}
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" class="btn btn-sm btn-danger"
-                                                    onclick="confirmDelete('{{ $siswa->id }}')">
-                                                    <i class="fas fa-trash">
-                                                    </i>
-                                                    HAPUS</button>
-                                            </form>
-                                            {{-- @endcan --}}
-                                        </td>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button" class="btn btn-sm btn-danger"
+                                                        onclick="confirmDelete('{{ $siswa->id }}')">
+                                                        <i class="fas fa-trash">
+                                                        </i>
+                                                        HAPUS</button>
+                                                </form>
+                                            </td>
+                                        @endcan
+
                                     </tr>
                                 @empty
                                     {{-- <div class="alert alert-danger">

@@ -16,6 +16,8 @@ class MapelController extends Controller
      */
     public function index(): View
     {
+        $this->authorize('view-data');
+
         $mapels = Mapel::orderBy('nama_mapel', 'asc')->get();
         $counter = 1;
         return view('mapels.mapel', compact('mapels', 'counter'));
@@ -28,7 +30,8 @@ class MapelController extends Controller
      */
     public function create()
     {
-        // $this->authorize('create_data');
+        $this->authorize('create-data');
+
         return view('mapels.create');
     }
 
@@ -66,7 +69,7 @@ class MapelController extends Controller
      */
     public function edit($id)
     {
-        // $this->authorize('edit_data');
+        $this->authorize('edit-data');
 
         $mapel = Mapel::findOrFail($id);
         return view('mapels.edit', compact('mapel'));
@@ -101,7 +104,7 @@ class MapelController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        // $this->authorize('delete_data');
+        $this->authorize('delete-data');
 
         $mapel = Mapel::findOrFail($id);
 

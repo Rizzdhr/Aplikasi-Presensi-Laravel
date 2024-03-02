@@ -27,9 +27,9 @@
             </a>
             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                 <!-- Opsi Logout -->
-                <form id="logoutForm" action="{{ route('logout') }}" class="dropdown-item" method="GET">
+                <form id="" action="{{ route('logout') }}" class="dropdown-item" method="GET">
                     @csrf
-                    <a href="{{ route('logout') }}" type="button" id="logoutButton" class="dropdown-item" >
+                    <a href="{{ route('logout') }}" type="button" id="" class="dropdown-item" >
                         <i class="fas fa-sign-out-alt" > </i> Logout
                     </a>
                     {{-- <i type="button" id="logoutButton"  class="fas fa-sign-out-alt"> </i> Logout --}}

@@ -21,6 +21,8 @@ class PresensiController extends Controller
 {
     public function index(): View
     {
+        $this->authorize('presensi');
+
         $presensis = Kelas::orderBy('tingkat_kelas')
             ->orderBy('jurusan_id')
             ->orderBy('nomor_kelas')
@@ -31,6 +33,8 @@ class PresensiController extends Controller
 
     public function show($kelas_id)
     {
+        $this->authorize('presensi');
+
         $kelas = Kelas::where('id', $kelas_id)->get();
         $siswas = Siswa::where('kelas_id', $kelas_id)->orderBy('nama', 'asc')->get();
         $users = User::all();
@@ -121,13 +125,10 @@ class PresensiController extends Controller
         return view('presensis.laporan', compact('presensis', 'kelas'));
     }
 
-    // public function export()
-    // {
-    //     return Excel::download(new PresensiExport(), 'presensi.xlsx');
-    // }
-
     public function edit($id)
     {
+        $this->authorize('presensi');
+
         $presensi = Presensi::with('siswas', 'kelas')->where('user_id', Auth::user()->id)->findOrFail($id);
         $users = User::all();
         $kelas = Kelas::all();
@@ -140,8 +141,8 @@ class PresensiController extends Controller
     {
         // dd($request->presensi);
         $this->validate($request, [
-            'kelas_id'  => 'required',
-            'siswa_id'  => 'required',
+            // 'kelas_id'  => 'required',
+            // 'siswa_id'  => 'required',
             'user_id'   => 'required',
             'mapel_id'  => 'required',
             'presensi' => 'required',
@@ -150,8 +151,8 @@ class PresensiController extends Controller
         $presensi = Presensi::findOrFail($id);
 
         $presensi->update([
-            'kelas_id'  => $request->kelas_id,
-            'siswa_id'  => $request->siswa_id,
+            // 'kelas_id'  => $request->kelas_id,
+            // 'siswa_id'  => $request->siswa_id,
             'user_id'   => $request->user_id,
             'mapel_id'  => $request->mapel_id,
             'presensi' => $request->presensi,
@@ -165,89 +166,12 @@ class PresensiController extends Controller
 
     public function destroy(string $id)
     {
-        $presensi = Presensi::findOrFail($id);
+        $this->authorize('presensi');
+
+        $presensi = Presensi::where('user_id', Auth::user()->id)->findOrFail($id);
 
         $presensi->delete();
 
         return redirect()->route('laporan')->with(['success' => 'Data Berhasil Dihapus']);
     }
-
-
-    // public function filter(Request $request, $id)
-    // {
-    //     $tanggal = $request->input('tanggal');
-    //     // $mapelId = $request->input('mapel_id');
-
-    //     // Lakukan filter pada data presensi berdasarkan tanggal dan mapel
-    //     $presensis = Presensi::when($tanggal, function ($query) use ($tanggal) {
-    //         return $query->whereDate('tanggal', $tanggal);
-    //     });
-    //         // ->when($mapelId, function ($query) use ($mapelId) {
-    //         //     return $query->where('mapel_id', $mapelId);
-    //         // })
-    //         // ->get();
-
-    //     return view('presensis.show', compact('presensis'));
-    // }
-
-
-    // public function store(Request $request, $id)
-    // {
-    //     $presensis = Kelas::find($id);
-
-    //     // Validasi form jika diperlukan
-    //     $request->validate([
-    //         'siswa_id' => 'required|exists:siswas,id',
-    //         'mapel_id' => 'required',
-    //         'keterangan' => 'required|in:Hadir,Izin,Sakit,Alpha',
-    //     ]);
-
-    //     // Simpan data presensi ke dalam database
-    //     Presensi::create([
-    //         'siswa_id' => $request->input('siswa_id'),
-    //         'mapel_id' => $request->input('mapel_id'),
-    //         'keterangan' => $request->input('keterangan'),
-    //         // Tambahkan kolom lain sesuai kebutuhan
-    //     ]);
-
-    //     // Redirect atau berikan respons sesuai kebutuhan
-    //     return redirect()->route('presensis.show', ['id' => $presensis->id] )->with('success', 'Data presensi berhasil disimpan.');
-    // }
 }
-        // $request->validate([
-        //     'tanggal' => 'required|date',
-        //     'mapel_id' => 'required|exists:mapels,id',
-        //     'status' => 'required|in:Hadir,Izin,Sakit,Alpha',
-        // ]);
-
-        // try {
-        //     // Mulai transaksi database
-        //     DB::beginTransaction();
-
-        //     foreach ($request->siswa as $siswaData) {
-        //         // Simpan data presensi untuk setiap siswa
-        //         Presensi::updateOrCreate(
-        //             [
-        //                 'siswa_id' => $siswaData['id'],
-        //                 'mapel_id' => $request->mapel_id,
-        //                 'tanggal' => $request->tanggal,
-        //             ],
-        //             [
-        //                 'status' => $siswaData['status'],
-        //                 // Tambahkan field lain jika ada
-        //             ]
-        //         );
-        //     }
-
-        //     // Commit transaksi database
-        //     DB::commit();
-
-        //     return redirect()->route('presensis.index', $kelas_id)->with('success', 'Presensi berhasil disimpan');
-        // } catch (\Exception $e) {
-        //     // Rollback transaksi database jika terjadi kesalahan
-        //     DB::rollBack();
-
-        //     return redirect()->route('presensis.index', $kelas_id)->with('error', 'Gagal menyimpan presensi');
-        // }
-
-    // ...        }
