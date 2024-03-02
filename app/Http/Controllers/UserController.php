@@ -61,13 +61,6 @@ class UserController extends Controller
             'password' => Hash::make($request->validated('password'))
         ]);
 
-        // $input = $request->all();
-
-        // $input['guru_id'] = $guru->input('id');
-        // $input['username'] = $guru->input('nama');
-        // $input['email'] = $request->input('email');
-        // $input['password'] = Hash::make($request->password);
-        // $user = User::create($input);
         $user->assignRole($request->roles);
 
 
@@ -90,14 +83,7 @@ class UserController extends Controller
      */
     public function edit(User $user): View
     {
-        // // Check Only Super Admin can update his own Profile
-        // if ($user->hasRole('Admin')){
-        //     if($user->id != auth()->user()->id){
-        //         abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
-        //     }
-        // }
-
-            // dd(Guru::where('id', '!=', $user->guru_id)->get());
+        // dd(Guru::where('id', '!=', $user->guru_id)->get());
 
         return view('users.edit', [
             'user' => $user,
@@ -106,7 +92,6 @@ class UserController extends Controller
             'dataGuru' =>  Guru::all()
             // 'dataGuru' => Guru::find($user->guru_id)->where('id', '!=', $user->guru_id)->get()
         ]);
-
     }
 
     /**
@@ -120,22 +105,16 @@ class UserController extends Controller
             'guru_id' => $guru->id,
             'username' => $guru->nama,
             'email' => $request->validated('email'),
-            'password'  => Hash::make($request->validated('password'))
         ]);
 
-        // $input = $request->all();
-
-        // if (!empty($request->password)) {
-        //     $input['password'] = Hash::make($request->password);
-        // } else {
-        //     $input = $request->except('password');
-        // }
-
-        // $user->update($input);
+        // Isi password hanya jika diinputkan
+        if ($request->filled('password')) {
+            $userData['password'] = Hash::make($request->validated('password'));
+        }
 
         $user->syncRoles($request->roles);
 
-        return redirect()->route('user.index')
+        return redirect()->route('users.index')
             ->withSuccess('User berhasil di update');
     }
 
@@ -144,11 +123,6 @@ class UserController extends Controller
      */
     public function destroy(User $user): RedirectResponse
     {
-        // // About if user is Super Admin or User ID belongs to Auth User
-        // if ($user->hasRole('Admin') || $user->id == auth()->user()->id)
-        // {
-        //     abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
-        // }
 
         $user->syncRoles([]);
         $user->delete();

@@ -150,9 +150,9 @@
                                         </tr>
 
                                         @empty
-                                        {{-- <div class="alert alert-danger">
+                                        <div class="alert alert-danger">
                                     Data Siswa belum Tersedia.
-                                </div> --}}
+                                </div>
                                 @endforelse
                             </tbody>
 

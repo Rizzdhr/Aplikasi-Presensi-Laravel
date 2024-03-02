@@ -94,9 +94,9 @@
         <script src="https://cdn.datatables.net/colreorder/1.7.0/js/dataTables.colReorder.min.js"></script>
         <script src="https://cdn.datatables.net/fixedcolumns/4.3.0/js/dataTables.fixedColumns.min.js"></script>
         <script src="https://cdn.datatables.net/fixedheader/3.4.0/js/dataTables.fixedHeader.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.js"></script>
-        <script src="https://cdn.datatables.net/scroller/2.3.0/js/dataTables.scroller.min.js"></script>
+        {{-- <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script> --}}
+        {{-- <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.js"></script> --}}
+        {{-- <script src="https://cdn.datatables.net/scroller/2.3.0/js/dataTables.scroller.min.js"></script> --}}
         <script>
             let table = new DataTable('#tabledata');
         </script>
@@ -113,13 +113,14 @@
                     emptyTable: "Data belum ada"
                 },
                 buttons: [
-                    {
-                        extend: 'copy',
-                        className: 'btn btn-secondary mr-1'
-                    },
+                    // {
+                    //     extend: 'copy',
+                    //     className: 'btn btn-secondary mr-1'
+                    // },
                     {
                         extend: 'excelHtml5',
                         className: 'btn btn-success mr-1',
+                        text: '<i class="fas fa-print"></i> Cetak', // Set your custom button text here
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4, 5, 6, 7],
                             modifier: {
@@ -128,22 +129,23 @@
                         },
                         customize: function(xlsx) {
                             var sheet = xlsx.xl.worksheets['Laporan absen siswa.xml'];
+
                         }
                     },
-                    {
-                        extend: 'print',
-                        className: 'btn btn-info mr-1',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7],
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        className: 'btn btn-danger',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7],
-                        }
-                    }
+                    // {
+                    //     extend: 'print',
+                    //     className: 'btn btn-info mr-1',
+                    //     exportOptions: {
+                    //         columns: [0, 1, 2, 3, 4, 5, 6, 7],
+                    //     }
+                    // },
+                    // {
+                    //     extend: 'pdf',
+                    //     className: 'btn btn-danger',
+                    //     exportOptions: {
+                    //         columns: [0, 1, 2, 3, 4, 5, 6, 7],
+                    //     }
+                    // }
                 ]
             });
         </script>

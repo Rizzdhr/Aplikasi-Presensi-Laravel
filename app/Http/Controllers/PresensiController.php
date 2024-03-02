@@ -64,14 +64,36 @@ class PresensiController extends Controller
         ]);
 
         foreach ($request->presensi as $siswa_id => $presensi) {
-            Presensi::create([
-                'kelas_id' => $request->kelas_id,
-                'siswa_id'  => $siswa_id,
-                'user_id'   => $request->user_id,
-                'mapel_id'  => $request->mapel_id,
-                'presensi' => $presensi
+            // Mencari atau membuat presensi berdasarkan kelas, siswa, user, dan tanggal
+            $existingPresensi = Presensi::firstOrNew([
+                'kelas_id'    => $request->kelas_id,
+                'siswa_id'    => $siswa_id,
+                'mapel_id'    => $request->mapel_id,
+                'user_id'     => $request->user_id,
+                'created_at'  => now()->format('Y-m-d'),
             ]);
+
+            // Set nilai presensi
+            $existingPresensi->presensi = $presensi;
+
+            // Jika data baru, simpan
+            if (!$existingPresensi->exists) {
+                $existingPresensi->save();
+            } else {
+                // Jika data sudah ada, Anda dapat menangani kasus ini sesuai kebutuhan
+                // Misalnya, tampilkan pesan kesalahan atau lakukan tindakan tertentu.
+                return back()->with(['failed' => 'Presensi sudah ada untuk siswa ini pada hari ini dengan mapel yang sama.']);
+            }
         }
+        // foreach ($request->presensi as $siswa_id => $presensi) {
+        //     Presensi::create([
+        //         'kelas_id' => $request->kelas_id,
+        //         'siswa_id'  => $siswa_id,
+        //         'user_id'   => $request->user_id,
+        //         'mapel_id'  => $request->mapel_id,
+        //         'presensi' => $presensi
+        //     ]);
+        // }
         return redirect()->route('laporan')->with(['success' => 'Data Berhasil Ditambahkan']);
     }
 
