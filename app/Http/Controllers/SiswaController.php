@@ -133,7 +133,7 @@ class SiswaController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        $this->authorize('delete_data');
+        $this->authorize('delete_data');    
 
         //get siswa by ID
         $siswa = Siswa::findOrFail($id);
