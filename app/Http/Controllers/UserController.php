@@ -99,18 +99,21 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
+
         $guru = Guru::where('id', $user->guru_id)->first();
 
-        $user->update([
+        $userData = [
             'guru_id' => $guru->id,
             'username' => $guru->nama,
             'email' => $request->validated('email'),
-        ]);
+        ];
 
         // Isi password hanya jika diinputkan
         if ($request->filled('password')) {
             $userData['password'] = Hash::make($request->validated('password'));
         }
+
+        $user->update($userData);
 
         $user->syncRoles($request->roles);
 
