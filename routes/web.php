@@ -60,8 +60,7 @@ Route::middleware(['auth'])->group(function () {
         // data siswa
         Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswas.create');
         Route::post('/siswa', [SiswaController::class, 'store'])->name('siswas.store');
-        // Route::get('/siswa/export', [SiswaController::class, 'export'])->name('siswas.export');
-        // Route::post('/siswa/import', [SiswaController::class, 'import'])->name('siswas.import');
+        Route::post('/siswa/import', [SiswaController::class, 'import'])->name('siswas.import');
         Route::get('/siswa/{siswa}', [SiswaController::class, 'show'])->name('siswas.show');
         Route::get('/siswa/{siswa}/edit', [SiswaController::class, 'edit'])->name('siswas.edit');
         Route::put('/siswa/{siswa}', [SiswaController::class, 'update'])->name('siswas.update');
@@ -91,7 +90,6 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/jurusan/{jurusan}', [JurusanController::class, 'update'])->name('jurusans.update');
         Route::delete('/jurusan/{jurusan}', [JurusanController::class, 'destroy'])->name('jurusans.destroy');
 
-        // Route::get('/laporan/export', [PresensiController::class, 'export'])->name('laporan.export');
     });
     // });
     Route::get('/dashboard', [DahsboardController::class, 'dashboard'])->name('dashboard');
@@ -109,36 +107,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/laporan', [PresensiController::class, 'laporan'])->name('laporan');
     Route::post('/laporan/filter', [PresensiController::class, 'filter'])->name('laporan.filter');
+    Route::get('/laporan/destroy-all', [PresensiController::class, 'destroyAll'])->name('laporan.destroy-all');
 
-    // Rute yang dapat diakses oleh peran "Guru"
-    // Route::middleware(['guru'])->group(function () {
-    //     Route::get('/kelass', [KelasController::class, 'index'])->name('kelass.index');
-    //     Route::get('/siswas', [SiswaController::class, 'index'])->name('siswas.index');
-    // });
-
-
-    // Route::resource('/presensis', PresensiController::class);
-
-    // Route::get('/presensis', [PresensiController::class, 'index'])->name('presensis.index');
-    // Route::get('/presensis/{id}', [PresensiController::class, 'show'])->name('presensis.show');
-    // Route::post('/presensis/{id}', [PresensiController::class, 'store'])->name('presensis.store');
-    // Route::get('/presensis/filter', [PresensiController::class, 'filter'])->name('presensis.filter');
-    // laporan
-    // Route::get('/laporans', [LaporanController::class, 'index'])->name('laporans.index');
-    //
-    // Route::resources([
-    //     'roles' => RoleController::class,
-    //     'users' => UserController::class,
-    //     // 'products' => ProductController::class,
-    // ]);
-    // Role
-    // Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
-    // Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
-    // Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
-    // Route::delete('/roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
-    // });
 });
-
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

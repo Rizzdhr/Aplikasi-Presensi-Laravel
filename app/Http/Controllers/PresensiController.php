@@ -8,13 +8,9 @@ use App\Models\Siswa;
 use App\Models\Mapel;
 use App\Models\Presensi;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use App\Exports\PresensiExport;
 use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Facades\Excel;
 
 
 class PresensiController extends Controller
@@ -81,7 +77,7 @@ class PresensiController extends Controller
                 $existingPresensi->save();
             } else {
                 // Misalnya, tampilkan pesan kesalahan atau lakukan tindakan tertentu.
-                return back()->with(['failed' => 'Presensi sudah ada untuk siswa ini pada hari ini dengan mapel yang sama.']);
+                return back()->with(['failed' => 'Presensi sudah ada untuk hari ini dengan mapel yang sama.']);
             }
         }
 
@@ -186,5 +182,14 @@ class PresensiController extends Controller
         $presensi->delete();
 
         return redirect()->route('laporan')->with(['success' => 'Data Berhasil Dihapus']);
+    }
+
+    public function destroyAll()
+    {
+        $this->authorize('presensi');
+
+        Presensi::where('user_id', Auth::user()->id)->delete();
+
+        return redirect()->route('laporan')->with(['success' => 'Semua Data Berhasil Dihapus']);
     }
 }

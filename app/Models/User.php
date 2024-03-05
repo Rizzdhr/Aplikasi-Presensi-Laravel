@@ -50,16 +50,8 @@ class User extends Authenticatable
 
     public function guru()
     {
-        return $this->belongsTo(Guru::class, 'guru_id');
+        return $this->hasOne(Guru::class, 'guru_id');
     }
 
-//     /**
-//      * The roles that belong to the User
-//      *
-//      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-//      */
-//     public function roles()
-//     {
-//         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
-//     }
+
 }

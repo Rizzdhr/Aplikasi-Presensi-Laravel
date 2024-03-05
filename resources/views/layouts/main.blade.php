@@ -127,10 +127,7 @@
                                 selected: true
                             }
                         },
-                        customize: function(xlsx) {
-                            var sheet = xlsx.xl.worksheets['Laporan absen siswa.xml'];
 
-                        }
                     },
                     // {
                     //     extend: 'print',
@@ -214,7 +211,7 @@
             });
         </script>
 
-        <script>
+        {{-- <script>
             // Add a click event listener to the logout button
             document.getElementById('logoutButton2').addEventListener('click', function() {
                 // Show SweetAlert confirmation dialog
@@ -234,7 +231,7 @@
                     }
                 });
             });
-        </script>
+        </script> --}}
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {

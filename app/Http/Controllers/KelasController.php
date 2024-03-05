@@ -7,6 +7,8 @@ use App\Models\Jurusan;
 use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Guru;
+use App\Imports\SiswaImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -98,6 +100,8 @@ class KelasController extends Controller
 
         return view('kelass.show', compact('kelas', 'siswas', 'counter'));
     }
+
+
 
     /**
      * edit

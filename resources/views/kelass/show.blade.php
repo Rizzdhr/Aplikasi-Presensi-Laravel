@@ -32,6 +32,7 @@
                 @can('create-data')
                     <div class="card-header">
                         <a href="{{ route('siswas.create') }}" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</a>
+
                     </div>
                 @endcan
                 <div class="card-body">

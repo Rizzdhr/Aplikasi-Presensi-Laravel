@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
+use App\Imports\SiswaImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 

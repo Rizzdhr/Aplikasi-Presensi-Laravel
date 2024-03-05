@@ -23,7 +23,7 @@ class Guru extends Model
 
     public function User()
     {
-        return $this->hasMany(User::class, 'guru_id');
+        return $this->hasOne(User::class, 'guru_id');
     }
 
 }

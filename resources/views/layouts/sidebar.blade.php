@@ -105,9 +105,9 @@
 
                 <div id="logoutButtonContainer" class="row">
                     <div class="btn-md mt-3">
-                        <form id="logoutForm2" action="{{ route('logout') }}" method="GET">
+                        <form id="logoutForm" action="{{ route('logout') }}" method="GET">
                             @csrf
-                            <button id="logoutButton2" type="button" class="btn btn-danger btn-block">Logout</button>
+                            <button id="logoutButton" type="button" class="btn btn-danger btn-block">Logout</button>
                         </form>
                     </div>
                 </div>

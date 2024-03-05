@@ -25,5 +25,19 @@ class GuruSeeder extends Seeder
             'mapel_id' => 1,
             'jenis_kelamin' => 'Laki-laki',
         ]);
+
+        Guru::create([
+            'nip'   => '4321.21.21.321',
+            'nama' => 'Neng Masriyah, S.Kom',
+            'mapel_id' => 1,
+            'jenis_kelamin' => 'Perempuan',
+        ]);
+
+        Guru::create([
+            'nip'   => '5678.56.56.56',
+            'nama' => 'BK',
+            'mapel_id' => 1,
+            'jenis_kelamin' => 'Laki-laki',
+        ]);
     }
 }

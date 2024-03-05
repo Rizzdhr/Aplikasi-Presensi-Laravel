@@ -110,6 +110,13 @@ class GuruController extends Controller
             'jenis_kelamin'  => $request->jenis_kelamin,
         ]);
 
+        // Update user data with the new guru name
+        $user = $guru->user;
+        if ($user) {
+            $user->username = $guru->nama;
+            $user->save(); // Gunakan metode save() untuk menyimpan perubahan
+        }
+
         // Redirect to the index with a success message
         return redirect()->route('gurus.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
