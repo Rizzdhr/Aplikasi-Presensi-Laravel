@@ -80,11 +80,11 @@
                                     <th style="">
                                         No
                                     </th>
-                                    <th class="text-left">
-                                        NISN
-                                    </th>
                                     <th>
                                         Nama
+                                    </th>
+                                    <th class="text-left">
+                                        NISN
                                     </th>
                                     <th style="">
                                         Kelas
@@ -112,8 +112,8 @@
                                 @foreach ($presensis as $presensi)
                                     <tr data-kelas="{{ $presensi->siswas->kelas_id }}">
                                         <td>{{ $loop->iteration }}</td>
-                                        <td class="text-left">{{ $presensi->siswas->nisn }}</td>
                                         <td class="text-truncate">{{ $presensi->siswas->nama }}</td>
+                                        <td class="text-left">{{ $presensi->siswas->nisn }}</td>
                                         <td class="text-truncate">{{ $presensi->kelas->hasil_kelas }}</td>
                                         <td class="text-truncate">{{ $presensi->users->username }}</td>
                                         <td class="text-truncate">{{ $presensi->mapels->nama_mapel }}</td>

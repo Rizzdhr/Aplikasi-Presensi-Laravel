@@ -89,6 +89,7 @@ class PresensiController extends Controller
         $mapels = Mapel::all();
         $kelas = Kelas::all();
         $presensis = Presensi::with('kelas', 'siswas', 'mapels', 'users')
+            ->where('user_id', Auth::user()->id) // Filter berdasarkan user yang masuk
             ->whereDate('created_at', Carbon::today())
             ->get();
         // dd($presensis); // Tambahkan ini untuk debugging
@@ -183,5 +184,4 @@ class PresensiController extends Controller
 
         return redirect()->route('laporan')->with(['success' => 'Data Berhasil Dihapus']);
     }
-
 }

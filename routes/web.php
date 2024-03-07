@@ -29,10 +29,6 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
-
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/', [LoginController::class, 'index'])->name('login');
     Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');

@@ -42,10 +42,10 @@
                                         No
                                     </th>
                                     <th style="">
-                                        NISN
+                                        Nama
                                     </th>
                                     <th style="">
-                                        Nama
+                                        NISN
                                     </th>
                                     <th style="">
                                         Kelas
@@ -65,8 +65,8 @@
                                 @forelse ($siswas as $siswa)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td class="text-truncate">{{ $siswa->nisn }}</td>
                                         <td class="text-truncate">{{ $siswa->nama }}</td>
+                                        <td class="text-truncate">{{ $siswa->nisn }}</td>
                                         <td class="text-truncate">{{ $siswa->kelas->hasil_kelas }}</td>
                                         {{-- <td>{{ $siswa->jurusan->nama_jurusan }}</td> --}}
                                         <td class="text-truncate">{{ $siswa->jenis_kelamin }}</td>

@@ -34,7 +34,7 @@
                                     <label for="guru_id">Guru</label>
                                     <select class="selectpicker form-control" data-live-search="true" id="guru_id"
                                         name="guru_id" {{ $dataGuru->count() < 0 ? 'disabled' : '' }}>
-                                        <option {{ old('guru_id') ? '' : 'selected' }}>--PILIH--</option>
+                                        <option {{ old('guru_id') ? '' : 'selected' }} disabled>--PILIH--</option>
                                         @foreach ($dataGuru as $guru)
                                             <option data-tokens="{{ $guru->id }}"
                                                 {{ (int) old('guru_id') == (int) $guru->id ? 'selected' : '' }}

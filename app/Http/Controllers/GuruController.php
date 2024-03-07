@@ -149,7 +149,6 @@ class GuruController extends Controller
         //     return redirect()->route('gurus.index')->with(['failed' => 'Guru tidak dapat dihapus karena masih terkait dengan kelas.']);
         // }
 
-
         $guru->delete();
 
 

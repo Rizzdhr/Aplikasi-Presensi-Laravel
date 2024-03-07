@@ -41,11 +41,11 @@
                                     <th style="width: 1%">
                                         No
                                     </th>
-                                    <th>
-                                        NIP
-                                    </th>
                                     <th style="">
                                         Nama
+                                    </th>
+                                    <th>
+                                        NIP
                                     </th>
                                     <th class="text-truncate" style="">
                                         Mata Pelajaran
@@ -62,8 +62,8 @@
                                 @foreach ($gurus as $guru)
                                     <tr>
                                         <td>{{ $loop->iteration }} </td>
-                                        <td class="text-truncate">{{ $guru->nip }}</td>
                                         <td class="text-truncate">{{ $guru->nama }}</td>
+                                        <td class="text-truncate">{{ $guru->nip }}</td>
                                         <td class="text-truncate">{{ $guru->mapel->nama_mapel }}</td>
                                         <td class="text-truncate">{{ $guru->jenis_kelamin }}</td>
                                         <td>
@@ -85,11 +85,13 @@
                                                 {{-- @can('delete_data') --}}
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" class="btn btn-danger btn-sm"
-                                                    onclick="confirmDelete('{{ $guru->id }}')">
-                                                    <i class="fas fa-trash">
-                                                    </i>
-                                                    HAPUS</button>
+                                                @if (Auth::user()->id != $guru->id)
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                        onclick="confirmDelete('{{ $guru->id }}')">
+                                                        <i class="fas fa-trash">
+                                                        </i>
+                                                        HAPUS</button>
+                                                @endif
                                             </form>
                                             {{-- @endcan --}}
                                         </td>

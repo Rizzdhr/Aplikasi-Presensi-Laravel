@@ -94,11 +94,22 @@
         <script src="https://cdn.datatables.net/colreorder/1.7.0/js/dataTables.colReorder.min.js"></script>
         <script src="https://cdn.datatables.net/fixedcolumns/4.3.0/js/dataTables.fixedColumns.min.js"></script>
         <script src="https://cdn.datatables.net/fixedheader/3.4.0/js/dataTables.fixedHeader.min.js"></script>
-        {{-- <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script> --}}
-        {{-- <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.js"></script> --}}
-        {{-- <script src="https://cdn.datatables.net/scroller/2.3.0/js/dataTables.scroller.min.js"></script> --}}
+        <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.js"></script>
+        <script src="https://cdn.datatables.net/scroller/2.3.0/js/dataTables.scroller.min.js"></script>
         <script>
-            let table = new DataTable('#tabledata');
+            $('#tabledata').DataTable({
+                responsive: true,
+                lengthChange: true,
+                searching: true,
+                paging: true,
+                info: true,
+                ordering: true,
+                language: {
+                    emptyTable: "Data belum ada"
+                }
+            })
+            // let table = new DataTable('#tabledata');
         </script>
         <script>
             $('#tabledata2').DataTable({
