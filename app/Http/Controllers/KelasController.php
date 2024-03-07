@@ -180,10 +180,10 @@ class KelasController extends Controller
         //get Kelas by ID
         $Kelas = Kelas::findOrFail($id);
 
-        // Periksa apakah kelas masih memiliki siswa terkait
-        if ($Kelas->siswa()->exists()) {
-            return redirect()->route('kelass.index')->with(['failed' => 'Kelas tidak dapat dihapus karena masih terkait dengan siswa.']);
-        }
+        // // Periksa apakah kelas masih memiliki siswa terkait
+        // if ($Kelas->siswa()->exists()) {
+        //     return redirect()->route('kelass.index')->with(['failed' => 'Kelas tidak dapat dihapus karena masih terkait dengan siswa.']);
+        // }
 
         //delete Kelas
         $Kelas->delete();

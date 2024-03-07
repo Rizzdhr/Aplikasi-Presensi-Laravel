@@ -15,15 +15,15 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         // Creating Admin User
-        $admin = User::create([
+        $admin = User::updateOrcreate([
             'guru_id'   => 1,
-            'username' => 'Rizky Dharmawan',
-            'email' => 'rizky@gmail.com',
-            'password' => Hash::make('rizky123')
+            'username' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('admin123')
         ]);
         $admin->assignRole('Admin');
 
-        $guru = User::create([
+        $guru = User::updateOrcreate([
             'guru_id'   => 2,
             'username' => 'Neng Masriyah, S.Kom',
             'email' => 'neng@gmail.com',
@@ -31,7 +31,7 @@ class AdminSeeder extends Seeder
         ]);
         $guru->assignRole('Guru');
 
-        $bk = User::create([
+        $bk = User::updateOrcreate([
             'guru_id'   => 3,
             'username' => 'BK',
             'email' => 'bk@gmail.com',

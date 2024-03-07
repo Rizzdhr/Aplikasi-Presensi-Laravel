@@ -64,9 +64,6 @@
 
                             <div class="col-md-3 mt-4">
                                 <button type="submit" class="btn btn-primary">Filter</button>
-                                @if (request('kelas_id') || request('TanggalMulai') || request('TanggalSelesai'))
-                                <a href="{{ route('laporan.destroy-all') }}" class="btn btn-danger">Hapus Semua Data</a>
-                                @endif
                             </div>
 
                         </div>

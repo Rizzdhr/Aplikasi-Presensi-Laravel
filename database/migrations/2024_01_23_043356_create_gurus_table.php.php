@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->char('nip')->unique();
             $table->string('nama');
-            $table->foreignId('mapel_id')->references('id')->on('mapels');
+            $table->foreignId('mapel_id')->references('id')->on('mapels')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->timestamps();
         });

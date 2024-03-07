@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
             $table->enum('tingkat_kelas' , ['10','11','12']);
-            $table->foreignId('jurusan_id')->references('id')->on('jurusans');
+            $table->foreignId('jurusan_id')->references('id')->on('jurusans')->onDelete('cascade')->onDelete('cascade');
             $table->char('nomor_kelas');
-            $table->foreignId('guru_id')->references('id')->on('gurus');
+            $table->foreignId('guru_id')->references('id')->on('gurus')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

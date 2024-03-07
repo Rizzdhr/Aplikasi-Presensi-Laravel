@@ -211,27 +211,29 @@
             });
         </script>
 
-        {{-- <script>
-            // Add a click event listener to the logout button
-            document.getElementById('logoutButton2').addEventListener('click', function() {
-                // Show SweetAlert confirmation dialog
-                Swal.fire({
-                    title: "Kamu yakin ingin log out?",
-                    // text: "You will be logged out of your account.",
-                    icon: "question",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya, log out"
-                }).then((result) => {
-                    // If the user clicks the confirm button
-                    if (result.isConfirmed) {
-                        // Submit the logout form
-                        document.getElementById('logoutForm2').submit();
+        <script>
+            function validatePresensi() {
+                var radios = document.querySelectorAll('input[type="radio"]');
+                var isValid = true;
+
+                radios.forEach(function(radio) {
+                    var name = radio.getAttribute('name');
+                    if (!document.querySelector('input[name="' + name + '"]:checked')) {
+                        isValid = false;
                     }
                 });
-            });
-        </script> --}}
+
+                if (!isValid) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Harap pilih presensi untuk semua siswa.',
+                    });
+                }
+
+                return isValid;
+            }
+        </script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {

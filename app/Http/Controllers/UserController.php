@@ -31,7 +31,7 @@ class UserController extends Controller
     public function index(): View
     {
         return view('users.index', [
-            'users' => User::latest('id')->orderBy('username', 'asc')->get()
+            'users' => User::orderBy('username', 'asc')->get()
         ]);
     }
 

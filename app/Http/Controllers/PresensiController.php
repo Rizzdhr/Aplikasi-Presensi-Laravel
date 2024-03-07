@@ -184,12 +184,4 @@ class PresensiController extends Controller
         return redirect()->route('laporan')->with(['success' => 'Data Berhasil Dihapus']);
     }
 
-    public function destroyAll()
-    {
-        $this->authorize('presensi');
-
-        Presensi::where('user_id', Auth::user()->id)->delete();
-
-        return redirect()->route('laporan')->with(['success' => 'Semua Data Berhasil Dihapus']);
-    }
 }

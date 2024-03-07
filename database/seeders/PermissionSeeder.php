@@ -16,9 +16,6 @@ class PermissionSeeder extends Seeder
         $permissions = [
             'presensi',
             'laporan',
-            'create-role',
-            'edit-role',
-            'delete-role',
             'create-user',
             'edit-user',
             'delete-user',

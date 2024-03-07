@@ -9,9 +9,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="d-flex col-sm-6 align-items-center">
-                        <a href="{{ route('presensis.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left nav-icon"></i></a>
-                        <span class="ml-2"><h1>Presensi {{ ' (' . Carbon\Carbon::now('Asia/Jakarta')->translatedFormat('d F Y') . ')' }}
-                        </h1></span>
+                        <a href="{{ route('presensis.index') }}" class="btn btn-dark"><i
+                                class="fas fa-arrow-left nav-icon"></i></a>
+                        <span class="ml-2">
+                            <h1>Presensi {{ ' (' . Carbon\Carbon::now('Asia/Jakarta')->translatedFormat('d F Y') . ')' }}
+                            </h1>
+                        </span>
 
                         {{-- @can('create_data') --}}
 
@@ -23,7 +26,8 @@
 
         <!-- Main content -->
         <section class="content">
-            <form action="{{ route('presensis.store') }}" method="post" id="presensiForm">
+            <form action="{{ route('presensis.store') }}" method="post" id="presensiForm"
+                onsubmit="return validatePresensi();">
                 @csrf
                 <!-- Default box -->
                 <div class="card">
@@ -108,56 +112,18 @@
                                                 <label for="Alpha_{{ $siswa->id }}" class="btn btn-outline-success">
                                                     Alpha
                                                 </label>
-
-                                                {{-- <select class="form-select" name="presensi[{{ $siswa->id }}]">
-                                                    <option value="Hadir">Hadir</option>
-                                                    <option value="Izin">Izin</option>
-                                                    <option value="Sakit">Sakit</option>
-                                                    <option value="Alpha">Alpha</option>
-                                                </select> --}}
-
-                                                {{-- <select name="keterangan[{{ $siswa->id }}]"
-                                                    class="form-control form-select">
-                                                    <option name="keterangan[{{ $siswa->id }}] value="Hadir"
-                                                        id="Hadir_{{ $siswa->id }}" for="Hadir_{{ $siswa->id }}">
-                                                        Hadir</option>
-                                                    <option name="keterangan[{{ $siswa->id }}] value="Izin"
-                                                        id="Izin_{{ $siswa->id }}" for="Izin_{{ $siswa->id }}">Izin
-                                                    </option>
-                                                    <option name="keterangan[{{ $siswa->id }}] value="Sakit"
-                                                        id="Sakit_{{ $siswa->id }}" for="Sakit_{{ $siswa->id }}">
-                                                        Sakit</option>
-                                                    <option name="keterangan[{{ $siswa->id }}] value="Alpha"
-                                                        id="Alpha_{{ $siswa->id }}" for="Alpha_{{ $siswa->id }}">
-                                                        Alpha</option>
-                                                </select> --}}
-
-
-
-                                                {{-- <select name="siswa[{{ $index }}][status]"
-                                                    class="form-control form-select" id="">
-                                                    <option value="Hadir">Hadir</option>
-                                                    <option value="Izin">Izin</option>
-                                                    <option value="Sakit">Sakit</option>
-                                                    <option value="Alpha">Alpha</option>
-                                                </select> --}}
                                             </td>
-                                            {{-- <td class="text-truncate">
-                                                <input type="text" name="siswa[{{ $index }}][keterangan]" class="form-control" placeholder="Masukkan keterangan">
-                                            </td> --}}
-
-
                                         </tr>
 
-                                        @empty
+                                    @empty
                                         <div class="alert alert-danger">
-                                    Data Siswa belum Tersedia.
-                                </div>
-                                @endforelse
-                            </tbody>
+                                            Data Siswa belum Tersedia.
+                                        </div>
+                                    @endforelse
+                                </tbody>
 
-                        </table>
-                        <button type="submit" class="btn btn-success col-12">Simpan</button>
+                            </table>
+                            <button type="submit" class="btn btn-success col-12">Simpan</button>
                             {{-- <button type="submit" class="btn btn-success float-right">Simpan</button> --}}
 
                         </div>

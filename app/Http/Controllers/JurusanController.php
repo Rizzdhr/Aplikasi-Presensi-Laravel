@@ -107,9 +107,9 @@ class JurusanController extends Controller
         $this->authorize('delete-data');
         $jurusan = Jurusan::findOrFail($id);
 
-        if ($jurusan->kelas()->exists()) {
-            return redirect()->route('jurusans.index')->with(['failed' => 'Jurusan tidak dapat dihapus karena masih terkait dengan kelas.']);
-        }
+        // if ($jurusan->kelas()->exists()) {
+        //     return redirect()->route('jurusans.index')->with(['failed' => 'Jurusan tidak dapat dihapus karena masih terkait dengan kelas.']);
+        // }
         $jurusan->delete();
 
         return redirect()->route('jurusans.index')->with(['success' => 'Jurusan berhasil dihapus!']);

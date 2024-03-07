@@ -92,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
 
     });
     // });
+
     Route::get('/dashboard', [DahsboardController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/kelas', [KelasController::class, 'index'])->name('kelass.index');
@@ -107,6 +108,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/laporan', [PresensiController::class, 'laporan'])->name('laporan');
     Route::post('/laporan/filter', [PresensiController::class, 'filter'])->name('laporan.filter');
-    Route::get('/laporan/destroy-all', [PresensiController::class, 'destroyAll'])->name('laporan.destroy-all');
 
 });

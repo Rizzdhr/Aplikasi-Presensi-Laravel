@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('presensis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
-            $table->foreignId('siswa_id')->references('id')->on('siswas')->onDelete('cascade');
-            $table->foreignId('mapel_id')->references('id')->on('mapels')->onDelete('cascade');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('kelas_id')->references('id')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('siswa_id')->references('id')->on('siswas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('mapel_id')->references('id')->on('mapels')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('presensi', ['Hadir', 'Izin', 'Sakit', 'Alpha']);
 
             // kunci unik untuk mencegah duplikasi data
