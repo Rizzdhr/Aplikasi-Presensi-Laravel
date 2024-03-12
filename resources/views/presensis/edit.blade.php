@@ -84,7 +84,7 @@
                                 <div class="form-group">
                                     <label for="">Guru</label>
                                     <select name="user_id" class="form-control @error('user_id') is-invalid @enderror"
-                                        id="user">
+                                        id="user" disabled>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}"
                                                 {{ old('user_id', $presensi->user_id) == $user->id ? 'selected' : '' }}>
@@ -102,7 +102,7 @@
 
                                 <div class="form-group">
                                     <label for="">Mata Pelajaran</label>
-                                    <select name="mapel_id" id="mapel" class="form-select">
+                                    <select name="mapel_id" id="mapel" class="form-select" disabled>
                                         @foreach ($mapel as $mapels)
                                             <option value="{{ old('mapel_id', $mapels->id) }}"
                                                 {{ old('mapel_id', $presensi->mapel_id) == $mapels->id ? 'selected' : '' }}>

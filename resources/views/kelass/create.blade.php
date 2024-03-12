@@ -98,7 +98,7 @@
                                         <option selected disabled>-Pilih wali kelas-</option>
                                         @foreach ($gurus as $guru)
                                             <option value="{{ $guru->id }}">
-                                                {{ $guru->nama. ' (' . $guru->nip . ') '  }}
+                                                {{ $guru->nama }}
                                             </option>
                                         @endforeach
                                     </select>

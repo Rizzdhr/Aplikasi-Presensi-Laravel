@@ -53,7 +53,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="">Mata Pelajaran</label>
                                     <select name="mapel_id" class="form-control @error('mapel_id') is-invalid @enderror"
                                         value="{{ old('mapel_id') }}">
@@ -69,15 +69,15 @@
                                             Data mata pelajaran kosong! <a href="{{ route('mapels.create') }}"
                                                 class="text-decoration-none">Tambah</a>
                                         </p>
-                                    @endif
+                                    @endif --}}
 
-                                    <!-- error message untuk mapel -->
+                                    {{-- <!-- error message untuk mapel -->
                                     @error('mapel_id')
                                         <div class="text-danger">
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group">
                                     <label for="">Jenis Kelamin</label>

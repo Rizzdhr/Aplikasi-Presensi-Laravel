@@ -20,23 +20,23 @@ class GuruSeeder extends Seeder
 
         // Tambahkan data guru contoh
         Guru::create([
-            'nip'   => '1234.12.12.123',
+            'nip'   => '1234567890',
             'nama' => 'Admin',
-            'mapel_id' => 1,
+            // 'mapel_id' => 1,
             'jenis_kelamin' => 'Laki-laki',
         ]);
 
         Guru::create([
-            'nip'   => '4321.21.21.321',
+            'nip'   => '0987654321',
             'nama' => 'Neng Masriyah, S.Kom',
-            'mapel_id' => 1,
+            // 'mapel_id' => 1,
             'jenis_kelamin' => 'Perempuan',
         ]);
 
         Guru::create([
-            'nip'   => '5678.56.56.56',
+            'nip'   => '1223334444',
             'nama' => 'BK',
-            'mapel_id' => 1,
+            // 'mapel_id' => 1,
             'jenis_kelamin' => 'Laki-laki',
         ]);
     }

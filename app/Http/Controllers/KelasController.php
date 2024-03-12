@@ -152,7 +152,7 @@ class KelasController extends Controller
             ->where('id', '!=', $id)
             ->first()
         ) {
-            return back()->with(['failed' => 'Wali Kelas Sudah Ada!']);
+            return back()->with(['failed' => 'Guru Sudah Terdaftar Menjadi Wali Kelas!']);
         }
 
         // Update Kelas data with the new values

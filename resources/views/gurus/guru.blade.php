@@ -47,9 +47,9 @@
                                     <th>
                                         NIP
                                     </th>
-                                    <th class="text-truncate" style="">
+                                    {{-- <th class="text-truncate" style="">
                                         Mata Pelajaran
-                                    </th>
+                                    </th> --}}
                                     <th class="text-truncate" style="">
                                         Jenis Kelamin
                                     </th>
@@ -64,7 +64,7 @@
                                         <td>{{ $loop->iteration }} </td>
                                         <td class="text-truncate">{{ $guru->nama }}</td>
                                         <td class="text-truncate">{{ $guru->nip }}</td>
-                                        <td class="text-truncate">{{ $guru->mapel->nama_mapel }}</td>
+                                        {{-- <td class="text-truncate">{{ $guru->mapel->nama_mapel }}</td> --}}
                                         <td class="text-truncate">{{ $guru->jenis_kelamin }}</td>
                                         <td>
                                             <form class="text-truncate" id="deleteForm{{ $guru->id }}"

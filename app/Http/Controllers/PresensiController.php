@@ -39,57 +39,61 @@ class PresensiController extends Controller
         return view('presensis.create', compact('kelas', 'siswas', 'users', 'mapels'));
     }
 
-    public function create(Request $request)
-    {
-        $kelas = Kelas::all();
-        $siswas = Siswa::all();
-        $mapel = Mapel::all();
-        return view('presensis.create', compact('kelas', 'siswas', 'mapel'));
-    }
-
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->validate($request, [
             'kelas_id'  => 'required',
-            'siswa_id'  => 'required',
+            'siswa_id'  => 'required|array',
+            'siswa_id.*'  => 'required|exists:siswas,id',
             'user_id'   => 'required',
             'mapel_id'  => 'required',
             'presensi'  => 'required|array',
             'presensi.*'    => 'required|in:Hadir,Izin,Sakit,Alpha',
         ]);
 
-        foreach ($request->presensi as $siswa_id => $presensi) {
-            // Mencari atau membuat presensi berdasarkan kelas, siswa, user, dan tanggal
-            $existingPresensi = Presensi::firstOrNew([
+        foreach ($request->siswa_id as $siswa_id) {
+            // Cari presensi berdasarkan kelas, siswa, dan tanggal
+            $existingPresensi = Presensi::where([
                 'kelas_id'    => $request->kelas_id,
                 'siswa_id'    => $siswa_id,
                 'mapel_id'    => $request->mapel_id,
-                'user_id'     => $request->user_id,
                 'created_at'  => now()->format('Y-m-d'),
-            ]);
+            ])->first();
 
-            // Set nilai presensi
-            $existingPresensi->presensi = $presensi;
+            // Jika presensi sudah ada
+            if ($existingPresensi) {
+                // Periksa apakah guru yang menyimpan sebelumnya sama dengan guru yang menyimpan sekarang
+                if ($existingPresensi->user_id !== $request->user_id) {
+                    // Guru yang berbeda mencoba menyimpan presensi
+                    return back()->with(['failed' => 'Presensi sudah ada untuk hari ini dengan mapel yang sama']);
+                }
 
-            // Jika data baru, simpan
-            if (!$existingPresensi->exists) {
+                // Update nilai presensi jika perlu
+                $existingPresensi->presensi = $request->presensi[$siswa_id];
                 $existingPresensi->save();
             } else {
-                // Misalnya, tampilkan pesan kesalahan atau lakukan tindakan tertentu.
-                return back()->with(['failed' => 'Presensi sudah ada untuk hari ini dengan mapel yang sama.']);
+                // Buat entri baru
+                Presensi::create([
+                    'kelas_id'    => $request->kelas_id,
+                    'siswa_id'    => $siswa_id,
+                    'mapel_id'    => $request->mapel_id,
+                    'user_id'     => $request->user_id,
+                    'created_at'  => now()->format('Y-m-d'),
+                    'presensi'    => $request->presensi[$siswa_id],
+                ]);
             }
         }
 
         return redirect()->route('laporan')->with(['success' => 'Data Berhasil Ditambahkan']);
     }
 
+
     public function laporan()
     {
         $mapels = Mapel::all();
         $kelas = Kelas::all();
         $presensis = Presensi::with('kelas', 'siswas', 'mapels', 'users')
-            ->where('user_id', Auth::user()->id) // Filter berdasarkan user yang masuk
+            // ->where('user_id', Auth::user()->id) // Filter berdasarkan user yang masuk
             ->whereDate('created_at', Carbon::today())
             ->get();
         // dd($presensis); // Tambahkan ini untuk debugging
@@ -153,8 +157,8 @@ class PresensiController extends Controller
         $this->validate($request, [
             // 'kelas_id'  => 'required',
             // 'siswa_id'  => 'required',
-            'user_id'   => 'required',
-            'mapel_id'  => 'required',
+            // 'user_id'   => 'required',
+            // 'mapel_id'  => 'required',
             'presensi' => 'required',
         ]);
 
@@ -163,8 +167,8 @@ class PresensiController extends Controller
         $presensi->update([
             // 'kelas_id'  => $request->kelas_id,
             // 'siswa_id'  => $request->siswa_id,
-            'user_id'   => $request->user_id,
-            'mapel_id'  => $request->mapel_id,
+            // 'user_id'   => $request->user_id,
+            // 'mapel_id'  => $request->mapel_id,
             'presensi' => $request->presensi,
         ]);
 

@@ -11,10 +11,10 @@ class Mapel extends Model
 
     protected $fillable = ['nama_mapel'];
 
-    public function Guru()
-    {
-        return $this->hasMany(Guru::class);
-    }
+    // public function Guru()
+    // {
+    //     return $this->hasMany(Guru::class);
+    // }
 
     /**
      * Get all of the comments for the Mapel

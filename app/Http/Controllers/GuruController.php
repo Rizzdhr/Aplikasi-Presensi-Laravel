@@ -51,9 +51,9 @@ class GuruController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'nip'   => 'required|min:14|max:18|unique:gurus,nip',
+            'nip'   => 'required|min:10|max:18|unique:gurus,nip',
             'nama'     => 'required',
-            'mapel_id'     => 'required',
+            // 'mapel_id'     => 'required',
             'jenis_kelamin'   => 'required',
         ]);
 
@@ -61,7 +61,7 @@ class GuruController extends Controller
         Guru::create([
             'nip'   => $request->nip,
             'nama'  => $request->nama,
-            'mapel_id'   => $request->mapel_id,
+            // 'mapel_id'   => $request->mapel_id,
             'jenis_kelamin'  => $request->jenis_kelamin,
         ]);
 
@@ -81,11 +81,11 @@ class GuruController extends Controller
         //get guru by ID
         $guru = Guru::findOrFail($id);
 
-        // Get the list of mapels
-        $mapels = Mapel::all();
+        // // Get the list of mapels
+        // $mapels = Mapel::all();
 
         //render view with guru
-        return view('gurus.edit', compact('guru', 'mapels'));
+        return view('gurus.edit', compact('guru'));
     }
 
     // update
@@ -93,9 +93,9 @@ class GuruController extends Controller
     {
         // Validate form data
         $this->validate($request, [
-            'nip'   => 'required|min:14|max:18|unique:gurus,nip,' . $id,
+            'nip'   => 'required|min:10|max:18|unique:gurus,nip,' . $id,
             'nama'     => 'required',
-            'mapel_id'     => 'required',
+            // 'mapel_id'     => 'required',
             'jenis_kelamin'   => 'required'
         ]);
 
@@ -106,7 +106,7 @@ class GuruController extends Controller
         $guru->update([
             'nip'   => $request->nip,
             'nama'  => $request->nama,
-            'mapel_id'   => $request->mapel_id,
+            // 'mapel_id'   => $request->mapel_id,
             'jenis_kelamin'  => $request->jenis_kelamin,
         ]);
 

@@ -44,10 +44,10 @@
                                         No
                                     </th>
                                     <th style="">
-                                        NISN
+                                        Nama
                                     </th>
                                     <th style="">
-                                        Nama
+                                        NISN
                                     </th>
                                     <th class="text-truncate" style="">
                                         Jenis Kelamin
@@ -63,8 +63,8 @@
                                 @forelse ($siswas as $siswa)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td class="text-truncate">{{ $siswa->nisn }}</td>
                                         <td class="text-truncate">{{ $siswa->nama }}</td>
+                                        <td class="text-truncate">{{ $siswa->nisn }}</td>
                                         <td class="text-truncate">{{ $siswa->jenis_kelamin }}</td>
 
                                         @can('edit-data|delete-data')

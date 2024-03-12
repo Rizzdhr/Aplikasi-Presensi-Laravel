@@ -51,7 +51,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="">Mata Pelajaran</label>
                                     <select name="mapel_id" class="form-control @error('mapel_id') is-invalid @enderror">
                                         <option selected disabled>Pilih Mapel</option>
@@ -66,7 +66,7 @@
                                     @error('mapel_id')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group">
                                     <label for="">Jenis Kelamin</label>

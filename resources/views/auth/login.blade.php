@@ -30,7 +30,7 @@
 
             </div>
             <div class="card-header text-center">
-                <a href="{{ route('login') }}" class="h1"><b>PRESENSI</b></a>
+                <a  class="h1"><b>PRESENSI</b></a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Login</p>
